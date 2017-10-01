@@ -1,12 +1,5 @@
 contact {
 
-    @mixin flexify($percentage, $justify-position, $align-position) {
-        display: flex;
-        flex: $percentage;
-        justify-content: $justify-position;
-        align-self: $align-position;
-    }
-
     .contact {
         display: flex;
         flex: 1;

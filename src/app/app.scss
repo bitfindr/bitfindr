@@ -14,3 +14,10 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+@mixin flexify($percentage, $justify-position, $align-position) {
+    display: flex;
+    flex: $percentage;
+    justify-content: $justify-position;
+    align-self: $align-position;
+}
