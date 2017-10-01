@@ -1,0 +1,23 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>ContactDetail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <button ion-button (click)="selectContact()"> pick contact </button>
+  <div>
+    <h3>{{contact.displayName}}</h3>
+    <img [src]="contact.photo" />
+    {{contact | json}}
+
+  </div>
+
+  <button ion-item (click)="copyToClipboard('ajsdihsajfasifjsaodjasoj')">
+    <p>ajsdihsajfasifjsaodjasoj</p>
+  </button>
+
+</ion-content>
