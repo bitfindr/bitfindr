@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons end>
+      <button ion-button (click)="dismiss(false)">
+      Dismiss
+    </button>
+    </ion-buttons>
+    <ion-title>Wallet Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ngx-qrcode [qrc-value]="wallet" [qrc-version]=5 [qrc-correction-level]="'L'"></ngx-qrcode>
+</ion-content>

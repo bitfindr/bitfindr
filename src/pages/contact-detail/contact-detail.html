@@ -1,23 +1,24 @@
-<ion-header>
-
+<ion-header no-border>
   <ion-navbar>
-    <ion-title>ContactDetail</ion-title>
+    <ion-title>{{contact.name}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="md-create"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
-
-<ion-content padding>
-  <button ion-button (click)="selectContact()"> pick contact </button>
-  <div>
+<ion-content fullscreen>
+  <!-- <button ion-button (click)="selectContact()"> pick contact </button> -->
+  <!-- <div>
     <h3>{{contact.displayName}}</h3>
     <img [src]="contact.photo" />
-    {{contact | json}}
+  </div> -->
 
-  </div>
-
-  <button ion-item (click)="copyToClipboard('ajsdihsajfasifjsaodjasoj')">
-    <p>ajsdihsajfasifjsaodjasoj</p>
-  </button>
+  <wallet-item *ngFor="let broker of contact.brokers"
+               [broker]="broker"
+               (onClick)="copyToClipboard($event)"
+               (onQrCodeClick)="showQrCode($event)"></wallet-item>
 
 </ion-content>

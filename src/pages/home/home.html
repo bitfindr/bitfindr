@@ -7,5 +7,5 @@
 <ion-content>
   <contact *ngFor="let contact of contacts"
            [contact]="contact"
-           (click)="goToContact()"></contact>
+           (click)="goToContact(contact)"></contact>
 </ion-content>

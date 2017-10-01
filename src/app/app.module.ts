@@ -1,3 +1,4 @@
+import { QrCodeModalPage } from '../pages/qr-code-modal/qr-code-modal';
 import { ContactDetailPage } from '../pages/contact-detail/contact-detail';
 import { ComponentsModule } from '../components/components.module';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -17,21 +18,28 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StorageProvider } from '../providers/storage/storage';
 import { ToastProvider } from '../providers/toast/toast';
 
+import { NgxQRCodeModule } from 'ngx-qrcode3';
+
 @NgModule({
   declarations: [
     MyApp,
     AboutPage,
     HomePage,
     TabsPage,
-    ContactDetailPage
+    ContactDetailPage,
+    QrCodeModalPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      modalEnter: 'modal-slide-in',
+      modalLeave: 'modal-slide-out',
+    }),
     IonicStorageModule.forRoot({
       name: '__bitdb',
       driverOrder: ['indexeddb', 'sqlite', 'websql']
     }),
+    NgxQRCodeModule,
     ComponentsModule
   ],
   bootstrap: [IonicApp],
@@ -40,7 +48,8 @@ import { ToastProvider } from '../providers/toast/toast';
     AboutPage,
     HomePage,
     TabsPage,
-    ContactDetailPage
+    ContactDetailPage,
+    QrCodeModalPage
   ],
   providers: [
     StatusBar,

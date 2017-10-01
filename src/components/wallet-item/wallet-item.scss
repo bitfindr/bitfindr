@@ -1,0 +1,15 @@
+wallet-item {
+    border-bottom: 1px solid #ccc;
+
+    img {
+        padding: 1rem;
+        max-height: 50px;
+        max-width: 50px;
+        flex: 0.25;
+    }
+
+    button.wallet-broker{
+        padding-left: 0;
+    }
+
+}
