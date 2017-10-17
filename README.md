@@ -1,21 +1,45 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+# Bit Wallet Manager
 
-## How to use this template
+This app is aimed at helping people that deal with cryptocurrency transactions, like lending money to friends, making small payments, etc. Initially its focus is to behave like a "contact address" app, that you can save and share contacts with their wallet addresses and qr codes. 
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+## Setup
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
+Requirements to use this project:
 
-### With the Ionic CLI:
+##### Node.js (https://nodejs.org/download/)
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
-
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myTabs tabs
+##### npm (Node Package Manager, it comes with node.js installation)
+In case you're not with the latest version of npm:
+```sh
+$ sudo npm install npm -g
 ```
 
-Then, to run it, cd into `myTabs` and run:
+##### Cordova & Ionic Cli
+To install both of them on your system just launch this command:
+```sh
+$ sudo npm install cordova ionic -g
+```
+
+## Install NPM Dependencies
+Once you clone this repository, run this command on your terminal to install all needed dependencies:
+```sh
+$ npm install
+```
+ 
+## Launching the App
+After installing the needed dependencies you are done, launch your app with a simple
+```sh
+$ ionic serve
+```
+
+Then, to run it on a device/emulator, run:
+
+```bash
+$ ionic cordova platform add android
+$ ionic cordova run android
+```
+
+or, for ios:
 
 ```bash
 $ ionic cordova platform add ios
