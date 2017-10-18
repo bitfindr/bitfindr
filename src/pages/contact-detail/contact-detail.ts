@@ -6,8 +6,6 @@ import { Contacts, Contact, ContactField } from '@ionic-native/contacts';
 import { Clipboard } from '@ionic-native/clipboard';
 import { DomSanitizer } from '@angular/platform-browser';
 
-
-var QrCode: any;
 @IonicPage()
 @Component({
   selector: 'page-contact-detail',

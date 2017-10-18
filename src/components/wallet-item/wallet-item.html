@@ -3,7 +3,7 @@
     class="wallet-broker"
     (click)="toggleWallets()">
     <img item-left [src]="broker.image"/>
-    <h5>{{broker.name}}</h5>
+    <h5>{{ broker.name }}</h5>
     <ion-icon item-right *ngIf="!expand" name="ios-arrow-down"></ion-icon>
     <ion-icon item-right *ngIf="expand" name="ios-arrow-up"></ion-icon>
   </button>
@@ -13,7 +13,7 @@
       *ngFor="let wallet of broker.wallets"
       (click)="onClick(wallet.hash)">
       <img item-left [src]="wallet.image"/>
-      <p>{{wallet.hash}}</p>
+      <p>{{ wallet.hash }}</p>
       <img (click)="qrCodeClick($event, wallet.hash)" item-right src="assets/icon/qrcode.png"/>
     </button>
   </div>

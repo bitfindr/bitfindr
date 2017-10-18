@@ -1,0 +1,47 @@
+{
+  "projectName": "bit-wallet-manager",
+  "projectOwner": "yannbf",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "andrelas1",
+      "name": "Andre Luis Araujo Santos",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/20783450?v=4",
+      "profile": "https://github.com/andrelas1",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "paulonotz0r",
+      "name": "Paulo Gabriel",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/9358427?v=4",
+      "profile": "https://github.com/paulonotz0r",
+      "contributions": [
+        "tool"
+      ]
+    },
+    {
+      "login": "mike8161990",
+      "name": "Mike Schwartz",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/5252921?v=4",
+      "profile": "https://github.com/mike8161990",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "gdsrosa",
+      "name": "Gabriel da Silva Rosa",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/13604523?v=4",
+      "profile": "https://github.com/gdsrosa",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ]
+}
