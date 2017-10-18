@@ -50,8 +50,8 @@ export class StorageProvider {
 
     save(myData) {
         return this.getDataList().then(this.json).then(data => {
-            let index = data.indexOf(data.find(item => item.id === myData.id))
-            if (index != -1) {
+            let index = data.indexOf(data.find(item => item.id === myData.id));
+            if (index !== -1) {
                 // Already existing event
                 data[index] = myData;
                 return this.storage.set('myData', JSON.stringify(data)).then(() => this.updateData(this.sort(data)));
@@ -66,11 +66,11 @@ export class StorageProvider {
     delete(event) {
         return this.getDataList().then(this.json).then(this.sort).then(data => {
             let index = data.indexOf(data.find(item => item.id === event.id));
-            if (index != -1) {
+            if (index !== -1) {
                 data.splice(index, 1);
                 return this.storage.set('myData', JSON.stringify(data)).then(() => this.updateData(data));
             } else {
-                throw new Error("Data not found");
+                throw new Error('Data not found');
             }
         });
     }
