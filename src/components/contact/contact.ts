@@ -1,13 +1,13 @@
 
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
-  selector: 'contact',
+  selector: 'bw-contact',
   templateUrl: 'contact.html'
 })
 export class ContactComponent {
-  @Input() contact: any = {};
 
-  @Output('onContactClick') onContactClick = new EventEmitter();
+  @Input() contact: any = {};
+  @Output() onContactClick = new EventEmitter();
 
   constructor() { }
 

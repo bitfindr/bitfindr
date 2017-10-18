@@ -1,6 +1,6 @@
 <ion-header no-border>
   <ion-navbar>
-    <ion-title>{{contact.name}}</ion-title>
+    <ion-title>{{ contact.name }}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only>
         <ion-icon name="md-create"></ion-icon>
@@ -16,9 +16,9 @@
     <img [src]="contact.photo" />
   </div> -->
 
-  <wallet-item *ngFor="let broker of contact.brokers"
+  <bw-wallet-item *ngFor="let broker of contact.brokers"
                [broker]="broker"
-               (onClick)="copyToClipboard($event)"
-               (onQrCodeClick)="showQrCode($event)"></wallet-item>
+               (onWalletClick)="copyToClipboard($event)"
+               (onQrCodeClick)="showQrCode($event)"></bw-wallet-item>
 
 </ion-content>
