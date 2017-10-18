@@ -1,0 +1,20 @@
+{
+  "projectName": "Bit Wallet Manager",
+  "projectOwner": "Yann Braga",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "mike8161990",
+      "name": "Mike Schwartz",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/5252921?v=4",
+      "profile": "https://github.com/mike8161990",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ]
+}
