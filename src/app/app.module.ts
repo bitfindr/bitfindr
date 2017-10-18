@@ -1,24 +1,31 @@
-import { QrCodeModalPage } from '../pages/qr-code-modal/qr-code-modal';
-import { ContactDetailPage } from '../pages/contact-detail/contact-detail';
-import { ComponentsModule } from '../components/components.module';
+import { MyApp } from './app.component';
+
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ComponentsModule } from '../components/components.module';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
+import { StoreModule } from '@ngrx/store';
+import { NgxQRCodeModule } from 'ngx-qrcode3';
+
 import { Clipboard } from '@ionic-native/clipboard';
 import { Contacts } from '@ionic-native/contacts';
 
-import { AboutPage } from '../pages/about/about';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
+import {
+  AboutPage,
+  HomePage,
+  TabsPage,
+  QrCodeModalPage,
+  ContactDetailPage,
+} from '../pages/pages'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StorageProvider } from '../providers/storage/storage';
 import { ToastProvider } from '../providers/toast/toast';
 
-import { NgxQRCodeModule } from 'ngx-qrcode3';
+import { AppReducer } from '../reducers/AppReducer';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +47,8 @@ import { NgxQRCodeModule } from 'ngx-qrcode3';
       driverOrder: ['indexeddb', 'sqlite', 'websql']
     }),
     NgxQRCodeModule,
-    ComponentsModule
+    ComponentsModule,
+    StoreModule.forRoot({counter: AppReducer})
   ],
   bootstrap: [IonicApp],
   entryComponents: [
