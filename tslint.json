@@ -57,7 +57,7 @@
     "banana-in-box": true,
     "templates-no-negated-async": true,
     "directive-selector": [true, "attribute", "bw", "camelCase"],
-    "component-selector": [true, "element", "bw", "kebab-case"],
+    "component-selector": [true, "element", ["bw", "page"], "kebab-case"],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
