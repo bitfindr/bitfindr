@@ -1,31 +1,36 @@
-import { MyApp } from './app.component';
-
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ComponentsModule } from '../components/components.module';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { IonicStorageModule } from '@ionic/storage';
 import { StoreModule } from '@ngrx/store';
 import { NgxQRCodeModule } from 'ngx-qrcode3';
+import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 
+import { IonicStorageModule } from '@ionic/storage';
 import { Clipboard } from '@ionic-native/clipboard';
 import { Contacts } from '@ionic-native/contacts';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
+
+import { MyApp } from './app.component';
+import { ComponentsModule } from '../components/components.module';
 import {
   AboutPage,
   HomePage,
   TabsPage,
   QrCodeModalPage,
   ContactDetailPage,
-} from '../pages/pages'
+} from '../pages/pages';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { StorageProvider } from '../providers/storage/storage';
 import { ToastProvider } from '../providers/toast/toast';
+import { BitpointDataProvider } from '../providers/bitpoint-data/bitpoint-data.provider';
 
 import { AppReducer } from '../reducers/AppReducer';
-
 
 @NgModule({
   declarations: [
@@ -37,7 +42,9 @@ import { AppReducer } from '../reducers/AppReducer';
     QrCodeModalPage
   ],
   imports: [
+    ComponentsModule,
     BrowserModule,
+    NgxQRCodeModule,
     IonicModule.forRoot(MyApp, {
       modalEnter: 'modal-slide-in',
       modalLeave: 'modal-slide-out',
@@ -46,9 +53,10 @@ import { AppReducer } from '../reducers/AppReducer';
       name: '__bitdb',
       driverOrder: ['indexeddb', 'sqlite', 'websql']
     }),
-    NgxQRCodeModule,
-    ComponentsModule,
-    StoreModule.forRoot({counter: AppReducer})
+    StoreModule.forRoot({counter: AppReducer}),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -66,7 +74,9 @@ import { AppReducer } from '../reducers/AppReducer';
     StorageProvider,
     Clipboard,
     ToastProvider,
-    Contacts
+    Contacts,
+    AngularFireDatabase,
+    BitpointDataProvider,
   ]
 })
 export class AppModule {}
