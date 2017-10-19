@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <bw-contact *ngFor="let contact of contacts"
+  <bw-contact *ngFor="let contact of contacts | async"
            [contact]="contact"
            (click)="goToContact(contact)"></bw-contact>
 </ion-content>
