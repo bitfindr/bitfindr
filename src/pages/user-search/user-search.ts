@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/Rx';
+import { BitpointDataProvider } from '../../providers/bitpoint-data/bitpoint-data.provider';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ContactDetailPage } from '../contact-detail/contact-detail';
@@ -10,12 +12,17 @@ import { ContactDetailPage } from '../contact-detail/contact-detail';
 export class UserSearchPage {
 
   users = [];
-  usersRef = [{name: 'john'}, {name: 'jorge'}, {name: 'andre'}];
+  usersRef;
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    public userData: BitpointDataProvider
   ) { }
+
+  ionViewDidLoad() {
+    this.userData.getUsers().subscribe(data => this.usersRef = data);
+  }
 
   searchUser(event) {
     const val = event.srcElement.value;
