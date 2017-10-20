@@ -1,5 +1,6 @@
 # Bitpoint
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
+[![Gitter chat](https://img.shields.io/badge/chat-on_gitter-008080.svg?style=flat-square)](https://gitter.im/bitfindr)
 
 This app is aimed at helping people that deal with cryptocurrency transactions, like lending money to friends, making small payments, etc. Initially its focus is to behave like a bitcoin users catalog app, that you can save and share contacts with their wallet addresses and qr codes.
 
