@@ -1,0 +1,12 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-searchbar animated placeholder="User name"
+                   (ionInput)="searchUser($event)"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <bw-contact *ngFor="let user of users"
+    [contact]="user"
+    (click)="goToContact(user)"></bw-contact>
+</ion-content>
