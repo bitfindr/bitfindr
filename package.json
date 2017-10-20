@@ -60,6 +60,7 @@
     "ionic-angular": "3.7.1",
     "ionic-plugin-keyboard": "^2.2.1",
     "ionicons": "3.0.0",
+    "ngx-clipboard": "^8.1.1",
     "ngx-qrcode3": "^0.3.0",
     "rxjs": "5.4.3",
     "sw-toolbox": "3.6.0",
