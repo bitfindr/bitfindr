@@ -1,29 +1,21 @@
-contact {
+bw-contact {
 
-    .contact {
-        display: flex;
-        flex: 1;
-        flex-direction: row;
+    img {
+        padding: 1rem;
+        max-height: 70px;
+        max-width: 70px;
+        border-radius: 100%;
+    }
 
-        img {
-            padding: 1rem;
-            max-height: 70px;
-            max-width: 70px;
-            flex: 0.25;
-            border-radius: 100%;
-        }
+    .item h5 {
+        font-weight: lighter;
+        margin: 0;
+        padding: .5rem;
+        font-size: 1.8rem;
+    }
 
-        h5 {
-            font-weight: lighter;
-            margin: 0;
-            padding: .5rem;
-            @include flexify(0.6, baseline, center);
-        }
-
-        ion-icon {
-            font-weight: bold;
-            font-size: 2.6rem;
-            @include flexify(0.15, center, center);
-        }
+    ion-icon {
+        font-weight: bold;
+        font-size: 2.6rem;
     }
 }

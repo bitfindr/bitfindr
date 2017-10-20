@@ -1,13 +1,11 @@
+import { ClipboardProvider } from '../../providers/clipboard/clipboard.provider';
 import { QrCodeModalPage } from '../qr-code-modal/qr-code-modal';
 import { ToastProvider } from '../../providers/toast/toast';
-import { Component } from '@angular/core';
+import { Component, Renderer } from '@angular/core';
 import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { Contacts, Contact, ContactField } from '@ionic-native/contacts';
-import { Clipboard } from '@ionic-native/clipboard';
 import { DomSanitizer } from '@angular/platform-browser';
 
-
-var QrCode: any;
 @IonicPage()
 @Component({
   selector: 'page-contact-detail',
@@ -22,8 +20,9 @@ export class ContactDetailPage {
     public navParams: NavParams,
     private contacts: Contacts,
     private toastCtrl: ToastProvider,
-    private clipboard: Clipboard,
-    public modalCtrl: ModalController
+    private clipboard: ClipboardProvider,
+    public modalCtrl: ModalController,
+    public renderer: Renderer
   ) {
     this.contact = navParams.data;
   }
@@ -44,7 +43,7 @@ export class ContactDetailPage {
   }
 
   copyToClipboard(hash) {
-    this.clipboard.copy(hash)
+    this.clipboard.copy(hash, this.renderer)
       .then(() => this.toastCtrl.create('The wallet hash was copied to your clipboard.', 'center'))
       .catch(err => this.toastCtrl.create('There was an error copying your hash: ' + err));
   }

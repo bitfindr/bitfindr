@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { ContactDetailPage } from './contact-detail';
+import { HomePage } from './home';
 import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   declarations: [
-    ContactDetailPage,
+    HomePage,
   ],
   imports: [
     ComponentsModule,
-    IonicPageModule.forChild(ContactDetailPage),
+    IonicPageModule.forChild(HomePage),
   ],
 })
 export class ContactDetailPageModule {}
