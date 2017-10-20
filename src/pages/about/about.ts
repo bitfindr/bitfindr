@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { INCREMENT, DECREMENT, RESET } from '../../reducers/AppReducer';
 
 interface AppState {
-  counter: number
+  counter: number;
 }
 
 @Component({
@@ -20,23 +20,23 @@ export class AboutPage {
     public navCtrl: NavController,
     private store: Store<AppState>,
   ) {
-		this.counter = store.select('counter');
+    this.counter = store.select('counter');
   }
 
-	increment(){
-		this.store.dispatch({ type: INCREMENT });
-	}
+  increment() {
+    this.store.dispatch({ type: INCREMENT });
+  }
 
-	decrement(){
-		this.store.dispatch({ type: DECREMENT });
-	}
+  decrement() {
+    this.store.dispatch({ type: DECREMENT });
+  }
 
-	reset(){
-		this.store.dispatch({ type: RESET });
-	}
+  reset() {
+    this.store.dispatch({ type: RESET });
+  }
 
-  getValue(){
-    console.log(this.store)
+  getValue() {
+    console.log(this.store);
   }
 
 }
