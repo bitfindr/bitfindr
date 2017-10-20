@@ -1,8 +1,10 @@
 import { BitpointDataProvider } from '../../providers/bitpoint-data/bitpoint-data.provider';
-import { ContactDetailPage } from '../contact-detail/contact-detail';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, IonicPage } from 'ionic-angular';
 
+@IonicPage({
+  priority: 'high'
+})
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -17,7 +19,7 @@ export class HomePage {
   }
 
   goToContact(contact) {
-    this.navCtrl.push(ContactDetailPage, contact);
+    this.navCtrl.push('ContactDetailPage', contact);
   }
 
 }

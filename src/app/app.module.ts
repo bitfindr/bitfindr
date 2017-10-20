@@ -17,15 +17,6 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 
 import { MyApp } from './app.component';
-import { ComponentsModule } from '../components/components.module';
-import {
-  AboutPage,
-  HomePage,
-  TabsPage,
-  QrCodeModalPage,
-  ContactDetailPage,
-  UserSearchPage
-} from '../pages/pages';
 
 import { StorageProvider } from '../providers/storage/storage';
 import { ToastProvider } from '../providers/toast/toast';
@@ -36,20 +27,14 @@ import { AppReducer } from '../reducers/AppReducer';
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    HomePage,
-    TabsPage,
-    ContactDetailPage,
-    QrCodeModalPage,
-    UserSearchPage
   ],
   imports: [
-    ComponentsModule,
     BrowserModule,
     NgxQRCodeModule,
     IonicModule.forRoot(MyApp, {
       modalEnter: 'modal-slide-in',
       modalLeave: 'modal-slide-out',
+      preloadModules: true,
     }),
     IonicStorageModule.forRoot({
       name: '__bitdb',
@@ -63,12 +48,6 @@ import { AppReducer } from '../reducers/AppReducer';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    HomePage,
-    TabsPage,
-    ContactDetailPage,
-    QrCodeModalPage,
-    UserSearchPage
   ],
   providers: [
     StatusBar,

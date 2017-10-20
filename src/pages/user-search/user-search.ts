@@ -2,9 +2,10 @@ import { Observable } from 'rxjs/Rx';
 import { BitpointDataProvider } from '../../providers/bitpoint-data/bitpoint-data.provider';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ContactDetailPage } from '../contact-detail/contact-detail';
 
-@IonicPage()
+@IonicPage({
+  priority: 'high'
+})
 @Component({
   selector: 'page-user-search',
   templateUrl: 'user-search.html',
@@ -37,6 +38,6 @@ export class UserSearchPage {
   }
 
   goToContact(contact) {
-    this.navCtrl.push(ContactDetailPage, contact);
+    this.navCtrl.push('ContactDetailPage', contact);
   }
 }
