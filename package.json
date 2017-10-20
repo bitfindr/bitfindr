@@ -11,7 +11,8 @@
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
     "add-contributor": "all-contributors add",
-    "generate-contributors": "all-contributors generate"
+    "generate-contributors": "all-contributors generate",
+    "commit": "git-cz"
   },
   "description": "An Ionic project",
   "cordova": {
@@ -70,6 +71,13 @@
     "@ionic/app-scripts": "3.0.0",
     "all-contributors-cli": "^4.5.0",
     "codelyzer": "^3.2.1",
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.0.0",
     "typescript": "2.3.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
