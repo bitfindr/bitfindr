@@ -18,6 +18,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 
 import { MyApp } from './app.component';
+import { QrCodeModalPage } from '../pages/qr-code-modal/qr-code-modal';
 
 import { StorageProvider } from '../providers/storage/storage';
 import { ToastProvider } from '../providers/toast/toast';
@@ -29,6 +30,7 @@ import { ClipboardProvider } from '../providers/clipboard/clipboard.provider';
 @NgModule({
   declarations: [
     MyApp,
+    QrCodeModalPage
   ],
   imports: [
     BrowserModule,
@@ -51,6 +53,7 @@ import { ClipboardProvider } from '../providers/clipboard/clipboard.provider';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    QrCodeModalPage
   ],
   providers: [
     StatusBar,
