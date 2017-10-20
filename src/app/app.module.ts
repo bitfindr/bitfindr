@@ -3,6 +3,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
 import { NgxQRCodeModule } from 'ngx-qrcode3';
+import { ClipboardModule } from 'ngx-clipboard';
 import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 
 import { IonicStorageModule } from '@ionic/storage';
@@ -23,6 +24,7 @@ import { ToastProvider } from '../providers/toast/toast';
 import { BitpointDataProvider } from '../providers/bitpoint-data/bitpoint-data.provider';
 
 import { AppReducer } from '../reducers/AppReducer';
+import { ClipboardProvider } from '../providers/clipboard/clipboard.provider';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { AppReducer } from '../reducers/AppReducer';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    ClipboardModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -59,6 +62,7 @@ import { AppReducer } from '../reducers/AppReducer';
     Contacts,
     AngularFireDatabase,
     BitpointDataProvider,
+    ClipboardProvider,
   ]
 })
 export class AppModule {}
