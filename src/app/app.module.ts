@@ -24,6 +24,7 @@ import {
   TabsPage,
   QrCodeModalPage,
   ContactDetailPage,
+  UserSearchPage
 } from '../pages/pages';
 
 import { StorageProvider } from '../providers/storage/storage';
@@ -39,7 +40,8 @@ import { AppReducer } from '../reducers/AppReducer';
     HomePage,
     TabsPage,
     ContactDetailPage,
-    QrCodeModalPage
+    QrCodeModalPage,
+    UserSearchPage
   ],
   imports: [
     ComponentsModule,
@@ -65,7 +67,8 @@ import { AppReducer } from '../reducers/AppReducer';
     HomePage,
     TabsPage,
     ContactDetailPage,
-    QrCodeModalPage
+    QrCodeModalPage,
+    UserSearchPage
   ],
   providers: [
     StatusBar,
