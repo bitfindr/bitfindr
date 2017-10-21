@@ -44,7 +44,10 @@
     "@ionic-native/splash-screen": "4.3.0",
     "@ionic-native/status-bar": "4.3.0",
     "@ionic/storage": "^2.0.1",
-    "@ngrx/store": "^4.0.3",
+    "@ngrx/effects": "^4.1.0",
+    "@ngrx/entity": "^4.1.0",
+    "@ngrx/store": "^4.1.0",
+    "@ngrx/store-devtools": "^4.0.0",
     "angular2-uuid": "^1.1.1",
     "angularfire2": "^5.0.0-rc.3",
     "cordova-android": "^6.2.3",
@@ -60,6 +63,7 @@
     "ionic-angular": "3.7.1",
     "ionic-plugin-keyboard": "^2.2.1",
     "ionicons": "3.0.0",
+    "ngrx-store-freeze": "^0.2.0",
     "ngx-clipboard": "^8.1.1",
     "ngx-qrcode3": "^0.3.0",
     "rxjs": "5.4.3",
@@ -70,6 +74,6 @@
     "@ionic/app-scripts": "3.0.0",
     "all-contributors-cli": "^4.5.0",
     "codelyzer": "^3.2.1",
-    "typescript": "2.3.4"
+    "typescript": "2.4.2"
   }
 }
