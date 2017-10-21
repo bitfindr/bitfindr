@@ -1,8 +1,8 @@
 {
-  "name": "BitWalletManager",
+  "name": "bitfindr",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "author": "Bitfindr Team",
+  "homepage": "https://github.com/bitfindr/bitfindr",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -13,7 +13,7 @@
     "add-contributor": "all-contributors add",
     "generate-contributors": "all-contributors generate"
   },
-  "description": "An Ionic project",
+  "description": "A cryptocurrency social project",
   "cordova": {
     "plugins": {
       "cordova-sqlite-storage": {},
