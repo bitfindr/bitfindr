@@ -1,13 +1,6 @@
-import { User } from './../../app/User';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the SignupPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -15,7 +8,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'signup.html'
 })
 export class SignupPage {
-  user = {} as User;
+  signupForm: any;
+  email: AbstractControl;
+  password: AbstractControl;
+  passwordConfirm: AbstractControl;
+  firstName: AbstractControl;
+  lastName: AbstractControl;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 

@@ -1,12 +1,12 @@
 <ion-content padding class="primary-font">
   <img class="logo" src="assets/icon/bitcoin.png" />
-  <form padding (submit)="login()" novalidate>
+  <form padding [formGroup]="loginForm" (submit)="login()" novalidate>
     <ion-item>
-      <ion-input [(ngModel)]="user.email" name="email" type="text" placeholder="E-mail" clearInput clearOnEdit="false">
+      <ion-input [(ngModel)]="email" formControlName="email" type="text" placeholder="E-mail" clearInput clearOnEdit="false">
       </ion-input>
     </ion-item>
     <ion-item>
-      <ion-input [(ngModel)]="user.password" name="password" type="password" placeholder="Password" clearInput clearOnEdit="false">
+      <ion-input [(ngModel)]="password" formControlName="password" type="password" placeholder="Password" clearInput clearOnEdit="false">
       </ion-input>
     </ion-item>
     <button ion-button block outline color="light" class="login-button">Login</button>

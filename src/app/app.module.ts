@@ -26,6 +26,7 @@ import { BitpointDataProvider } from '../providers/bitpoint-data/bitpoint-data.p
 
 import { AppReducer } from '../reducers/AppReducer';
 import { ClipboardProvider } from '../providers/clipboard/clipboard.provider';
+import { AuthProvider } from '../providers/auth/auth';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { ClipboardProvider } from '../providers/clipboard/clipboard.provider';
     AngularFireDatabase,
     BitpointDataProvider,
     ClipboardProvider,
+    AuthProvider,
   ]
 })
 export class AppModule {}

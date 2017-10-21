@@ -1,8 +1,6 @@
-import { User } from './../../app/User';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -10,33 +8,38 @@ import { FormBuilder } from '@angular/forms';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  user = {} as User;
+  loginForm: any;
+  email: AbstractControl;
+  password: AbstractControl;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    formBuilder: FormBuilder,
+  ) {
+    this.loginForm = formBuilder.group({
+      email: ['', Validators.required],
+      password: [
+        '',
+        Validators.compose([
+          Validators.minLength(6),
+          Validators.maxLength(20),
+          Validators.required
+        ])
+      ]
+    });
+  }
 
   login() {
+    this.email = this.loginForm.value['email'];
+    this.password = this.loginForm.value['password'];
 
+    console.log(this.email, this.password);
+    console.log('chamar provider de Auth!');
   }
 
   facebookLogin() {
     console.log('chamar provider do facebook!');
-    // this.authData.facebookLogin().then(response => {
-    //   if (response == true) {
-    //     this.loadingCtrl.dismiss().then(() => {
-    //       this.goToHome();
-    //     });
-    //   } else {
-    //     this.loadingCtrl.dismiss().then(() => {
-    //       if (response.message) {
-    //         this.alertCtrl.createWithError(response.message);
-    //       }
-    //     });
-    //   }
-    // }, error => {
-    //   this.loadingCtrl.dismiss().then(() => {
-    //     this.alertCtrl.createWithError(JSON.stringify(error));
-    //   });
-    // });
   }
 
   goToHome() {
