@@ -1,0 +1,50 @@
+<ion-header no-border>
+  <ion-navbar transparent>
+  </ion-navbar>
+</ion-header>
+<ion-content fullscreen padding class="primary-font">
+  <img class="logo" src="assets/icon/bitcoin.png" />
+  <form padding (submit)="signup()" novalidate>
+    <ion-item>
+      <ion-input [(ngModel)]="user.firstName"
+                 name="firstName"
+                 type="text"
+                 placeholder="First name"
+                 clearInput clearOnEdit="false">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="user.lastName"
+                  name="lastName"
+                 type="text"
+                 placeholder="Last name"
+                 clearInput clearOnEdit="false">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="user.email"
+                  name="email"
+                 type="text"
+                 placeholder="E-mail"
+                 clearInput clearOnEdit="false">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="user.password"
+                  name="password"
+                 type="password"
+                 placeholder="Password"
+                 clearInput clearOnEdit="false">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="user.passwordConfirm"
+                  name="passwordConfirm"
+                 type="password"
+                 placeholder="Confirm password"
+                 clearInput clearOnEdit="false">
+      </ion-input>
+    </ion-item>
+    <button ion-button block outline color="light" class="login-button">Create account</button>
+  </form>
+</ion-content>
