@@ -1,0 +1,63 @@
+<ion-header no-border>
+  <ion-navbar transparent>
+  </ion-navbar>
+</ion-header>
+<ion-content fullscreen padding class="primary-font">
+  <img class="logo" src="assets/icon/bitcoin.png" />
+
+  <form padding [formGroup]="signupForm" (submit)="signup()" novalidate>
+    <!--
+      TODO (Khaled) Should we capture "profile" data in a separate page because of Firebase?
+      See component class
+    -->
+
+    <!-- <ion-item>
+      <ion-input formControlName="firstName"
+                 type="text"
+                 placeholder="First name"
+                 clearInput clearOnEdit="false">
+      </ion-input>
+    </ion-item> -->
+
+    <!-- <ion-item>
+      <ion-input formControlName="lastName"
+                 type="text"
+                 placeholder="Last name"
+                 clearInput clearOnEdit="false">
+      </ion-input>
+    </ion-item> -->
+
+    <ion-item>
+      <ion-input formControlName="email"
+                 type="text"
+                 placeholder="E-mail"
+                 clearInput clearOnEdit="false">
+      </ion-input>
+    </ion-item>
+
+    <!-- https://angular.io/guide/structural-directives#ng-container-to-the-rescue -->
+    <ng-container formGroupName="password">
+      <ion-item>
+        <ion-input formControlName="value"
+                   type="password"
+                   placeholder="Password"
+                   clearInput clearOnEdit="false">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input formControlName="confirmed"
+                   type="password"
+                   placeholder="Confirm password"
+                   clearInput clearOnEdit="false">
+        </ion-input>
+      </ion-item>
+    </ng-container>
+
+    <button ion-button block outline color="light"
+            class="login-button"
+            [disabled]="signupForm.invalid">
+      Create account
+    </button>
+  </form>
+</ion-content>
