@@ -1,0 +1,27 @@
+<ion-content padding class="primary-font">
+  <img class="logo" src="assets/icon/bitcoin.png" />
+  <form padding [formGroup]="loginForm" (submit)="login()" novalidate>
+    <ion-item>
+      <ion-input [(ngModel)]="email" formControlName="email" type="text" placeholder="E-mail" clearInput clearOnEdit="false">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="password" formControlName="password" type="password" placeholder="Password" clearInput clearOnEdit="false">
+      </ion-input>
+    </ion-item>
+    <button ion-button block outline color="light" class="login-button">Login</button>
+  </form>
+  <div class="strike">
+    <span>OR</span>
+  </div>
+  <button ion-button block clear color="light" class="login-button" (click)="facebookLogin()">
+    <ion-icon name="logo-facebook"></ion-icon> Login with Facebook</button>
+</ion-content>
+<ion-footer>
+  <ion-toolbar class="footer">
+    <div (click)="goToSignup()">
+      <span>Don't have an account?
+        <strong>Sign up here</strong>.</span>
+    </div>
+  </ion-toolbar>
+</ion-footer>
