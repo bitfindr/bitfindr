@@ -1,80 +1,91 @@
 page-signup {
-  $transparent-white: rgba(255, 255, 255, .6);
-    .toolbar-content,
-    .toolbar-title,
-    span {
-      color: white;
-    }
-    .toolbar-background,{
-      background: transparent !important;
-      background-color: transparent !important;
-    }
-    ion-footer {
-      height: 47px;
-    }
-    .footer {
-      text-align: center;
-      background: rgba(255, 255, 255, .06);
-      min-height: 47px;
-    }
-    .footer-md::before {
-      border-top: 1px solid $transparent-white;
-      background-image: none;
+  .toolbar-content,
+  .toolbar-title,
+  span {
+    color: map-get($colors, _white);
+  }
+
+  .toolbar-background , {
+    background: transparent;
+    background-color: transparent;
+  }
+
+  ion-footer {
+    height: 47px;
+  }
+
+  .footer {
+    background: map-get($colors, transparent-white-one);
+    min-height: 47px;
+    text-align: center;
+  }
+
+  .footer-md::before {
+    background-image: none;
+    border-top: 1px solid map-get($colors, transparent-white-one);
+  }
+
+  ion-content {
+    animation: gradient-effect 15s linear infinite;
+    background: linear-gradient(316deg, transparentize(map-get($colors, _black), .15), map-get($colors, darkbluegray));
+    background-size: 1800% 1800%;
+  }
+
+  @keyframes gradient-effect {
+    0% {
+      background-position: 0% 0%;
     }
 
-    ion-content {
-      background: linear-gradient(316deg, transparentize(black, .15), #404654);
-      background-size: 1800% 1800%;
-      animation: gradient-effect 15s linear infinite;
+    50% {
+      background-position: 100% 100%;
     }
 
-    @keyframes gradient-effect {
-      0% {
-        background-position: 0% 0%
-      }
-      50% {
-        background-position: 100% 100%
-      }
-      100% {
-        background-position: 0% 0%
-      }
-    }
-    // Content
-    .scroll-content {
-      padding-top: 0 !important;
-      display: flex;
-      flex-direction: column;
-    }
-    .logo {
-      width: 60%;
-      height: auto;
-      margin: 0 auto;
-      padding-top: 30px;
-      padding-bottom: 50px;
-    }
-    // Input items
-    ion-item {
-      border-radius: 3px !important;
-      padding-left: 10px !important;
-      margin-bottom: 15px !important;
-      margin-bottom: 10px;
-      color: #fff !important;
-      background-color: rgba(255, 255, 255, .2) !important;
-      font-size: 0.9em;
-    }
-     ::-webkit-input-placeholder {
-      color: white !important;
-    }
-    .item-inner {
-      border-bottom: 0 !important;
-      box-shadow: none !important;
-    }
-    // --
-    .login-button {
-      text-transform: none;
-      border-radius: 3px !important;
-      &.activated {
-        background-color: rgba(255,255,255,.4) !important;
-      }
+    100% {
+      background-position: 0% 0%;
     }
   }
+
+  // Content
+  .scroll-content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+  }
+
+  .logo {
+    height: auto;
+    margin: 0 auto;
+    padding-bottom: 50px;
+    padding-top: 30px;
+    width: 60%;
+  }
+
+  // Input items
+  ion-item {
+    background-color: map-get($colors, transparent-white-three);
+    border-radius: 3px;
+    color: map-get($colors, _white);
+    font-size: .9em;
+    margin-bottom: 15px;
+    padding-left: 10px;
+  }
+
+  ::-webkit-input-placeholder {
+    color: map-get($colors, _white);
+  }
+
+  .item-inner {
+    border-bottom: 0;
+    box-shadow: none;
+  }
+
+  // -- LOGIN BUTTON
+  .login-button {
+    border-radius: 3px;
+    text-transform: none;
+
+    &.activated {
+      background-color: map-get($colors, transparent-white-two);
+    }
+  }
+}

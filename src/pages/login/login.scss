@@ -1,112 +1,127 @@
 page-login {
-  $transparent-white: rgba(255, 255, 255, .6);
   .toolbar-content,
   span {
-    color: white;
+    color: map-get($colors, _white);
   }
-  .toolbar-background,{
-    background: transparent !important;
-    background-color: transparent !important;
+
+  .toolbar-background , {
+    background: transparent;
+    background-color: transparent;
   }
+
   ion-footer {
     height: 47px;
   }
+
   .footer {
-    text-align: center;
-    background: rgba(255, 255, 255, .06);
+    background: map-get($colors, transparent-white-one);
     min-height: 47px;
+    text-align: center;
   }
+
   .footer-md::before {
-    border-top: 1px solid $transparent-white;
     background-image: none;
+    border-top: 1px solid map-get($colors, transparent-white-one);
   }
 
   ion-content {
-    background: linear-gradient(316deg, transparentize(black, .15), #404654);
-    background-size: 1800% 1800%;
     animation: gradient-effect 15s linear infinite;
+    background: linear-gradient(316deg, transparentize(map-get($colors, _black), .15), map-get($colors, darkbluegray));
+    background-size: 1800% 1800%;
   }
 
   @keyframes gradient-effect {
     0% {
-      background-position: 0% 0%
+      background-position: 0% 0%;
     }
+
     50% {
-      background-position: 100% 100%
+      background-position: 100% 100%;
     }
+
     100% {
-      background-position: 0% 0%
+      background-position: 0% 0%;
     }
   }
+
   // Content
   .scroll-content {
     display: flex;
     flex-direction: column;
     overflow: hidden;
   }
+
   .logo {
-    width: 60%;
     height: auto;
     margin: 0 auto;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding: 50px 0;
+    width: 60%;
   }
+
   // Input items
   ion-item {
-    border-radius: 3px !important;
-    padding-left: 10px !important;
-    margin-bottom: 15px !important;
+    background-color: map-get($colors, transparent-white-three);
+    border-radius: 3px;
+    color: map-get($colors, _white);
+    font-size: .9em;
     margin-bottom: 10px;
-    color: #fff !important;
-    background-color: rgba(255, 255, 255, .2) !important;
-    font-size: 0.9em;
+    padding-left: 10px;
   }
-   ::-webkit-input-placeholder {
-    color: white !important;
+
+  ::-webkit-input-placeholder {
+    color: map-get($colors, _white);
   }
+
   .item-inner {
-    border-bottom: 0 !important;
-    box-shadow: none !important;
+    border-bottom: 0;
+    box-shadow: none;
   }
-  // --
+
   .login-button {
+    border-radius: 3px;
     text-transform: none;
-    border-radius: 3px !important;
+
     &.activated {
-      background-color: rgba(255,255,255,.4) !important;
+      background-color: map-get($colors, transparent-white-two);
     }
   }
+
   // Facebook icon
   ion-icon {
-    padding-right: 10px;
     font-size: 2.2rem;
+    padding-right: 10px;
   }
+
   // HR with text in the middle effect
   .strike {
     display: block;
-    text-align: center;
     overflow: hidden;
+    text-align: center;
     white-space: nowrap;
   }
+
   .strike>span {
-    position: relative;
     display: inline-block;
     font-weight: bold;
+    position: relative;
   }
-  .strike>span:before,
-  .strike>span:after {
-    content: "";
+
+  .strike>span::before,
+  .strike>span::after {
+    background: map-get($colors, transparent-white-one);
+    content: '';
+    height: 1px;
     position: absolute;
     top: 50%;
     width: 9999px;
-    height: 1px;
-    background: $transparent-white;
   }
-  .strike>span:before {
-    right: 100%;
+
+  .strike>span::before {
     margin-right: 15px;
+    right: 100%;
   }
-  .strike>span:after {
+
+  .strike>span::after {
     left: 100%;
     margin-left: 15px;
   }
