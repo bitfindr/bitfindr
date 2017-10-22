@@ -5,6 +5,10 @@ export enum AppActionTypes {
 }
 console.log(AppActionTypes);
 
+// No Operation action.
+// Sometimes we'll need to use that when if an @Effect()
+// only **conditionally** maps to another action
+// So when condition is not met, we dispatch NoopAction
 export class NoopAction implements Action {
   readonly type = AppActionTypes.NOOP;
 }

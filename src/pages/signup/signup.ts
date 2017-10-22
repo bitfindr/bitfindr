@@ -42,6 +42,9 @@ export class SignupPage {
   }
 
   signup() {
+    // Decompose our form to grab user credentials.
+    // Since we have two controls for the ensuring that the user inputs
+    // the correct password
     const formValue = this.signupForm.value;
     const credentials: UserCredentials = {
       email: formValue.email,

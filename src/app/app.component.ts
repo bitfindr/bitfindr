@@ -17,6 +17,9 @@ export class MyApp {
     splashScreen: SplashScreen,
     authFacade: AuthFacade
   ) {
+
+    // This observable only emits once the Firebase authentication state has been
+    // checked at least once.
     authFacade.authUser$
       .subscribe(authUser => (this.rootPage = authUser ? 'TabsPage' : 'LoginPage'));
 

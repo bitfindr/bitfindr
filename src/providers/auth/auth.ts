@@ -1,8 +1,10 @@
-import { FirebaseUserProfile, FirebaseBasicProfile } from './../../shared/models/auth';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Observable } from 'rxjs/Observable';
 import { fromPromise } from 'rxjs/observable/fromPromise';
 import 'rxjs/add/operator/map';
+
+import { FirebaseUserProfile, FirebaseBasicProfile, UserCredentials } from './../../shared/models/auth';
 
 @Injectable()
 export class AuthProvider {
@@ -11,13 +13,26 @@ export class AuthProvider {
     private afAuth: AngularFireAuth
   ) { }
 
-  checkAuthState() {
+  /**
+   * checks firebase authstate
+   *
+   * @returns {Observable<FirebaseUserProfile>}
+   * @memberof AuthProvider
+   */
+  checkAuthState(): Observable<FirebaseUserProfile> {
     return this.afAuth.authState
       .take(1)
       .map(response => this.extractUserProfile(response));
   }
 
-  signup(userCredentials: { email: string, password: string }) {
+  /**
+   * registers a new user on firebase using the EmailProvider
+   *
+   * @param {UserCredentials} userCredentials
+   * @returns {Observable<FirebaseUserProfile>}
+   * @memberof AuthProvider
+   */
+  signup(userCredentials: UserCredentials): Observable<FirebaseUserProfile> {
     const { email, password } = userCredentials;
 
     const signupPromise = this.afAuth.auth.createUserWithEmailAndPassword(email, password);
@@ -26,6 +41,15 @@ export class AuthProvider {
       .map(response => this.extractUserProfile(response));
   }
 
+  /**
+   * extracts the user profile from the firebase user object
+   * without including all the cryptic properties
+   *
+   * @private
+   * @param {*} data
+   * @returns {FirebaseUserProfile}
+   * @memberof AuthProvider
+   */
   private extractUserProfile(data: any): FirebaseUserProfile {
     if (data && !data.uid) {
       throw Error('Invalid User Data');

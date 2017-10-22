@@ -40,6 +40,10 @@ export class AuthFacade {
       .subscribe(authState => this.store.dispatch(new AuthenticateAction(authState)));
   }
 
+  /**
+   * Auth Action creators
+   */
+
   signup(credentials: UserCredentials) {
     this.store.dispatch(new SignupAction(credentials));
     return this.authUser$;
