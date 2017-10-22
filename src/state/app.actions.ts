@@ -3,7 +3,6 @@ import { Action } from '@ngrx/store';
 export enum AppActionTypes {
   NOOP = '[App] NOOP',
 }
-console.log(AppActionTypes);
 
 // No Operation action.
 // Sometimes we'll need to use that when if an @Effect()

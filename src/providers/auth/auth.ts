@@ -26,7 +26,7 @@ export class AuthProvider {
   }
 
   /**
-   * registers a new user on firebase using the EmailProvider
+   * registers a new user on firebase using EmailAuthProvider
    *
    * @param {UserCredentials} userCredentials
    * @returns {Observable<FirebaseUserProfile>}

@@ -7,7 +7,7 @@ import { Actions, Effect, toPayload } from '@ngrx/effects';
 import { ApplicationState } from './../app.state';
 import { AuthProvider } from './../../providers/auth/auth';
 import { AuthQuery } from './auth.reducer';
-import { FirebaseUserProfile, UserCredentials } from './../../shared/models/auth';
+import { UserCredentials } from './../../shared/models/auth';
 import {
   AuthActionTypes,
   AuthenticateAction,

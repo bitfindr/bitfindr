@@ -3,7 +3,7 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { AuthFacade } from './../state/auth/auth.facade';
+import { AuthFacade } from './../state';
 
 @Component({
   templateUrl: 'app.html'
