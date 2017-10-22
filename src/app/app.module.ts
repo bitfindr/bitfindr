@@ -2,7 +2,6 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
-import { NgxQRCodeModule } from 'ngx-qrcode3';
 import { ClipboardModule } from 'ngx-clipboard';
 import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 
@@ -18,7 +17,6 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 
 import { MyApp } from './app.component';
-import { QrCodeModalPage } from '../pages/qr-code-modal/qr-code-modal';
 
 import { StorageProvider } from '../providers/storage/storage';
 import { ToastProvider } from '../providers/toast/toast';
@@ -31,11 +29,9 @@ import { AuthProvider } from '../providers/auth/auth';
 @NgModule({
   declarations: [
     MyApp,
-    QrCodeModalPage
   ],
   imports: [
     BrowserModule,
-    NgxQRCodeModule,
     IonicModule.forRoot(MyApp, {
       modalEnter: 'modal-slide-in',
       modalLeave: 'modal-slide-out',
@@ -54,7 +50,6 @@ import { AuthProvider } from '../providers/auth/auth';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    QrCodeModalPage
   ],
   providers: [
     StatusBar,
