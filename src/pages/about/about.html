@@ -1,15 +1,119 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      About
-    </ion-title>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button icon-only color="main">
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-segment color="main">
+      <ion-segment-button value="new" color="main">
+        New
+      </ion-segment-button>
+      <ion-segment-button value="hot" color="main">
+        Hot
+      </ion-segment-button>
+    </ion-segment>
+    <ion-buttons end>
+      <button ion-button icon-only color="main">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="content">
   <!-- NGRX STORE EXAMPLE -->
-  <!-- <button ion-button (click)="increment()">increment</button>
-  <button ion-button (click)="decrement()">decrement</button>
-  <button ion-button (click)="reset()">reset</button>
-  <h2>{{ counter | async }}</h2> -->
+  <button ion-button (click)="increment()" color="primary">increment</button>
+  <button ion-button (click)="decrement()" color="secondary">decrement</button>
+  <button ion-button (click)="reset()" color="primary">reset</button>
+  <h2>{{ counter | async }}</h2>
+
+  <!-- EXAMPLE WITH CARDS -->
+  <ion-card>
+    <div style="background-color: color($colors, primary, base) "></div>
+    <div class="card-title" style="background-color: color($colors, secondary, base)">São Paulo</div>
+    <div class="card-subtitle" style="background-color: color($colors, secondary, base)">41 Listings</div>
+  </ion-card>
+
+  <!-- EXAMPLE WITH CHECKBOX -->
+  <ion-item>
+    <ion-label>Daenerys Targaryen</ion-label>
+    <ion-checkbox color="primary" checked="true"></ion-checkbox>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Arya Stark</ion-label>
+    <ion-checkbox color="primary"></ion-checkbox>
+  </ion-item>
+  <ion-item>
+    <ion-label>Arya Stark</ion-label>
+    <ion-checkbox color="secondary"></ion-checkbox>
+  </ion-item>
+    <ion-item>
+    <ion-label>Arya Stark</ion-label>
+    <ion-checkbox color="secondary"></ion-checkbox>
+  </ion-item><!-- FAB BUTTONS -->
+  <ion-fab top right edge>
+    <button ion-fab mini><ion-icon name="add" color="primary"></ion-icon></button>
+    <ion-fab-list>
+      <button ion-fab><ion-icon name="logo-facebook" color="primary"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-twitter" color="secondary"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-vimeo" color="secondary"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-googleplus" color="primary"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <ion-fab right bottom>
+    <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab color="secondary"><ion-icon name="logo-facebook"></ion-icon></button>
+      <button ion-fab color="primary"><ion-icon name="logo-twitter"></ion-icon></button>
+      <button ion-fab color="secondary"><ion-icon name="logo-vimeo"></ion-icon></button>
+      <button ion-fab color="primary"><ion-icon name="logo-googleplus"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <!-- INPUTS -->
+  <ion-item>
+    <ion-label fixed color="secondary">Username</ion-label>
+    <ion-input type="text" value=""></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Username</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input type="text" placeholder="Username"></ion-input>
+  </ion-item>
+
+
+  <ion-list>
+    <ion-list-header>
+      Action
+    </ion-list-header>
+    <ion-item color="primary">Terminator II</ion-item>
+    <ion-item color="secondary">The Empire Strikes Back</ion-item>
+    <ion-item color="secondary">Blade Runner</ion-item>
+    <ion-item color="primary">Blade Runner</ion-item>
+  </ion-list>
+
+  <!-- SLIDE -->
+  <ion-item>
+    <ion-range [(ngModel)]="brightness">
+      <ion-icon range-left small name="sunny" color="secondary"></ion-icon>
+      <ion-icon range-right name="sunny" color="secondary"></ion-icon>
+    </ion-range>
+  </ion-item>
+
+  <!-- TOGGLE -->
+  <ion-item>
+    <ion-label> Sam</ion-label>
+    <ion-toggle disabled checked="true" color="primary"></ion-toggle>
+    <ion-toggle disabled checked="true" color="secondary"></ion-toggle>
+    <ion-toggle disabled checked="true" color="secondary"></ion-toggle>
+    <ion-toggle disabled checked="true" color="primary"></ion-toggle>
+  </ion-item>
+
 </ion-content>
