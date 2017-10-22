@@ -1,6 +1,6 @@
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { of as obsOf } from 'rxjs/Observable/of';
+import { of as obsOf } from 'rxjs/observable/of';
 import { Injectable } from '@angular/core';
 import { Actions, Effect, toPayload } from '@ngrx/effects';
 
