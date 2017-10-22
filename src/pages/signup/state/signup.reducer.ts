@@ -27,6 +27,10 @@ export function signupReducer(state = SIGNUP_INITIAL_STATE, action: AuthActions)
       };
     }
 
+    case AuthActionTypes.AUTHENTICATE: {
+      return { ...SIGNUP_INITIAL_STATE };
+    }
+
     default:
       return state;
   }

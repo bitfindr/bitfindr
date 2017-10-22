@@ -1,4 +1,4 @@
-import { Actions, Effect, toPayload } from '@ngrx/effects';
+import { Actions, Effect } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import {
   App,
@@ -12,7 +12,12 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/take';
 
-import { AuthActionTypes } from './../../../state';
+import {
+  AuthActionTypes,
+  AuthenticateAction,
+  SignupAction,
+  SignupFailAction,
+} from './../../../state';
 
 @Injectable()
 export class SignupEffects {
@@ -21,16 +26,16 @@ export class SignupEffects {
 
   // Show loading spinner every time SIGNUP action is dispatched.
   @Effect({ dispatch: false }) signup$ = this.actions$
-    .ofType(AuthActionTypes.SIGNUP)
+    .ofType<SignupAction>(AuthActionTypes.SIGNUP)
     .do(_ => this.showLoading());
 
   // Every time AUTHENTICATE is successful:
   // - Dismiss loading spinner.
   // - Navigate to TabsPage.
   @Effect({ dispatch: false }) authenticate$ = this.actions$
-    .ofType(AuthActionTypes.AUTHENTICATE)
-    .map(toPayload)
-    .filter(Boolean)
+    .ofType<AuthenticateAction>(AuthActionTypes.AUTHENTICATE)
+    .map(action => action.payload)
+    .filter(user => !!user)
     .do(_ => {
       this.dismissLoading.next();
       this.navigateToTabs();
@@ -40,8 +45,8 @@ export class SignupEffects {
   // - Dismiss loading spinner.
   // - Show alert with error information.
   @Effect({ dispatch: false }) signupFail$ = this.actions$
-    .ofType(AuthActionTypes.SIGNUP_FAIL)
-    .map(toPayload)
+    .ofType<SignupFailAction>(AuthActionTypes.SIGNUP_FAIL)
+    .map(action => action.payload)
     .do(error => {
       this.dismissLoading.next();
       this.showAlert(error);

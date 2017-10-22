@@ -2,7 +2,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { of as obsOf } from 'rxjs/observable/of';
 import { Injectable } from '@angular/core';
-import { Actions, Effect, toPayload } from '@ngrx/effects';
+import { Actions, Effect } from '@ngrx/effects';
 
 import { ApplicationState } from './../app.state';
 import { AuthProvider } from './../../providers/auth/auth';
@@ -22,7 +22,7 @@ export class AuthFacade {
    */
 
   authUser$ = this.store.select(AuthQuery.getCheckedAuthState)
-    .filter(Boolean)
+    .filter(isAuthenticated => !!isAuthenticated)
     .switchMap(_ => this.store.select(AuthQuery.getAuthUser));
 
   /**
@@ -30,8 +30,8 @@ export class AuthFacade {
    */
 
   @Effect() signup$ = this.actions$
-    .ofType(AuthActionTypes.SIGNUP)
-    .map(toPayload)
+    .ofType<SignupAction>(AuthActionTypes.SIGNUP)
+    .map(action => action.payload)
     .switchMap(credentials =>
       this.authProvider.signup(credentials)
         .map(authUser => new AuthenticateAction(authUser))
