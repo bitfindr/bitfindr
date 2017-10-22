@@ -33,21 +33,22 @@ $app-direction: ltr;
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
+$darkbluegray: #404654;
+$cleargray: #ccc;
+$darkteal: #023e4a;
+$darkgreengray: #162221;
+$transparent-white-one: rgba(255, 255, 255, .6);
+$transparent-white-two: rgba(255, 255, 255, .4);
+$transparent-white-three: rgba(255, 255, 255, .2);
+$white: #fff;
+$black: #000;
+
 $colors: (
   primary:            #488aff,
   secondary:          #32db64,
   danger:             #f53d3d,
   light:              #f4f4f4,
   dark:               #222,
-  darkbluegray:       #404654,
-  cleargray:          #ccc,
-  darkteal:           #023e4a,
-  darkgreengray:      #162221,
-  transparent-white-one:  rgba(255, 255, 255, .6),
-  transparent-white-two:  rgba(255, 255, 255, .4),
-  transparent-white-three:  rgba(255, 255, 255, .2),
-  _white:             #fff,
-  _black:             #000
 );
 
 

@@ -2,7 +2,7 @@ page-signup {
   .toolbar-content,
   .toolbar-title,
   span {
-    color: map-get($colors, _white);
+    color: $white;
   }
 
   .toolbar-background , {
@@ -15,19 +15,19 @@ page-signup {
   }
 
   .footer {
-    background: map-get($colors, transparent-white-one);
+    background: $transparent-white-one;
     min-height: 47px;
     text-align: center;
   }
 
   .footer-md::before {
     background-image: none;
-    border-top: 1px solid map-get($colors, transparent-white-one);
+    border-top: 1px solid $transparent-white-one;
   }
 
   ion-content {
     animation: gradient-effect 15s linear infinite;
-    background: linear-gradient(316deg, transparentize(map-get($colors, _black), .15), map-get($colors, darkbluegray));
+    background: linear-gradient(316deg, transparentize($black, .15), $darkbluegray);
     background-size: 1800% 1800%;
   }
 
@@ -62,7 +62,7 @@ page-signup {
 
   // Input items
   ion-item {
-    background-color: map-get($colors, transparent-white-three);
+    background-color: $transparent-white-three;
     border-radius: 3px;
     color: map-get($colors, _white);
     font-size: .9em;
@@ -71,7 +71,7 @@ page-signup {
   }
 
   ::-webkit-input-placeholder {
-    color: map-get($colors, _white);
+    color: $white;
   }
 
   .item-inner {
@@ -85,7 +85,7 @@ page-signup {
     text-transform: none;
 
     &.activated {
-      background-color: map-get($colors, transparent-white-two);
+      background-color: $transparent-white-two;
     }
   }
 }
