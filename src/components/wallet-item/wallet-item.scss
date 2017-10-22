@@ -1,15 +1,16 @@
 bw-wallet-item {
-    border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid map-get($colors, cleargray);
 
-    img {
-        padding: 1rem;
-        max-height: 50px;
-        max-width: 50px;
-        flex: 0.25;
+  img {
+    flex: .25;
+    max-height: 50px;
+    max-width: 50px;
+    padding: 1rem;
+  }
+
+  button {
+    .wallet-broker {
+      padding-left: 0;
     }
-
-    button.wallet-broker{
-        padding-left: 0;
-    }
-
+  }
 }

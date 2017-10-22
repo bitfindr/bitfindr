@@ -12,6 +12,7 @@
     "ionic:serve": "ionic-app-scripts serve",
     "add-contributor": "all-contributors add",
     "generate-contributors": "all-contributors generate",
+    "precommit": "sass-lint -c .sass-lint.yml '**/*.scss' -v -q",
     "commit": "git-cz"
   },
   "description": "A cryptocurrency social project",
@@ -77,6 +78,7 @@
     "codelyzer": "^3.2.1",
     "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.0.0",
+    "sass-lint": "^1.12.1",
     "typescript": "2.4.2"
   },
   "config": {
