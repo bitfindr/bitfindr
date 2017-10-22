@@ -4,7 +4,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="content">
   <bw-contact *ngFor="let contact of contacts | async"
            [contact]="contact"
            (click)="goToContact(contact)"></bw-contact>

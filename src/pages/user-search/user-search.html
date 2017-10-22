@@ -5,7 +5,7 @@
                    (ionInput)="searchUser($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
-<ion-content padding>
+<ion-content padding class="content">
   <bw-contact *ngFor="let user of users"
     [contact]="user"
     (click)="goToContact(user)"></bw-contact>
