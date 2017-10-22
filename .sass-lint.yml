@@ -5,6 +5,7 @@ files:
   ignore:
     - 'www/**'
     - 'node_modules/**'
+    - 'platforms/**'
 rules:
   # Extends
   extends-before-mixins: 1
