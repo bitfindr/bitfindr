@@ -12,6 +12,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/take';
 
+import { BasePageEffects } from './../../../shared/base-page.effects';
 import {
   AuthActionTypes,
   AuthenticateAction,
@@ -20,7 +21,7 @@ import {
 } from './../../../state';
 
 @Injectable()
-export class SignupEffects {
+export class SignupEffects extends BasePageEffects {
   // Subject that is observed by every instance of the loading spinner
   dismissLoading = new Subject<never>();
 
@@ -57,7 +58,11 @@ export class SignupEffects {
     private app: App,
     private loadinCtrl: LoadingController,
     private alertCtrl: AlertController
-  ) { }
+  ) {
+    // TODO Perhaps we should define & import a symbol
+    // for Page names instead of hardcoding string values?
+    super('SignupPage', app);
+  }
 
   showLoading() {
     const loader = this.loadinCtrl.create({ content: 'Creating account ...' });
