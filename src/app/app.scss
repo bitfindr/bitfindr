@@ -15,6 +15,16 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+.tabs {
+  .tabbar {
+    background: transparent;
+  }
+}
+
+  .content {
+    background: linear-gradient(135deg, #023E4A, #162221);
+  }
+
 @mixin flexify($percentage, $justify-position, $align-position) {
     display: flex;
     flex: $percentage;
