@@ -1,5 +1,6 @@
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+import { of as obsOf } from 'rxjs/Observable/of';
 import { Injectable } from '@angular/core';
 import { Actions, Effect, toPayload } from '@ngrx/effects';
 
@@ -7,7 +8,12 @@ import { ApplicationState } from './../app.state';
 import { AuthProvider } from './../../providers/auth/auth';
 import { AuthQuery } from './auth.reducer';
 import { FirebaseUserProfile, UserCredentials } from './../../shared/models/auth';
-import { AuthActionTypes, SignupAction, AuthenticateAction } from './auth.actions';
+import {
+  AuthActionTypes,
+  AuthenticateAction,
+  SignupAction,
+  SignupFailAction,
+} from './auth.actions';
 
 @Injectable()
 export class AuthFacade {
@@ -29,6 +35,7 @@ export class AuthFacade {
     .switchMap(credentials =>
       this.authProvider.signup(credentials)
         .map(authUser => new AuthenticateAction(authUser))
+        .catch(error => obsOf(new SignupFailAction(error)))
     );
 
   constructor(

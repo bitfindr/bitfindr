@@ -18,9 +18,12 @@ export class MyApp {
     authFacade: AuthFacade
   ) {
 
-    // This observable only emits once the Firebase authentication state has been
-    // checked at least once.
+    // This observable only emits when the Firebase authentication
+    // state has been checked. Only takes the first value to decide
+    // what rootPage should be loaded. Actual Navigation is handled
+    // on a Page by Page basis through Side Effects.
     authFacade.authUser$
+      .take(1)
       .subscribe(authUser => (this.rootPage = authUser ? 'TabsPage' : 'LoginPage'));
 
     platform.ready().then(() => {
