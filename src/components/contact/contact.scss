@@ -1,5 +1,6 @@
 bw-contact {
   img {
+    background: $color-white;
     border-radius: 100%;
     max-height: 70px;
     max-width: 70px;
@@ -7,7 +8,10 @@ bw-contact {
   }
 
   .item  {
+    background: transparent;
+
     h5 {
+      color: $color-white;
       font-size: 1.8rem;
       font-weight: lighter;
       margin: 0;

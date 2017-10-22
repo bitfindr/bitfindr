@@ -33,19 +33,20 @@ $app-direction: ltr;
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
-$darkbluegray: #404654;
-$cleargray: #ccc;
-$darkteal: #023e4a;
-$darkgreengray: #162221;
-$transparent-white-one: rgba(255, 255, 255, .6);
-$transparent-white-two: rgba(255, 255, 255, .4);
-$transparent-white-three: rgba(255, 255, 255, .2);
-$white: #fff;
-$black: #000;
+$color-white: #fff;
+$color-black: #000;
+$color-dark-blue-gray: #404654;
+$color-clear-gray: #ccc;
+$color-dark-teal: #023e4a;
+$color-dark-green-gray: #162221;
+$color-transparent-white-one: transparentize($color-white, .95);
+$color-transparent-white-two: transparentize($color-white, .4);
+$color-transparent-white-three: transparentize($color-white, .2);
+$color-tabs-background: transparentize(lighten($color-dark-teal, .2), .6);
 
 $colors: (
-  primary:            #488aff,
-  secondary:          #32db64,
+  primary:            #63d5c3,
+  secondary:          #facc2e,
   danger:             #f53d3d,
   light:              #f4f4f4,
   dark:               #222,
@@ -55,22 +56,35 @@ $colors: (
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
+$toolbar-ios-title-text-color: $color-white;
+$toolbar-ios-button-color: $color-white;
 
+$tabs-ios-tab-text-color: map-get($colors, light);
+$tabs-ios-tab-text-color-active: map-get($colors, secondary);
+$tabs-ios-tab-icon-color: map-get($colors, light);
+$tabs-ios-tab-icon-color-active: map-get($colors, secondary);
 
 
 
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
+$toolbar-md-title-text-color: $color-white;
+$toolbar-md-button-color: $color-white;
 
 $searchbar-md-input-box-shadow: 0;
 $searchbar-md-input-background-color:	#f8f8f8;
+
+$tabs-md-tab-text-color: map-get($colors, light);
+$tabs-md-tab-text-color-active: map-get($colors, secondary);
+$tabs-md-tab-icon-color: map-get($colors, light);
+$tabs-md-tab-icon-color-active: map-get($colors, secondary);
+
 
 
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
-
 
 
 

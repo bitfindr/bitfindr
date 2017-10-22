@@ -17,12 +17,12 @@
 
 .tabs {
   .tabbar {
-    background: transparent;
+    background: $color-tabs-background;
   }
 }
 
 .content {
-  background: linear-gradient(135deg, map-get($colors, darkteal), map-get($colors, darkgreengray));
+  background: linear-gradient(135deg, $color-dark-teal, $color-dark-green-gray);
 }
 
 @mixin flexify($percentage, $justify-position, $align-position) {
