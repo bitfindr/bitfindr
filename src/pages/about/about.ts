@@ -15,29 +15,8 @@ interface AppState {
 })
 export class AboutPage {
 
-  counter: Observable<number>;
-
   constructor(
     public navCtrl: NavController,
-    private store: Store<AppState>,
-  ) {
-    this.counter = store.select('counter');
-  }
-
-  increment() {
-    this.store.dispatch({ type: INCREMENT });
-  }
-
-  decrement() {
-    this.store.dispatch({ type: DECREMENT });
-  }
-
-  reset() {
-    this.store.dispatch({ type: RESET });
-  }
-
-  getValue() {
-    console.log(this.store);
-  }
+  ) { }
 
 }
