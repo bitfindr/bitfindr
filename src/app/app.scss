@@ -21,13 +21,13 @@
   }
 }
 
-  .content {
-    background: linear-gradient(135deg, #023E4A, #162221);
-  }
+.content {
+  background: linear-gradient(135deg, map-get($colors, darkteal), map-get($colors, darkgreengray));
+}
 
 @mixin flexify($percentage, $justify-position, $align-position) {
-    display: flex;
-    flex: $percentage;
-    justify-content: $justify-position;
-    align-self: $align-position;
+  align-self: $align-position;
+  display: flex;
+  flex: $percentage;
+  justify-content: $justify-position;
 }
