@@ -2,6 +2,9 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule} from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+
 import { ClipboardModule } from 'ngx-clipboard';
 import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 
@@ -14,17 +17,17 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { environment } from '../environments/environment';
+import { environment } from './../environments/environment';
 
 import { MyApp } from './app.component';
 
-import { StorageProvider } from '../providers/storage/storage';
-import { ToastProvider } from '../providers/toast/toast';
-import { BitpointDataProvider } from '../providers/bitpoint-data/bitpoint-data.provider';
+import { StorageProvider } from './../providers/storage/storage';
+import { ToastProvider } from './../providers/toast/toast';
+import { BitpointDataProvider } from './../providers/bitpoint-data/bitpoint-data.provider';
+import { ClipboardProvider } from './../providers/clipboard/clipboard.provider';
+import { AuthProvider } from './../providers/auth/auth';
 
-import { AppReducer } from '../reducers/AppReducer';
-import { ClipboardProvider } from '../providers/clipboard/clipboard.provider';
-import { AuthProvider } from '../providers/auth/auth';
+import { ROOT_REDUCER, META_REDUCERS, AuthFacade } from './../state';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,9 @@ import { AuthProvider } from '../providers/auth/auth';
       name: '__bitdb',
       driverOrder: ['indexeddb', 'sqlite', 'websql']
     }),
-    StoreModule.forRoot({counter: AppReducer}),
+    StoreModule.forRoot(ROOT_REDUCER, { metaReducers: META_REDUCERS }),
+    EffectsModule.forRoot([ AuthFacade ]),
+    environment.production ? [] : StoreDevtoolsModule.instrument(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
@@ -63,6 +68,7 @@ import { AuthProvider } from '../providers/auth/auth';
     BitpointDataProvider,
     ClipboardProvider,
     AuthProvider,
+    AuthFacade,
   ]
 })
 export class AppModule {}
