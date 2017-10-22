@@ -4,8 +4,12 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="content">
-  <bw-contact *ngFor="let contact of contacts | async"
-           [contact]="contact"
-           (click)="goToContact(contact)"></bw-contact>
+<ion-content>
+  <ion-row>
+    <ion-col col-6 *ngFor="let contact of contacts | async">
+      <bw-contact
+               [contact]="contact"
+               (click)="goToContact(contact)"></bw-contact>
+    </ion-col>
+  </ion-row>
 </ion-content>

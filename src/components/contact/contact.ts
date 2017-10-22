@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ContactComponent {
 
   @Input() contact: any = {};
+  @Input('alignLeft') alignLeft: boolean;
   @Output() onContactClick = new EventEmitter();
 
   constructor() { }
