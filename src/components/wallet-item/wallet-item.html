@@ -1,15 +1,15 @@
 <section class="wallet-item">
-  <button ion-item text-wrap
+  <button ion-item detail-none text-wrap
     class="wallet-broker"
     (click)="toggleWallets()">
     <img item-left [src]="broker.image"/>
     <h5>{{ broker.name }}</h5>
     <ion-icon item-right *ngIf="!expand" name="ios-arrow-down"></ion-icon>
-    <ion-icon item-right *ngIf="expand" name="ios-arrow-up"></ion-icon>
+    <ion-icon item-right *ngIf="expand"  name="ios-arrow-up"></ion-icon>
   </button>
 
   <div *ngIf="expand" class="wallet-section">
-    <button ion-item text-wrap
+    <button ion-item detail-none text-wrap
       *ngFor="let wallet of broker.wallets"
       (click)="onClick(wallet.hash)">
       <img item-left [src]="wallet.image"/>
