@@ -14,6 +14,7 @@ import { Clipboard } from '@ionic-native/clipboard';
 import { Contacts } from '@ionic-native/contacts';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Facebook } from '@ionic-native/facebook';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -65,6 +66,7 @@ import { ROOT_REDUCER, META_REDUCERS, AuthFacade } from './../state';
     Clipboard,
     ToastProvider,
     Contacts,
+    Facebook,
     AngularFireDatabase,
     BitfindrDataProvider,
     ClipboardProvider,

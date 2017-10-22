@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { auth as firebaseAuth } from 'firebase';
+import { Facebook } from '@ionic-native/facebook';
 import { Observable } from 'rxjs/Observable';
 import { fromPromise } from 'rxjs/observable/fromPromise';
 import 'rxjs/add/operator/map';
 
 import { FirebaseUserProfile, FirebaseBasicProfile, UserCredentials } from './../../shared/models/auth';
+import { environment } from './../../environments/environment';
 
 @Injectable()
 export class AuthProvider {
 
   constructor(
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private facebook: Facebook
   ) { }
 
   /**
@@ -58,12 +62,38 @@ export class AuthProvider {
   }
 
   /**
-   * signs a user out
+   * obtains facebook accessToken via cordova native plugin
+   * then uses accessToken to authenticate with firebase
    *
    * @returns {Observable<FirebaseUserProfile>}
    * @memberof AuthProvider
    */
-  signout(): Observable<FirebaseUserProfile> {
+  facebookAuth(): Observable<FirebaseUserProfile> {
+    const facebookPromise = this.facebook.login(environment.facebook.scopes)
+      .then(response => {
+        const accessToken = response.authResponse.accessToken;
+        const facebookCredential = firebaseAuth.FacebookAuthProvider
+          .credential(accessToken);
+
+        return this.afAuth.auth.signInWithCredential(facebookCredential);
+      })
+      .catch(error => {
+        let { code, message } = error;
+        message = message || 'Unable to authenticate with Facebook!';
+        return Promise.reject({ code, message });
+      });
+
+    return Observable.fromPromise(facebookPromise)
+      .map(response => this.extractUserProfile(response));
+  }
+
+  /**
+   * signs a user out
+   *
+   * @returns {Observable<any>}
+   * @memberof AuthProvider
+   */
+  signout(): Observable<any> {
     return fromPromise(this.afAuth.auth.signOut());
   }
 

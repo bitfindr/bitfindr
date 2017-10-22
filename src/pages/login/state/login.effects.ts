@@ -13,6 +13,8 @@ import {
   AuthenticateAction,
   LoginAction,
   LoginFailAction,
+  FacebookAuthAction,
+  FacebookAuthFailAction,
 } from './../../../state';
 
 @Injectable()
@@ -22,7 +24,10 @@ export class LoginEffects extends BasePageEffects {
 
   // Show loading spinner every time LOGIN action is dispatched.
   @Effect({ dispatch: false }) signup$ = this.actions$
-    .ofType<LoginAction>(AuthActionTypes.LOGIN)
+    .ofType<LoginAction | FacebookAuthAction>(
+      AuthActionTypes.LOGIN,
+      AuthActionTypes.FACEBOOK_AUTH
+    )
     .do(_ => this.showLoading());
 
   // Every time AUTHENTICATE is successful:
@@ -40,7 +45,10 @@ export class LoginEffects extends BasePageEffects {
   // Dismiss loading spinner every time LOGIN FAIL action is dispatched.
   // Show alert every time LOGIN FAIL actions is dispatched.
   @Effect({ dispatch: false }) signupFail$ = this.actions$
-    .ofType<LoginFailAction>(AuthActionTypes.LOGIN_FAIL)
+    .ofType<LoginFailAction | FacebookAuthFailAction>(
+      AuthActionTypes.LOGIN_FAIL,
+      AuthActionTypes.FACEBOOK_AUTH_FAIL
+    )
     .map(action => action.payload)
     .do(error => {
       this.dismissLoading.next();

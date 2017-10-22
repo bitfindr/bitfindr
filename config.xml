@@ -88,4 +88,8 @@
     <plugin name="cordova-plugin-contacts" spec="~2.3.1" />
     <engine name="android" spec="~6.2.3" />
     <allow-navigation href="http://192.168.153.117:8100" />
+    <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
+        <variable name="APP_ID" value="1234567890" />
+        <variable name="APP_NAME" value="APP_NAME_HERE" />
+    </plugin>
 </widget>

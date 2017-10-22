@@ -9,29 +9,31 @@ import { AuthProvider } from './../../providers/auth/auth';
 import { AuthQuery } from './auth.reducer';
 import { UserCredentials } from './../../shared/models/auth';
 import {
-    AuthActionTypes,
-    AuthenticateAction,
-    LoginAction,
-    LoginFailAction,
-    SignoutAction,
-    SignoutFailAction,
-    SignupAction,
-    SignupFailAction,
+  AuthActionTypes,
+  AuthenticateAction,
+  SignupAction,
+  SignupFailAction,
+  LoginAction,
+  LoginFailAction,
+  FacebookAuthAction,
+  FacebookAuthFailAction,
+  SignoutAction,
+  SignoutFailAction,
 } from './auth.actions';
 
 @Injectable()
 export class AuthFacade {
-  /**
-   * Observable Queries to be shared for access by interested views
-   */
+  // **************************************************************
+  // Observable Queries to be shared for access by interested views
+  // **************************************************************
 
   authUser$ = this.store.select(AuthQuery.getCheckedAuthState)
     .filter(isAuthenticated => !!isAuthenticated)
     .switchMap(_ => this.store.select(AuthQuery.getAuthUser));
 
-  /**
-   * Effects to be registered at the Module level
-   */
+  // ********************************************
+  // Effects to be registered at the Module level
+  // ********************************************
 
   @Effect() signup$ = this.actions$
     .ofType<SignupAction>(AuthActionTypes.SIGNUP)
@@ -64,6 +66,14 @@ export class AuthFacade {
         .catch(error => obsOf(new SignoutFailAction(error)))
     );
 
+  @Effect() facebookAuth$ = this.actions$
+    .ofType<FacebookAuthAction>(AuthActionTypes.FACEBOOK_AUTH)
+    .switchMap(_ =>
+      this.authProvider.facebookAuth()
+        .map(authUser => new AuthenticateAction(authUser))
+        .catch(error => obsOf(new FacebookAuthFailAction(error)))
+    );
+
   constructor(
     private store: Store<ApplicationState>,
     private actions$: Actions,
@@ -73,9 +83,9 @@ export class AuthFacade {
       .subscribe(authState => this.store.dispatch(new AuthenticateAction(authState)));
   }
 
-  /**
-   * Auth Action creators
-   */
+  // ********************
+  // Auth Action creators
+  // ********************
 
   signup(credentials: UserCredentials) {
     this.store.dispatch(new SignupAction(credentials));
@@ -87,8 +97,12 @@ export class AuthFacade {
     return this.authUser$;
   }
 
+  facebookAuth() {
+    this.store.dispatch(new FacebookAuthAction());
+    return this.authUser$;
+  }
+
   signout() {
     this.store.dispatch(new SignoutAction());
-    return this.authUser$;
   }
 }

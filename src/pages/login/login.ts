@@ -37,7 +37,7 @@ export class LoginPage {
   }
 
   facebookLogin() {
-    console.log('chamar provider do facebook!');
+    this.authFacade.facebookAuth();
   }
 
   goToSignup() {
