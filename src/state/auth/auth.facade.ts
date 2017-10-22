@@ -13,6 +13,8 @@ import {
   AuthenticateAction,
   SignupAction,
   SignupFailAction,
+  LoginAction,
+  LoginFailAction,
 } from './auth.actions';
 
 @Injectable()
@@ -38,6 +40,15 @@ export class AuthFacade {
         .catch(error => obsOf(new SignupFailAction(error)))
     );
 
+  @Effect() login$ = this.actions$
+    .ofType<LoginAction>(AuthActionTypes.LOGIN)
+    .map(action => action.payload)
+    .switchMap(credentials =>
+      this.authProvider.signin(credentials)
+        .map(authUser => new AuthenticateAction(authUser))
+        .catch(error => obsOf(new LoginFailAction(error)))
+    );
+
   constructor(
     private store: Store<ApplicationState>,
     private actions$: Actions,
@@ -53,6 +64,11 @@ export class AuthFacade {
 
   signup(credentials: UserCredentials) {
     this.store.dispatch(new SignupAction(credentials));
+    return this.authUser$;
+  }
+
+  login(credentials: UserCredentials) {
+    this.store.dispatch(new LoginAction(credentials));
     return this.authUser$;
   }
 }

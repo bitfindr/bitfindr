@@ -42,6 +42,22 @@ export class AuthProvider {
   }
 
   /**
+   * signs a user in through firebase using EmailAuthProvider
+   *
+   * @param {UserCredentials} userCredentials
+   * @returns {Observable<FirebaseUserProfile>}
+   * @memberof AuthProvider
+   */
+  signin(userCredentials: UserCredentials): Observable<FirebaseUserProfile> {
+    const { email, password } = userCredentials;
+
+    const signinPromise = this.afAuth.auth.signInWithEmailAndPassword(email, password);
+
+    return fromPromise(signinPromise)
+      .map(response => this.extractUserProfile(response));
+  }
+
+  /**
    * extracts the user profile from the firebase user object
    * without including all the cryptic properties
    *

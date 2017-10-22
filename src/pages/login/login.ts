@@ -1,52 +1,48 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { IonicPage, NavController } from 'ionic-angular';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
-@IonicPage()
+import { AuthFacade } from './../../state';
+import { UserCredentials } from './../../shared/models/auth';
+
+@IonicPage({
+  segment: 'login',
+  defaultHistory: [],
+})
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  loginForm: any;
-  email: AbstractControl;
-  password: AbstractControl;
+  loginForm: FormGroup;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    formBuilder: FormBuilder,
+    private navCtrl: NavController,
+    private formBuilder: FormBuilder,
+    private authFacade: AuthFacade
   ) {
     this.loginForm = formBuilder.group({
-      email: ['', Validators.required],
-      password: [
-        '',
-        Validators.compose([
-          Validators.minLength(6),
-          Validators.maxLength(20),
-          Validators.required
-        ])
-      ]
+      email: ['', Validators.compose([
+        Validators.required,
+        Validators.email,
+      ])],
+      password: ['', Validators.required]
     });
   }
 
   login() {
-    this.email = this.loginForm.value['email'];
-    this.password = this.loginForm.value['password'];
+    const credentials: UserCredentials = this.loginForm.value;
 
-    console.log(this.email, this.password);
-    console.log('chamar provider de Auth!');
+    this.authFacade.login(credentials);
   }
 
   facebookLogin() {
     console.log('chamar provider do facebook!');
   }
 
-  goToHome() {
-    this.navCtrl.setRoot('TabsPage');
-  }
-
   goToSignup() {
+    // TODO Perhaps we should define & import a symbol
+    // for Page names instead of hardcoding string values?
     this.navCtrl.push('SignupPage');
   }
 }
