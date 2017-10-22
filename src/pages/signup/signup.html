@@ -4,47 +4,59 @@
 </ion-header>
 <ion-content fullscreen padding class="primary-font">
   <img class="logo" src="assets/icon/bitcoin.png" />
+
   <form padding [formGroup]="signupForm" (submit)="signup()" novalidate>
-    <ion-item>
-      <ion-input [(ngModel)]="firstName"
-                 formControlName="firstName"
+    <!--
+      TODO (Khaled) Should we capture "profile" data in a separate page because of Firebase?
+      See component class
+    -->
+
+    <!-- <ion-item>
+      <ion-input formControlName="firstName"
                  type="text"
                  placeholder="First name"
                  clearInput clearOnEdit="false">
       </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input [(ngModel)]="lastName"
-                 formControlName="lastName"
+    </ion-item> -->
+
+    <!-- <ion-item>
+      <ion-input formControlName="lastName"
                  type="text"
                  placeholder="Last name"
                  clearInput clearOnEdit="false">
       </ion-input>
-    </ion-item>
+    </ion-item> -->
+
     <ion-item>
-      <ion-input [(ngModel)]="email"
-                 formControlName="email"
+      <ion-input formControlName="email"
                  type="text"
                  placeholder="E-mail"
                  clearInput clearOnEdit="false">
       </ion-input>
     </ion-item>
-    <ion-item>
-      <ion-input [(ngModel)]="password"
-                 formControlName="password"
-                 type="password"
-                 placeholder="Password"
-                 clearInput clearOnEdit="false">
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input [(ngModel)]="passwordConfirm"
-                 formControlName="passwordConfirm"
-                 type="password"
-                 placeholder="Confirm password"
-                 clearInput clearOnEdit="false">
-      </ion-input>
-    </ion-item>
-    <button ion-button block outline color="light" class="login-button">Create account</button>
+
+    <ng-container formGroupName="password">
+      <ion-item>
+        <ion-input formControlName="value"
+                   type="password"
+                   placeholder="Password"
+                   clearInput clearOnEdit="false">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input formControlName="confirmed"
+                   type="password"
+                   placeholder="Confirm password"
+                   clearInput clearOnEdit="false">
+        </ion-input>
+      </ion-item>
+    </ng-container>
+
+    <button ion-button block outline color="light"
+            class="login-button"
+            [disabled]="signupForm.invalid">
+      Create account
+    </button>
   </form>
 </ion-content>
