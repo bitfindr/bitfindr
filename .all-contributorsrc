@@ -13,6 +13,7 @@
       "avatar_url": "https://avatars1.githubusercontent.com/u/20783450?v=4",
       "profile": "https://github.com/andrelas1",
       "contributions": [
+        "code",
         "ideas"
       ]
     },
@@ -51,6 +52,16 @@
       "contributions": [
         "code",
         "ideas"
+      ]
+    },
+    {
+      "login": "luisguilhermemaia",
+      "name": "Luis Guilherme",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/16075854?v=4",
+      "profile": "https://github.com/luisguilhermemaia",
+      "contributions": [
+        "code",
+        "design"
       ]
     }
   ]
