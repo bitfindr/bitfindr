@@ -58,6 +58,16 @@ export class AuthProvider {
   }
 
   /**
+   * signs a user out
+   *
+   * @returns {Observable<FirebaseUserProfile>}
+   * @memberof AuthProvider
+   */
+  signout(): Observable<FirebaseUserProfile> {
+    return fromPromise(this.afAuth.auth.signOut());
+  }
+
+  /**
    * extracts the user profile from the firebase user object
    * without including all the cryptic properties
    *
