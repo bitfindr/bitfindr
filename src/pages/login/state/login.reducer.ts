@@ -1,34 +1,34 @@
 import { AuthActions, AuthActionTypes } from './../../../state';
 import { FirebaseUserProfile } from './../../../shared/models/auth';
 
-export interface SignupState {
-  signingUp: boolean;
+export interface LoginState {
+  loggingIn: boolean;
   error: any;
 }
 
-export const SIGNUP_INITIAL_STATE: SignupState = {
-  signingUp: false,
+export const LOGIN_INITIAL_STATE: LoginState = {
+  loggingIn: false,
   error: null,
 };
 
-export function signupReducer(state = SIGNUP_INITIAL_STATE, action: AuthActions): SignupState {
+export function loginReducer(state = LOGIN_INITIAL_STATE, action: AuthActions): LoginState {
   switch (action.type) {
-    case AuthActionTypes.SIGNUP: {
+    case AuthActionTypes.LOGIN: {
       return {
         error: null,
-        signingUp: true,
+        loggingIn: true,
       };
     }
 
-    case AuthActionTypes.SIGNUP_FAIL: {
+    case AuthActionTypes.LOGIN_FAIL: {
       return {
-        signingUp: false,
+        loggingIn: false,
         error: action.payload,
       };
     }
 
     case AuthActionTypes.AUTHENTICATE: {
-      return { ...SIGNUP_INITIAL_STATE };
+      return { ...LOGIN_INITIAL_STATE };
     }
 
     default:

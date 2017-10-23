@@ -1,10 +1,10 @@
-import { UserCredentials } from './../../shared/models/auth';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
 
 import { CustomValidators } from './../../shared/utils/custom-validators';
-import { AuthFacade } from './../../state/auth/auth.facade';
+import { AuthFacade } from './../../state';
+import { UserCredentials } from './../../shared/models/auth';
 
 @IonicPage({
   segment: 'signup',
@@ -18,7 +18,6 @@ export class SignupPage {
   signupForm: FormGroup;
 
   constructor(
-    public navCtrl: NavController,
     private formBuilder: FormBuilder,
     private authFacade: AuthFacade
   ) {

@@ -3,7 +3,7 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { AuthFacade } from './../state/auth/auth.facade';
+import { AuthFacade } from './../state';
 
 @Component({
   templateUrl: 'app.html'
@@ -23,7 +23,6 @@ export class MyApp {
     // what rootPage should be loaded. Actual Navigation is handled
     // on a Page by Page basis through Side Effects.
     authFacade.authUser$
-      .take(1)
       .subscribe(authUser => (this.rootPage = authUser ? 'TabsPage' : 'LoginPage'));
 
     platform.ready().then(() => {

@@ -22,10 +22,11 @@ import { environment } from './../environments/environment';
 import { MyApp } from './app.component';
 
 import { StorageProvider } from './../providers/storage/storage';
-import { ToastProvider } from './../providers/toast/toast';
+import { ToastProvider } from './../providers/util/toast/toast';
 import { BitpointDataProvider } from './../providers/bitpoint-data/bitpoint-data.provider';
 import { ClipboardProvider } from './../providers/clipboard/clipboard.provider';
 import { AuthProvider } from './../providers/auth/auth';
+import { AlertService } from '../providers/util/alert/alert';
 
 import { ROOT_REDUCER, META_REDUCERS, AuthFacade } from './../state';
 
@@ -69,6 +70,7 @@ import { ROOT_REDUCER, META_REDUCERS, AuthFacade } from './../state';
     ClipboardProvider,
     AuthProvider,
     AuthFacade,
+    AlertService,
   ]
 })
 export class AppModule {}

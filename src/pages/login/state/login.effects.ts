@@ -1,11 +1,6 @@
 import { Actions, Effect } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import {
-  App,
-  LoadingController,
-  AlertController,
-  AlertOptions,
-} from 'ionic-angular';
+import { LoadingController, AlertController, AlertOptions, App } from 'ionic-angular';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
@@ -16,18 +11,18 @@ import { BasePageEffects } from './../../../shared/base-page.effects';
 import {
   AuthActionTypes,
   AuthenticateAction,
-  SignupAction,
-  SignupFailAction,
+  LoginAction,
+  LoginFailAction,
 } from './../../../state';
 
 @Injectable()
-export class SignupEffects extends BasePageEffects {
+export class LoginEffects extends BasePageEffects {
   // Subject that is observed by every instance of the loading spinner
   dismissLoading = new Subject<never>();
 
-  // Show loading spinner every time SIGNUP action is dispatched.
+  // Show loading spinner every time LOGIN action is dispatched.
   @Effect({ dispatch: false }) signup$ = this.actions$
-    .ofType<SignupAction>(AuthActionTypes.SIGNUP)
+    .ofType<LoginAction>(AuthActionTypes.LOGIN)
     .do(_ => this.showLoading());
 
   // Every time AUTHENTICATE is successful:
@@ -36,17 +31,16 @@ export class SignupEffects extends BasePageEffects {
   @Effect({ dispatch: false }) authenticate$ = this.actions$
     .ofType<AuthenticateAction>(AuthActionTypes.AUTHENTICATE)
     .map(action => action.payload)
-    .filter(user => !!user)
+    .filter(authUser => !!authUser)
     .do(_ => {
       this.dismissLoading.next();
       this.navigateToTabs();
     });
 
-  // Every time SIGNUP FAIL action is dispatched:
-  // - Dismiss loading spinner.
-  // - Show alert with error information.
+  // Dismiss loading spinner every time LOGIN FAIL action is dispatched.
+  // Show alert every time LOGIN FAIL actions is dispatched.
   @Effect({ dispatch: false }) signupFail$ = this.actions$
-    .ofType<SignupFailAction>(AuthActionTypes.SIGNUP_FAIL)
+    .ofType<LoginFailAction>(AuthActionTypes.LOGIN_FAIL)
     .map(action => action.payload)
     .do(error => {
       this.dismissLoading.next();
@@ -54,18 +48,18 @@ export class SignupEffects extends BasePageEffects {
     });
 
   constructor(
-    private actions$: Actions,
     private app: App,
+    private actions$: Actions,
     private loadinCtrl: LoadingController,
     private alertCtrl: AlertController
   ) {
     // TODO Perhaps we should define & import a symbol
     // for Page names instead of hardcoding string values?
-    super('SignupPage', app);
+    super('LoginPage', app);
   }
 
   showLoading() {
-    const loader = this.loadinCtrl.create({ content: 'Creating account ...' });
+    const loader = this.loadinCtrl.create({ content: 'Authenticating ...' });
 
     loader.present();
 
@@ -83,7 +77,8 @@ export class SignupEffects extends BasePageEffects {
   showAlert(error: any) {
     const options: AlertOptions = {
       title: 'Oops',
-      message: error && error.message || 'An error has occurred.',
+      message: error.message,
+      enableBackdropDismiss: false,
       buttons: [ { text: 'Ok' } ],
     };
 

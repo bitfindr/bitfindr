@@ -26,7 +26,7 @@ export class AuthProvider {
   }
 
   /**
-   * registers a new user on firebase using the EmailProvider
+   * registers a new user on firebase using EmailAuthProvider
    *
    * @param {UserCredentials} userCredentials
    * @returns {Observable<FirebaseUserProfile>}
@@ -39,6 +39,32 @@ export class AuthProvider {
 
     return fromPromise(signupPromise)
       .map(response => this.extractUserProfile(response));
+  }
+
+  /**
+   * signs a user in through firebase using EmailAuthProvider
+   *
+   * @param {UserCredentials} userCredentials
+   * @returns {Observable<FirebaseUserProfile>}
+   * @memberof AuthProvider
+   */
+  signin(userCredentials: UserCredentials): Observable<FirebaseUserProfile> {
+    const { email, password } = userCredentials;
+
+    const signinPromise = this.afAuth.auth.signInWithEmailAndPassword(email, password);
+
+    return fromPromise(signinPromise)
+      .map(response => this.extractUserProfile(response));
+  }
+
+  /**
+   * signs a user out
+   *
+   * @returns {Observable<FirebaseUserProfile>}
+   * @memberof AuthProvider
+   */
+  signout(): Observable<FirebaseUserProfile> {
+    return fromPromise(this.afAuth.auth.signOut());
   }
 
   /**
