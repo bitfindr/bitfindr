@@ -55,7 +55,12 @@ export class AuthFacade {
     .ofType<SignoutAction>(AuthActionTypes.SIGNOUT)
     .switchMap(credentials =>
       this.authProvider.signout()
-        .map(authUser => new AuthenticateAction(authUser))
+        // When firebase signOut is complete, we check authState again.
+        // We'll get `null` which we dispatch through the AuthenticateAction
+        .switchMap(_ =>
+          this.authProvider.checkAuthState()
+            .map(authUser => new AuthenticateAction(authUser))
+        )
         .catch(error => obsOf(new SignoutFailAction(error)))
     );
 
