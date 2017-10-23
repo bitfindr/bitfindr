@@ -1,6 +1,6 @@
 import { ClipboardProvider } from '../../providers/clipboard/clipboard.provider';
 import { QrCodeModalPage } from '../qr-code-modal/qr-code-modal';
-import { ToastProvider } from '../../providers/toast/toast';
+import { ToastProvider } from '../../providers/util/toast/toast';
 import { Component, Renderer } from '@angular/core';
 import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { Contacts, Contact, ContactField } from '@ionic-native/contacts';
@@ -39,7 +39,7 @@ export class ContactDetailPage {
         this.contact.displayName = displayName;
         this.contact.photo = photos ? photos[0].value : 'assets/icon/favicon.ico';
       })
-      .catch(err => this.toastCtrl.create('Ther  e was an error picking your contact: ' + err));
+      .catch(err => this.toastCtrl.create('There was an error picking your contact: ' + err));
   }
 
   copyToClipboard(hash) {
