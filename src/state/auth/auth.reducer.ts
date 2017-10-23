@@ -19,7 +19,9 @@ export function authReducer(state = INITIAL_STATE, action: AuthActions): AuthSta
     case AuthActionTypes.LOGIN:
     case AuthActionTypes.LOGIN_FAIL:
     case AuthActionTypes.SIGNUP:
-    case AuthActionTypes.SIGNUP_FAIL: {
+    case AuthActionTypes.SIGNUP_FAIL:
+    case AuthActionTypes.SIGNOUT:
+    case AuthActionTypes.SIGNOUT_FAIL: {
       return {
         ...state,
         authUser: null,

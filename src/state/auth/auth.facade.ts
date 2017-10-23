@@ -9,12 +9,14 @@ import { AuthProvider } from './../../providers/auth/auth';
 import { AuthQuery } from './auth.reducer';
 import { UserCredentials } from './../../shared/models/auth';
 import {
-  AuthActionTypes,
-  AuthenticateAction,
-  SignupAction,
-  SignupFailAction,
-  LoginAction,
-  LoginFailAction,
+    AuthActionTypes,
+    AuthenticateAction,
+    LoginAction,
+    LoginFailAction,
+    SignoutAction,
+    SignoutFailAction,
+    SignupAction,
+    SignupFailAction,
 } from './auth.actions';
 
 @Injectable()
