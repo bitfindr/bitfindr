@@ -51,6 +51,14 @@ export class AuthFacade {
         .catch(error => obsOf(new LoginFailAction(error)))
     );
 
+  @Effect() signout$ = this.actions$
+    .ofType<SignoutAction>(AuthActionTypes.SIGNOUT)
+    .switchMap(credentials =>
+      this.authProvider.signout()
+        .map(authUser => new AuthenticateAction(authUser))
+        .catch(error => obsOf(new SignoutFailAction(error)))
+    );
+
   constructor(
     private store: Store<ApplicationState>,
     private actions$: Actions,
@@ -71,6 +79,11 @@ export class AuthFacade {
 
   login(credentials: UserCredentials) {
     this.store.dispatch(new LoginAction(credentials));
+    return this.authUser$;
+  }
+
+  signout() {
+    this.store.dispatch(new SignoutAction());
     return this.authUser$;
   }
 }
