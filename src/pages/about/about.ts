@@ -1,3 +1,4 @@
+import { AlertService } from '../../providers/util/alert/alert';
 import { AuthFacade } from '../../state/auth/auth.facade';
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
@@ -17,11 +18,14 @@ export class AboutPage {
 
   constructor(
     public navCtrl: NavController,
-    private authFacade: AuthFacade
+    private authFacade: AuthFacade,
+    private alertCtrl: AlertService
   ) { }
 
   signout() {
-    this.authFacade.signout();
+    this.alertCtrl
+        .createYesNo('Alert', 'Are you sure you want to sign out?')
+        .then((yes) => { return yes ? this.authFacade.signout() : null; });
   }
 
 }
