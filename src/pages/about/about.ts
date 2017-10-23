@@ -1,3 +1,4 @@
+import { AuthFacade } from '../../state/auth/auth.facade';
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { Store } from '@ngrx/store';
@@ -16,6 +17,11 @@ export class AboutPage {
 
   constructor(
     public navCtrl: NavController,
+    private authFacade: AuthFacade
   ) { }
+
+  signout() {
+    this.authFacade.signout();
+  }
 
 }
