@@ -15,7 +15,8 @@
     "precommit": "sass-lint -c .sass-lint.yml '**/*.scss' -v -q",
     "commit": "git-cz",
     "test-coverage": "ng test --code-coverage",
-    "test": "ng test"
+    "test": "ng test",
+    "test-ci": "ng test --watch=false --code-coverage && cat ./coverage/lcov.info | coveralls"
   },
   "description": "A cryptocurrency social project",
   "cordova": {
@@ -83,6 +84,7 @@
     "all-contributors-cli": "^4.5.0",
     "codelyzer": "^3.2.1",
     "commitizen": "^2.9.6",
+    "coveralls": "^3.0.0",
     "cz-conventional-changelog": "^2.0.0",
     "ionic-mocks": "^1.0.3",
     "jasmine-core": "^2.8.0",
