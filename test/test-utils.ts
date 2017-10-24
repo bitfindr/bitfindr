@@ -1,5 +1,6 @@
 import { Type, DebugElement } from '@angular/core';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from 'ionic-angular';
 
@@ -36,9 +37,22 @@ export function configureIonicTestingModule<Cmp>(components: TestModuleComponent
   });
 }
 
-function createEvent(evtName: string, bubbles = false, cancelable = false, detail = null) {
+export function createEvent(evtName: string, bubbles = false, cancelable = false, detail = null) {
   const evt = document.createEvent('CustomEvent');
   evt.initCustomEvent(evtName, bubbles, cancelable, detail);
 
   return evt;
+}
+
+export type FormControlUpdater = (formControlName: string, value: string) => void;
+export function getFormControlUpdater(debugEl: DebugElement): FormControlUpdater {
+  return (formControlName: string, value: string) => {
+    const selector = `input[formcontrolname="${formControlName}"`;
+    const inputEl: HTMLInputElement = debugEl
+      .query(By.css(selector))
+      .nativeElement;
+
+    inputEl.value = value;
+    inputEl.dispatchEvent(createEvent('input'));
+  };
 }
