@@ -1,6 +1,7 @@
 # Bitfindr
 [![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors)
-[![Gitter chat](https://img.shields.io/badge/chat-on_gitter-008080.svg?style=flat-square)](https://gitter.im/bitfindr)
+[![Build Status](https://travis-ci.org/bitfindr/bitfindr.svg?branch=master)](https://travis-ci.org/bitfindr/bitfindr)
+[![Coverage Status](https://coveralls.io/repos/github/bitfindr/bitfindr/badge.svg)](https://coveralls.io/github/bitfindr/bitfindr)
 
 This app is aimed at helping people that deal with cryptocurrency transactions, like lending money to friends, making small payments, etc. Initially its focus is to behave like a bitcoin users catalog app, that you can save and share contacts with their wallet addresses and qr codes.
 
@@ -32,6 +33,12 @@ $ npm install
 After installing the needed dependencies you are done, launch your app with a simple
 ```sh
 $ ionic serve
+```
+
+## Run Tests:
+Run tests in watch mode:
+```sh
+$ npm test
 ```
 
 Then, to run it on a device/emulator, run:
