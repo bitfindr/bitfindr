@@ -1,7 +1,8 @@
 import { Observable } from 'rxjs/Rx';
-import { BitpointDataProvider } from '../../providers/bitpoint-data/bitpoint-data.provider';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
+import { BitfindrDataProvider } from '../../providers/bitfindr-data/bitfindr-data.provider';
 
 @IonicPage({
   priority: 'high'
@@ -18,7 +19,7 @@ export class UserSearchPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public userData: BitpointDataProvider
+    public userData: BitfindrDataProvider
   ) { }
 
   ionViewDidLoad() {

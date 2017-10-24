@@ -1,3 +1,4 @@
+import { BitfindrDataProvider } from '../providers/bitfindr-data/bitfindr-data.provider';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,7 +24,6 @@ import { MyApp } from './app.component';
 
 import { StorageProvider } from './../providers/storage/storage';
 import { ToastProvider } from './../providers/util/toast/toast';
-import { BitpointDataProvider } from './../providers/bitpoint-data/bitpoint-data.provider';
 import { ClipboardProvider } from './../providers/clipboard/clipboard.provider';
 import { AuthProvider } from './../providers/auth/auth';
 import { AlertService } from '../providers/util/alert/alert';
@@ -66,7 +66,7 @@ import { ROOT_REDUCER, META_REDUCERS, AuthFacade } from './../state';
     ToastProvider,
     Contacts,
     AngularFireDatabase,
-    BitpointDataProvider,
+    BitfindrDataProvider,
     ClipboardProvider,
     AuthProvider,
     AuthFacade,

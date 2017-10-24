@@ -1,6 +1,7 @@
-import { BitpointDataProvider } from '../../providers/bitpoint-data/bitpoint-data.provider';
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
+
+import { BitfindrDataProvider } from '../../providers/bitfindr-data/bitfindr-data.provider';
 
 @IonicPage({
   priority: 'high'
@@ -14,7 +15,7 @@ export class HomePage {
   contacts;
   constructor(
     public navCtrl: NavController,
-    public userData: BitpointDataProvider) {
+    public userData: BitfindrDataProvider) {
     this.contacts = userData.getUsers();
   }
 

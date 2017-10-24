@@ -4,7 +4,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class BitpointDataProvider {
+export class BitfindrDataProvider {
 
   constructor(private db: AngularFireDatabase) {
   }
