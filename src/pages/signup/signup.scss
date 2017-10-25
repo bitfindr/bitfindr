@@ -24,10 +24,6 @@ page-signup {
     border-top: 1px solid $color-transparent-white-one;
   }
 
-  .scroll-content {
-    padding: 1rem;
-  }
-
   @media only screen and (min-width: 425px) {
     .scroll-content {
       padding: 0 15vw;
@@ -45,6 +41,7 @@ page-signup {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    padding: 1rem;
   }
 
   .logo {
