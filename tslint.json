@@ -1,8 +1,6 @@
 {
-  "rulesDirectory": [
-    "node_modules/codelyzer"
-  ],
-  "rules":{
+  "rulesDirectory": ["node_modules/codelyzer"],
+  "rules": {
     "align": [true, "statements"],
     "ban": false,
     "class-name": true,
@@ -14,9 +12,13 @@
     "interface-name": false,
     "jsdoc-format": true,
     "label-position": true,
-    "max-line-length": [true, 120],
     "member-access": false,
-    "member-ordering": [true, "public-before-private", "static-before-instance", "variables-before-functions"],
+    "member-ordering": [
+      true,
+      "public-before-private",
+      "static-before-instance",
+      "variables-before-functions"
+    ],
     "no-any": false,
     "no-arg": true,
     "no-bitwise": true,
@@ -41,18 +43,51 @@
     "no-var-keyword": true,
     "no-var-requires": false,
     "object-literal-sort-keys": false,
-    "one-line": [true, "check-open-brace", "check-catch", "check-else", "check-finally", "check-whitespace"],
+    "one-line": [
+      true,
+      "check-open-brace",
+      "check-catch",
+      "check-else",
+      "check-finally",
+      "check-whitespace"
+    ],
     "quotemark": [true, "single", "avoid-escape"],
     "radix": true,
     "semicolon": [true, "always"],
     "switch-default": true,
     "triple-equals": [true, "allow-null-check"],
     "typedef": false,
-    "typedef-whitespace": [true,
-      {"call-signature": "nospace", "index-signature": "nospace", "parameter": "nospace", "property-declaration": "nospace", "variable-declaration": "nospace"},
-      {"call-signature": "space", "index-signature": "space", "parameter": "space", "property-declaration": "space", "variable-declaration": "space"}],
-    "variable-name": [true, "check-format", "allow-leading-underscore", "ban-keywords"],
-    "whitespace": [true, "check-branch", "check-decl", "check-operator", "check-separator", "check-type"],
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      },
+      {
+        "call-signature": "space",
+        "index-signature": "space",
+        "parameter": "space",
+        "property-declaration": "space",
+        "variable-declaration": "space"
+      }
+    ],
+    "variable-name": [
+      true,
+      "check-format",
+      "allow-leading-underscore",
+      "ban-keywords"
+    ],
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-separator",
+      "check-type"
+    ],
     "angular-whitespace": [true, "check-interpolation", "check-pipe"],
     "banana-in-box": true,
     "templates-no-negated-async": true,
@@ -75,6 +110,5 @@
     "no-access-missing-member": false,
     "invoke-injectable": true,
     "template-to-ng-template": true
-
   }
 }
