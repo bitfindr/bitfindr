@@ -2,23 +2,25 @@ import { Platform } from 'ionic-angular';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { auth as firebaseAuth } from 'firebase';
-import * as firebase from 'firebase/app';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { Observable } from 'rxjs/Observable';
 import { fromPromise } from 'rxjs/observable/fromPromise';
 import 'rxjs/add/operator/map';
 
-import { FirebaseUserProfile, FirebaseBasicProfile, UserCredentials } from './../../shared/models/auth';
+import {
+  FirebaseUserProfile,
+  FirebaseBasicProfile,
+  UserCredentials,
+} from './../../shared/models/auth';
 import { environment } from './../../environments/environment';
 
 @Injectable()
 export class AuthProvider {
-
   constructor(
     private afAuth: AngularFireAuth,
     private facebook: Facebook,
-    private platform: Platform,
-  ) { }
+    private platform: Platform
+  ) {}
 
   /**
    * checks firebase authstate
@@ -42,10 +44,14 @@ export class AuthProvider {
   signup(userCredentials: UserCredentials): Observable<FirebaseUserProfile> {
     const { email, password } = userCredentials;
 
-    const signupPromise = this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+    const signupPromise = this.afAuth.auth.createUserWithEmailAndPassword(
+      email,
+      password
+    );
 
-    return fromPromise(signupPromise)
-      .map(response => this.extractUserProfile(response));
+    return fromPromise(signupPromise).map(response =>
+      this.extractUserProfile(response)
+    );
   }
 
   /**
@@ -58,10 +64,14 @@ export class AuthProvider {
   signin(userCredentials: UserCredentials): Observable<FirebaseUserProfile> {
     const { email, password } = userCredentials;
 
-    const signinPromise = this.afAuth.auth.signInWithEmailAndPassword(email, password);
+    const signinPromise = this.afAuth.auth.signInWithEmailAndPassword(
+      email,
+      password
+    );
 
-    return fromPromise(signinPromise)
-      .map(response => this.extractUserProfile(response));
+    return fromPromise(signinPromise).map(response =>
+      this.extractUserProfile(response)
+    );
   }
 
   /**
@@ -72,21 +82,21 @@ export class AuthProvider {
    * @memberof AuthProvider
    */
   facebookAuth(): Observable<FirebaseUserProfile> {
+    const facebookPromise = this.platform.is('cordova')
+      ? this.nativeFacebookAuth()
+      : this.afAuth.auth
+          .signInWithPopup(new firebaseAuth.FacebookAuthProvider())
+          .then(response => response.user);
 
-    const facebookPromise = this.platform.is('cordova') ?
-      this.nativeFacebookAuth() :
-      this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
-        .then(response => response.user);
+    facebookPromise.catch(error => {
+      let { code, message } = error;
+      message = message || 'Unable to authenticate with Facebook!';
+      return Promise.reject({ code, message });
+    });
 
-    facebookPromise
-      .catch(error => {
-        let { code, message } = error;
-        message = message || 'Unable to authenticate with Facebook!';
-        return Promise.reject({ code, message });
-      });
-
-    return Observable.fromPromise(facebookPromise)
-      .map(response => this.extractUserProfile(response));
+    return Observable.fromPromise(facebookPromise).map(response =>
+      this.extractUserProfile(response)
+    );
   }
 
   /**
@@ -97,14 +107,16 @@ export class AuthProvider {
    * @memberof AuthProvider
    */
   nativeFacebookAuth(): Promise<FacebookLoginResponse> {
-    const facebookPromise = this.facebook.login(environment.facebook.scopes)
-    .then(response => {
-      const accessToken = response.authResponse.accessToken;
-      const facebookCredential = firebaseAuth.FacebookAuthProvider
-        .credential(accessToken);
+    const facebookPromise = this.facebook
+      .login(environment.facebook.scopes)
+      .then(response => {
+        const accessToken = response.authResponse.accessToken;
+        const facebookCredential = firebaseAuth.FacebookAuthProvider.credential(
+          accessToken
+        );
 
-      return this.afAuth.auth.signInWithCredential(facebookCredential);
-    });
+        return this.afAuth.auth.signInWithCredential(facebookCredential);
+      });
 
     return facebookPromise;
   }
@@ -152,7 +164,7 @@ export class AuthProvider {
       providerData,
       providerId: data.providerId,
       refreshToken: data.refreshToken,
-      uid: data.uid
+      uid: data.uid,
     };
 
     return profile;

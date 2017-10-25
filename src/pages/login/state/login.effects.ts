@@ -1,6 +1,11 @@
 import { Actions, Effect } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { LoadingController, AlertController, AlertOptions, App } from 'ionic-angular';
+import {
+  LoadingController,
+  AlertController,
+  AlertOptions,
+  App,
+} from 'ionic-angular';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
@@ -23,7 +28,8 @@ export class LoginEffects extends BasePageEffects {
   dismissLoading = new Subject<never>();
 
   // Show loading spinner every time LOGIN action is dispatched.
-  @Effect({ dispatch: false }) signup$ = this.actions$
+  @Effect({ dispatch: false })
+  signup$ = this.actions$
     .ofType<LoginAction | FacebookAuthAction>(
       AuthActionTypes.LOGIN,
       AuthActionTypes.FACEBOOK_AUTH
@@ -33,7 +39,8 @@ export class LoginEffects extends BasePageEffects {
   // Every time AUTHENTICATE is successful:
   // - Dismiss loading spinner.
   // - Navigate to TabsPage.
-  @Effect({ dispatch: false }) authenticate$ = this.actions$
+  @Effect({ dispatch: false })
+  authenticate$ = this.actions$
     .ofType<AuthenticateAction>(AuthActionTypes.AUTHENTICATE)
     .map(action => action.payload)
     .filter(authUser => !!authUser)
@@ -44,7 +51,8 @@ export class LoginEffects extends BasePageEffects {
 
   // Dismiss loading spinner every time LOGIN FAIL action is dispatched.
   // Show alert every time LOGIN FAIL actions is dispatched.
-  @Effect({ dispatch: false }) signupFail$ = this.actions$
+  @Effect({ dispatch: false })
+  signupFail$ = this.actions$
     .ofType<LoginFailAction | FacebookAuthFailAction>(
       AuthActionTypes.LOGIN_FAIL,
       AuthActionTypes.FACEBOOK_AUTH_FAIL
@@ -71,7 +79,8 @@ export class LoginEffects extends BasePageEffects {
 
     loader.present();
 
-    this.dismissLoading.asObservable()
+    this.dismissLoading
+      .asObservable()
       .take(1)
       .subscribe(_ => loader.dismiss());
   }
@@ -87,7 +96,7 @@ export class LoginEffects extends BasePageEffects {
       title: 'Oops',
       message: error.message,
       enableBackdropDismiss: false,
-      buttons: [ { text: 'Ok' } ],
+      buttons: [{ text: 'Ok' }],
     };
 
     const alert = this.alertCtrl.create(options);

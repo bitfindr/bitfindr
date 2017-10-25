@@ -5,14 +5,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BitfindrDataProvider } from '../../providers/bitfindr-data/bitfindr-data.provider';
 
 @IonicPage({
-  priority: 'high'
+  priority: 'high',
 })
 @Component({
   selector: 'page-user-search',
   templateUrl: 'user-search.html',
 })
 export class UserSearchPage {
-
   users = [];
   usersRef;
 
@@ -20,18 +19,18 @@ export class UserSearchPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public userData: BitfindrDataProvider
-  ) { }
+  ) {}
 
   ionViewDidLoad() {
-    this.userData.getUsers().subscribe(data => this.usersRef = data);
+    this.userData.getUsers().subscribe(data => (this.usersRef = data));
   }
 
   searchUser(event) {
     const val = event.srcElement.value;
 
     if (val && val.trim() !== '') {
-      this.users = this.usersRef.filter((user) =>
-         user.name.toLowerCase().includes(val.toLowerCase())
+      this.users = this.usersRef.filter(user =>
+        user.name.toLowerCase().includes(val.toLowerCase())
       );
     } else {
       this.users = [];

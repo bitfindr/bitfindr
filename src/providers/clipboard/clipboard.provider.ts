@@ -5,15 +5,16 @@ import { ClipboardService } from 'ngx-clipboard';
 
 @Injectable()
 export class ClipboardProvider {
-
   constructor(
     private platform: Platform,
     private nativeClipboard: Clipboard,
     private jsClipboard: ClipboardService
-  ) { }
+  ) {}
 
   copy(content: string, renderer: Renderer) {
-    return this.platform.is('cordova') ? this.nativeCopy(content) : this.jsCopy(content, renderer);
+    return this.platform.is('cordova')
+      ? this.nativeCopy(content)
+      : this.jsCopy(content, renderer);
   }
 
   nativeCopy(content) {

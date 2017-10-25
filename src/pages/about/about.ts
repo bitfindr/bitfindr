@@ -12,20 +12,20 @@ interface AppState {
 @IonicPage()
 @Component({
   selector: 'page-about',
-  templateUrl: 'about.html'
+  templateUrl: 'about.html',
 })
 export class AboutPage {
-
   constructor(
     public navCtrl: NavController,
     private authFacade: AuthFacade,
     private alertCtrl: AlertService
-  ) { }
+  ) {}
 
   signout() {
     this.alertCtrl
-        .createYesNo('Alert', 'Are you sure you want to sign out?')
-        .then((yes) => { return yes ? this.authFacade.signout() : null; });
+      .createYesNo('Alert', 'Are you sure you want to sign out?')
+      .then(yes => {
+        return yes ? this.authFacade.signout() : null;
+      });
   }
-
 }

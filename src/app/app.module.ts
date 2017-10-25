@@ -3,7 +3,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule} from '@ngrx/store-devtools';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 
 import { ClipboardModule } from 'ngx-clipboard';
@@ -32,9 +32,7 @@ import { AlertService } from '../providers/util/alert/alert';
 import { ROOT_REDUCER, META_REDUCERS, AuthFacade } from './../state';
 
 @NgModule({
-  declarations: [
-    MyApp,
-  ],
+  declarations: [MyApp],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp, {
@@ -44,10 +42,10 @@ import { ROOT_REDUCER, META_REDUCERS, AuthFacade } from './../state';
     }),
     IonicStorageModule.forRoot({
       name: '__bitdb',
-      driverOrder: ['indexeddb', 'sqlite', 'websql']
+      driverOrder: ['indexeddb', 'sqlite', 'websql'],
     }),
     StoreModule.forRoot(ROOT_REDUCER, { metaReducers: META_REDUCERS }),
-    EffectsModule.forRoot([ AuthFacade ]),
+    EffectsModule.forRoot([AuthFacade]),
     environment.production ? [] : StoreDevtoolsModule.instrument(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
@@ -55,13 +53,11 @@ import { ROOT_REDUCER, META_REDUCERS, AuthFacade } from './../state';
     ClipboardModule,
   ],
   bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-  ],
+  entryComponents: [MyApp],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     StorageProvider,
     Clipboard,
     ToastProvider,
@@ -73,6 +69,6 @@ import { ROOT_REDUCER, META_REDUCERS, AuthFacade } from './../state';
     AuthProvider,
     AuthFacade,
     AlertService,
-  ]
+  ],
 })
 export class AppModule {}

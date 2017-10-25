@@ -11,7 +11,10 @@ export const SIGNUP_INITIAL_STATE: SignupState = {
   error: null,
 };
 
-export function signupReducer(state = SIGNUP_INITIAL_STATE, action: AuthActions): SignupState {
+export function signupReducer(
+  state = SIGNUP_INITIAL_STATE,
+  action: AuthActions
+): SignupState {
   switch (action.type) {
     case AuthActionTypes.SIGNUP: {
       return {

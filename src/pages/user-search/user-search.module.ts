@@ -4,12 +4,7 @@ import { UserSearchPage } from './user-search';
 import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
-  declarations: [
-    UserSearchPage,
-  ],
-  imports: [
-    ComponentsModule,
-    IonicPageModule.forChild(UserSearchPage),
-  ],
+  declarations: [UserSearchPage],
+  imports: [ComponentsModule, IonicPageModule.forChild(UserSearchPage)],
 })
 export class UserSearchPageModule {}

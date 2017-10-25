@@ -27,7 +27,8 @@ export class AuthFacade {
   // Observable Queries to be shared for access by interested views
   // **************************************************************
 
-  authUser$ = this.store.select(AuthQuery.getCheckedAuthState)
+  authUser$ = this.store
+    .select(AuthQuery.getCheckedAuthState)
     .filter(isAuthenticated => !!isAuthenticated)
     .switchMap(_ => this.store.select(AuthQuery.getAuthUser));
 
@@ -35,41 +36,50 @@ export class AuthFacade {
   // Effects to be registered at the Module level
   // ********************************************
 
-  @Effect() signup$ = this.actions$
+  @Effect()
+  signup$ = this.actions$
     .ofType<SignupAction>(AuthActionTypes.SIGNUP)
     .map(action => action.payload)
     .switchMap(credentials =>
-      this.authProvider.signup(credentials)
+      this.authProvider
+        .signup(credentials)
         .map(authUser => new AuthenticateAction(authUser))
         .catch(error => obsOf(new SignupFailAction(error)))
     );
 
-  @Effect() login$ = this.actions$
+  @Effect()
+  login$ = this.actions$
     .ofType<LoginAction>(AuthActionTypes.LOGIN)
     .map(action => action.payload)
     .switchMap(credentials =>
-      this.authProvider.signin(credentials)
+      this.authProvider
+        .signin(credentials)
         .map(authUser => new AuthenticateAction(authUser))
         .catch(error => obsOf(new LoginFailAction(error)))
     );
 
-  @Effect() signout$ = this.actions$
+  @Effect()
+  signout$ = this.actions$
     .ofType<SignoutAction>(AuthActionTypes.SIGNOUT)
     .switchMap(credentials =>
-      this.authProvider.signout()
+      this.authProvider
+        .signout()
         // When firebase signOut is complete, we check authState again.
         // We'll get `null` which we dispatch through the AuthenticateAction
         .switchMap(_ =>
-          this.authProvider.checkAuthState()
+          this.authProvider
+            .checkAuthState()
             .map(authUser => new AuthenticateAction(authUser))
         )
         .catch(error => obsOf(new SignoutFailAction(error)))
     );
 
-  @Effect() facebookAuth$ = this.actions$
+  @Effect()
+  facebookAuth$ = this.actions$
     .ofType<FacebookAuthAction>(AuthActionTypes.FACEBOOK_AUTH)
     .switchMap(_ =>
-      this.authProvider.facebookAuth()
+      this.authProvider
+        .facebookAuth()
         .map(authUser => new AuthenticateAction(authUser))
         .catch(error => obsOf(new FacebookAuthFailAction(error)))
     );
@@ -79,8 +89,11 @@ export class AuthFacade {
     private actions$: Actions,
     private authProvider: AuthProvider
   ) {
-    authProvider.checkAuthState()
-      .subscribe(authState => this.store.dispatch(new AuthenticateAction(authState)));
+    authProvider
+      .checkAuthState()
+      .subscribe(authState =>
+        this.store.dispatch(new AuthenticateAction(authState))
+      );
   }
 
   // ********************

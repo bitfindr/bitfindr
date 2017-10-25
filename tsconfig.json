@@ -4,27 +4,16 @@
     "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": [
-      "dom",
-      "es2015"
-    ],
+    "lib": ["dom", "es2015"],
     "module": "es2015",
     "moduleResolution": "node",
     "sourceMap": true,
     "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "types": [
-      "jasmine"
-    ]
+    "typeRoots": ["node_modules/@types"],
+    "types": ["jasmine"]
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ],
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"],
   "compileOnSave": false,
   "atom": {
     "rewriteTsconfig": false

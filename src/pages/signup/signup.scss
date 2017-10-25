@@ -4,7 +4,7 @@ page-signup {
     color: $color-white;
   }
 
-  .toolbar-background , {
+  .toolbar-background {
     background: transparent;
     background-color: transparent;
   }
@@ -54,7 +54,7 @@ page-signup {
   // Input items
   ion-item {
     background-color: $color-transparent-white-three;
-    border-radius: .325rem;
+    border-radius: 0.325rem;
 
     &:nth-child(1),
     &:nth-child(2),

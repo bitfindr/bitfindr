@@ -26,14 +26,16 @@ export class SignupEffects extends BasePageEffects {
   dismissLoading = new Subject<never>();
 
   // Show loading spinner every time SIGNUP action is dispatched.
-  @Effect({ dispatch: false }) signup$ = this.actions$
+  @Effect({ dispatch: false })
+  signup$ = this.actions$
     .ofType<SignupAction>(AuthActionTypes.SIGNUP)
     .do(_ => this.showLoading());
 
   // Every time AUTHENTICATE is successful:
   // - Dismiss loading spinner.
   // - Navigate to TabsPage.
-  @Effect({ dispatch: false }) authenticate$ = this.actions$
+  @Effect({ dispatch: false })
+  authenticate$ = this.actions$
     .ofType<AuthenticateAction>(AuthActionTypes.AUTHENTICATE)
     .map(action => action.payload)
     .filter(user => !!user)
@@ -45,7 +47,8 @@ export class SignupEffects extends BasePageEffects {
   // Every time SIGNUP FAIL action is dispatched:
   // - Dismiss loading spinner.
   // - Show alert with error information.
-  @Effect({ dispatch: false }) signupFail$ = this.actions$
+  @Effect({ dispatch: false })
+  signupFail$ = this.actions$
     .ofType<SignupFailAction>(AuthActionTypes.SIGNUP_FAIL)
     .map(action => action.payload)
     .do(error => {
@@ -69,7 +72,8 @@ export class SignupEffects extends BasePageEffects {
 
     loader.present();
 
-    this.dismissLoading.asObservable()
+    this.dismissLoading
+      .asObservable()
       .take(1)
       .subscribe(_ => loader.dismiss());
   }
@@ -83,8 +87,8 @@ export class SignupEffects extends BasePageEffects {
   showAlert(error: any) {
     const options: AlertOptions = {
       title: 'Oops',
-      message: error && error.message || 'An error has occurred.',
-      buttons: [ { text: 'Ok' } ],
+      message: (error && error.message) || 'An error has occurred.',
+      buttons: [{ text: 'Ok' }],
     };
 
     const alert = this.alertCtrl.create(options);

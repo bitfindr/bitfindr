@@ -13,8 +13,16 @@ let debugEl: DebugElement = null;
 let instance: SignupPage = null;
 let nativeEl: HTMLElement = null;
 
-const INVALID_FORM = { email: 'invalidEmail', password: 'invalidPwd', passwordConfirm: 'nonMatching' };
-const VALID_FORM = { email: 'valid@email.com', password: '123test', passwordConfirm: '123test' };
+const INVALID_FORM = {
+  email: 'invalidEmail',
+  password: 'invalidPwd',
+  passwordConfirm: 'nonMatching',
+};
+const VALID_FORM = {
+  email: 'valid@email.com',
+  password: '123test',
+  passwordConfirm: '123test',
+};
 
 function updateEmail(value: string) {
   formControlUpdater('email', value);
@@ -36,9 +44,9 @@ function fillForm(data: any) {
 }
 
 describe('Pages: SignupPage', () => {
-  beforeEach(async(() => {
-    TestUtils.beforeEachCompiler([SignupPage])
-      .then(compiled => {
+  beforeEach(
+    async(() => {
+      TestUtils.beforeEachCompiler([SignupPage]).then(compiled => {
         fixture = compiled.fixture;
         debugEl = compiled.debugEl;
         instance = compiled.instance;
@@ -46,35 +54,43 @@ describe('Pages: SignupPage', () => {
         formControlUpdater = TestUtils.getFormControlUpdater(debugEl);
         fixture.detectChanges();
       });
-  }));
+    })
+  );
 
-  it('should create page component', async(() => {
-    expect(instance instanceof SignupPage).toBeTruthy();
-  }));
+  it(
+    'should create page component',
+    async(() => {
+      expect(instance instanceof SignupPage).toBeTruthy();
+    })
+  );
 
   describe('Method: signup()', () => {
-    it('should call `AuthFacade#signup` with `signupForm` value', inject([AuthFacade], (authFacade: AuthFacade) => {
-      const { email, password } = VALID_FORM;
-      const expected = { email, password };
+    it(
+      'should call `AuthFacade#signup` with `signupForm` value',
+      inject([AuthFacade], (authFacade: AuthFacade) => {
+        const { email, password } = VALID_FORM;
+        const expected = { email, password };
 
-      instance.signupForm.setValue({
-        email,
-        password: {
-          value: password,
-          confirmed: password,
-        }
-      });
-      instance.signup();
+        instance.signupForm.setValue({
+          email,
+          password: {
+            value: password,
+            confirmed: password,
+          },
+        });
+        instance.signup();
 
-      expect(authFacade.signup).toHaveBeenCalledWith(expected);
-    }));
+        expect(authFacade.signup).toHaveBeenCalledWith(expected);
+      })
+    );
   });
 
   describe('Template: Signup form', () => {
     let submitButtonEl: HTMLButtonElement;
 
     beforeEach(() => {
-      submitButtonEl = debugEl.query(By.css('button[type="submit"]')).nativeElement;
+      submitButtonEl = debugEl.query(By.css('button[type="submit"]'))
+        .nativeElement;
     });
 
     it('should have three input fields', () => {

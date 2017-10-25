@@ -5,12 +5,9 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class BitfindrDataProvider {
-
-  constructor(private db: AngularFireDatabase) {
-  }
+  constructor(private db: AngularFireDatabase) {}
 
   getUsers(): Observable<any[]> {
     return this.db.list('users');
   }
-
 }

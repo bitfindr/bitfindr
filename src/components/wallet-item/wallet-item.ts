@@ -2,10 +2,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'bw-wallet-item',
-  templateUrl: 'wallet-item.html'
+  templateUrl: 'wallet-item.html',
 })
 export class WalletItemComponent {
-
   expand: boolean;
   @Input() broker: string;
   @Output() onWalletClick = new EventEmitter();

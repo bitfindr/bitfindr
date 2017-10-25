@@ -12,6 +12,4 @@ export const ROOT_REDUCER: ActionReducerMap<ApplicationState> = {
   auth: authReducer,
 };
 
-export const META_REDUCERS = environment.production
-  ? []
-  : [ storeFreeze ];
+export const META_REDUCERS = environment.production ? [] : [storeFreeze];

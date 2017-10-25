@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  ViewController,
+} from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -7,13 +12,13 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
   templateUrl: 'qr-code-modal.html',
 })
 export class QrCodeModalPage {
-
   wallet: any = {};
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public viewCtrl: ViewController) {
+    public viewCtrl: ViewController
+  ) {
     this.wallet = navParams.data.hash;
   }
 
@@ -24,5 +29,4 @@ export class QrCodeModalPage {
   dismiss(v) {
     this.viewCtrl.dismiss();
   }
-
 }

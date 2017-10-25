@@ -3,15 +3,14 @@ import { AlertController } from 'ionic-angular';
 
 @Injectable()
 export class AlertService {
-  constructor(public alertCtrl: AlertController) { }
+  constructor(public alertCtrl: AlertController) {}
 
   create(title: string, message: string) {
-    let alert = this.alertCtrl.create(
-      {
-        title    : title,
-        subTitle : message,
-        buttons  : [{ text: 'OK' }]
-      });
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: message,
+      buttons: [{ text: 'OK' }],
+    });
 
     return alert.present();
   }
@@ -28,23 +27,32 @@ export class AlertService {
     return this.createWithCallback(title, message, true);
   }
 
-  createWithCallback(title: string, message: string, confirmation: boolean = false): Promise<boolean> {
+  createWithCallback(
+    title: string,
+    message: string,
+    confirmation: boolean = false
+  ): Promise<boolean> {
     return new Promise((resolve, reject) => {
       let buttons = null;
       if (confirmation) {
-        buttons = [{
-          text    : 'Cancel',
-          role    : 'cancel',
-          handler : _ => resolve(false)
-        }, {
-          text    : 'Yes',
-          handler : _ => resolve(true)
-        }];
+        buttons = [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: _ => resolve(false),
+          },
+          {
+            text: 'Yes',
+            handler: _ => resolve(true),
+          },
+        ];
       } else {
-        buttons = [{
-          text    : 'Ok',
-          handler : _ => resolve(true)
-        }];
+        buttons = [
+          {
+            text: 'Ok',
+            handler: _ => resolve(true),
+          },
+        ];
       }
 
       const confirm = this.alertCtrl.create({
