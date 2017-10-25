@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
+import {
+  FormBuilder,
+  Validators,
+  FormGroup,
+  AbstractControl,
+} from '@angular/forms';
 
 import { CustomValidators } from './../../shared/utils/custom-validators';
 import { AuthFacade } from './../../state';
@@ -12,7 +17,7 @@ import { UserCredentials } from './../../shared/models/auth';
 })
 @Component({
   selector: 'page-signup',
-  templateUrl: 'signup.html'
+  templateUrl: 'signup.html',
 })
 export class SignupPage {
   signupForm: FormGroup;
@@ -29,14 +34,14 @@ export class SignupPage {
        */
       // firstName: ['', Validators.required],
       // lastName: ['', Validators.required],
-      email: ['', Validators.compose([
-        Validators.required,
-        Validators.email,
-      ])],
-      password: formBuilder.group({
-        value: ['', Validators.required],
-        confirmed: ['', Validators.required],
-      }, { validator: CustomValidators.equalMatcher('value', 'confirmed') }),
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: formBuilder.group(
+        {
+          value: ['', Validators.required],
+          confirmed: ['', Validators.required],
+        },
+        { validator: CustomValidators.equalMatcher('value', 'confirmed') }
+      ),
     });
   }
 
@@ -47,7 +52,7 @@ export class SignupPage {
     const formValue = this.signupForm.value;
     const credentials: UserCredentials = {
       email: formValue.email,
-      password: formValue.password.value
+      password: formValue.password.value,
     };
 
     this.authFacade.signup(credentials);

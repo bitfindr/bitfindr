@@ -4,7 +4,7 @@ page-login {
     color: $color-white;
   }
 
-  .toolbar-background , {
+  .toolbar-background {
     background: transparent;
     background-color: transparent;
   }
@@ -24,10 +24,6 @@ page-login {
     border-top: 1px solid $color-transparent-white-one;
   }
 
-  .scroll-content {
-    padding: 1rem;
-  }
-
   @media only screen and (min-width: 425px) {
     .scroll-content {
       padding: 0 15vw;
@@ -45,6 +41,7 @@ page-login {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    padding: 1rem;
   }
 
   .logo {
@@ -57,7 +54,7 @@ page-login {
   // Input items
   ion-item {
     background-color: $color-transparent-white-three;
-    border-radius: .325rem;
+    border-radius: 0.325rem;
 
     &:nth-child(1),
     &:nth-child(2) {
@@ -97,14 +94,14 @@ page-login {
     white-space: nowrap;
   }
 
-  .strike>span {
+  .strike > span {
     display: inline-block;
     font-weight: bold;
     position: relative;
   }
 
-  .strike>span::before,
-  .strike>span::after {
+  .strike > span::before,
+  .strike > span::after {
     background: $color-transparent-white-one;
     content: '';
     height: 1px;
@@ -113,12 +110,12 @@ page-login {
     width: 9999px;
   }
 
-  .strike>span::before {
+  .strike > span::before {
     margin-right: 15px;
     right: 100%;
   }
 
-  .strike>span::after {
+  .strike > span::after {
     left: 100%;
     margin-left: 15px;
   }

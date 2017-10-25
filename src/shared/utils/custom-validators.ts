@@ -1,7 +1,6 @@
 import { AbstractControl } from '@angular/forms';
 
 export class CustomValidators {
-
   /**
    * Creates an Equal Matcher Validator Function to validate equality
    * between two form control values
@@ -15,7 +14,11 @@ export class CustomValidators {
    * @returns Validator Function
    * @memberof CustomValidators
    */
-  static equalMatcher(firstCtrlName: string, secondCtrlName: string, validationName = 'nomatch') {
+  static equalMatcher(
+    firstCtrlName: string,
+    secondCtrlName: string,
+    validationName = 'nomatch'
+  ) {
     return (ctrl: AbstractControl): { [key: string]: boolean } => {
       const firstCtrl = ctrl.get(firstCtrlName);
       const secondCtrl = ctrl.get(secondCtrlName);
@@ -24,7 +27,9 @@ export class CustomValidators {
         return null;
       }
 
-      return firstCtrl.value === secondCtrl.value ? null : { [validationName]: true };
+      return firstCtrl.value === secondCtrl.value
+        ? null
+        : { [validationName]: true };
     };
   }
 }

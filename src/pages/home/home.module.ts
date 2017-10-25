@@ -4,12 +4,7 @@ import { HomePage } from './home';
 import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
-  declarations: [
-    HomePage,
-  ],
-  imports: [
-    ComponentsModule,
-    IonicPageModule.forChild(HomePage),
-  ],
+  declarations: [HomePage],
+  imports: [ComponentsModule, IonicPageModule.forChild(HomePage)],
 })
 export class ContactDetailPageModule {}

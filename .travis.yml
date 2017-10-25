@@ -3,26 +3,30 @@ sudo: required
 
 language: node_js
 node_js:
-  - 8
+- 8
 
 addons:
   chrome: stable
 
 cache:
   directories:
-    - node_modules
+  - node_modules
 
 before_install:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 
 install:
-  - npm install
+- npm install
 
 script:
-  - npm run test-ci
+- npm run test-ci
 
 branches:
   only:
   - master
   - develop
+
+notifications:
+  slack:
+    secure: YTndHDSLpNmFk9j/7/X3ZEX8Nvj4AXoKEgaynxlTntCNexEK2pMwhFqe6dH+mXjPeX9taj+/dDqIGy8VO2pnRMtDYtQCL/gqOTW55kqIVLeBsZiMHLzzuc+wtVmYJD/RQY7bu7snmzYku3NeaUGVLj6I3wMeEpDnUEoUsWRGuz1WmkQXPKEg8w9GpH2+cPjIyX6VxhO4Yi5EpCWAcTeMGs0KPcxi3iWKZScRDyBwTO+ep1fpnOdllH8rynzAfapyqDMsIF+JPbw30IjH6Ef2PcNq9uvgwpYBf31sCmMMEUVpRgPO/XGfpr0l2bQ/XOk4mACgrtr92kVtG852qiil8W8IZCQgsW6K7mahTfSiMzFICisIMA8nZtyzgp3F9xEGijbbMXpadkNKZTOAYHrZpp2M45202VeraySnPnkvMtq4Qugibf6EEFI5sfVu6sMA50Xcj20oEUoKrmDrKplpo/tHz4g4rZzpqAVDpnWYboLWLS8WV9A1rh5JYenmPTOy6ZliJLaZHdrgT/mIpRSYYlB7Afx9dHrJKs54rAl721RQzqGQUqksGMLbjiLn4VraVVmlQiFTwy5ZPcfSKq0VHX3stZcvUlvWH2w7rafE6z8dt6Gbc2hQms09uUUK9RuBw0Un/EEuUgsrdOlwwHCclISDt7cfV+Z/AqrjwYigHfs=

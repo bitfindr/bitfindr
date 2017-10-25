@@ -6,18 +6,16 @@ import { IonicPageModule } from 'ionic-angular';
 import { LoginPage } from './login';
 import {
   loginReducer,
-  LOGIN_INITIAL_STATE as initialState
+  LOGIN_INITIAL_STATE as initialState,
 } from './state/login.reducer';
 import { LoginEffects } from './state/login.effects';
 
 @NgModule({
-  declarations: [
-    LoginPage,
-  ],
+  declarations: [LoginPage],
   imports: [
     IonicPageModule.forChild(LoginPage),
     StoreModule.forFeature('ui-login', loginReducer, { initialState }),
-    EffectsModule.forFeature([ LoginEffects ]),
+    EffectsModule.forFeature([LoginEffects]),
   ],
 })
 export class LoginPageModule {}

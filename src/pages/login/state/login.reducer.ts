@@ -11,7 +11,10 @@ export const LOGIN_INITIAL_STATE: LoginState = {
   error: null,
 };
 
-export function loginReducer(state = LOGIN_INITIAL_STATE, action: AuthActions): LoginState {
+export function loginReducer(
+  state = LOGIN_INITIAL_STATE,
+  action: AuthActions
+): LoginState {
   switch (action.type) {
     case AuthActionTypes.LOGIN: {
       return {

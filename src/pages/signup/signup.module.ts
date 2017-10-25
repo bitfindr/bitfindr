@@ -6,18 +6,16 @@ import { IonicPageModule } from 'ionic-angular';
 import { SignupPage } from './signup';
 import {
   signupReducer,
-  SIGNUP_INITIAL_STATE as initialState
+  SIGNUP_INITIAL_STATE as initialState,
 } from './state/signup.reducer';
 import { SignupEffects } from './state/signup.effects';
 
 @NgModule({
-  declarations: [
-    SignupPage,
-  ],
+  declarations: [SignupPage],
   imports: [
     IonicPageModule.forChild(SignupPage),
     StoreModule.forFeature('ui-signup', signupReducer, { initialState }),
-    EffectsModule.forFeature([ SignupEffects ]),
+    EffectsModule.forFeature([SignupEffects]),
   ],
 })
 export class SignupPageModule {}

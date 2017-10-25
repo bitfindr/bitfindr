@@ -14,7 +14,10 @@ export const INITIAL_STATE: AuthState = {
   authUser: null,
 };
 
-export function authReducer(state = INITIAL_STATE, action: AuthActions): AuthState {
+export function authReducer(
+  state = INITIAL_STATE,
+  action: AuthActions
+): AuthState {
   switch (action.type) {
     case AuthActionTypes.LOGIN:
     case AuthActionTypes.LOGIN_FAIL:
@@ -41,7 +44,13 @@ export function authReducer(state = INITIAL_STATE, action: AuthActions): AuthSta
 export namespace AuthQuery {
   export const getAuthState = (state: ApplicationState) => state.auth;
 
-  export const getCheckedAuthState = createSelector(getAuthState, state => state.checkedAuthState);
+  export const getCheckedAuthState = createSelector(
+    getAuthState,
+    state => state.checkedAuthState
+  );
 
-  export const getAuthUser = createSelector(getAuthState, state => state.authUser);
+  export const getAuthUser = createSelector(
+    getAuthState,
+    state => state.authUser
+  );
 }

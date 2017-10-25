@@ -36,17 +36,20 @@ export class BasePageEffects implements OnRunEffects {
    * @returns {Observable<EffectNotification>}
    * @memberof PageEffect
    */
-  ngrxOnRunEffects(resolvedEffects$: Observable<EffectNotification>): Observable<EffectNotification> {
+  ngrxOnRunEffects(
+    resolvedEffects$: Observable<EffectNotification>
+  ): Observable<EffectNotification> {
     // We only run the effects when the page is active.
-    return this.active$
-      .filter(active => !!active)
-      // Keep them running until the passed observable is exhausetd (complete)
-      .exhaustMap(() => resolvedEffects$
-        // Once the page is no longer active, complete the observable stream
-        // effectivly turning off effects until the page is active again.
-        .takeUntil(this.active$
-          .filter(active => active === false)
+    return (
+      this.active$
+        .filter(active => !!active)
+        // Keep them running until the passed observable is exhausetd (complete)
+        .exhaustMap(() =>
+          resolvedEffects$
+            // Once the page is no longer active, complete the observable stream
+            // effectivly turning off effects until the page is active again.
+            .takeUntil(this.active$.filter(active => active === false))
         )
-      );
+    );
   }
 }

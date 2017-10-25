@@ -2,18 +2,15 @@ import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
 @IonicPage({
-  priority: 'high'
+  priority: 'high',
 })
 @Component({
-  templateUrl: 'tabs.html'
+  templateUrl: 'tabs.html',
 })
 export class TabsPage {
-
   tab1Root = 'HomePage';
   tab2Root = 'UserSearchPage';
   tab3Root = 'AboutPage';
 
-  constructor() {
-
-  }
+  constructor() {}
 }

@@ -11,7 +11,7 @@ import { UserCredentials } from './../../shared/models/auth';
 })
 @Component({
   selector: 'page-login',
-  templateUrl: 'login.html'
+  templateUrl: 'login.html',
 })
 export class LoginPage {
   loginForm: FormGroup;
@@ -22,11 +22,8 @@ export class LoginPage {
     private authFacade: AuthFacade
   ) {
     this.loginForm = formBuilder.group({
-      email: ['', Validators.compose([
-        Validators.required,
-        Validators.email,
-      ])],
-      password: ['', Validators.required]
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: ['', Validators.required],
     });
   }
 

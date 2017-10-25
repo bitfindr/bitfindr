@@ -7,16 +7,18 @@
   "scripts": {
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
-    "lint": "ionic-app-scripts lint \"src/**/*.ts\" --type-check --project ./tsconfig.json",
+    "lint":
+      "ionic-app-scripts lint \"src/**/*.ts\" --type-check --project ./tsconfig.json",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
     "add-contributor": "all-contributors add",
     "generate-contributors": "all-contributors generate",
-    "precommit": "sass-lint -c .sass-lint.yml '**/*.scss' -v -q",
+    "precommit": "sass-lint -c .sass-lint.yml '**/*.scss' -v -q && lint-staged",
     "commit": "git-cz",
     "test-coverage": "ng test --code-coverage",
     "test": "ng test",
-    "test-ci": "ng test --watch=false --code-coverage && cat ./coverage/lcov.info | coveralls"
+    "test-ci":
+      "ng test --watch=false --code-coverage && cat ./coverage/lcov.info | coveralls"
   },
   "description": "A cryptocurrency social project",
   "cordova": {
@@ -34,9 +36,7 @@
         "APP_NAME": "Bitf­i­n­d­r­test"
       }
     },
-    "platforms": [
-      "android"
-    ]
+    "platforms": ["android"]
   },
   "dependencies": {
     "@angular/common": "4.4.3",
@@ -92,6 +92,7 @@
     "commitizen": "^2.9.6",
     "coveralls": "^3.0.0",
     "cz-conventional-changelog": "^2.0.0",
+    "husky": "^0.14.3",
     "ionic-mocks": "^1.0.3",
     "jasmine-core": "^2.8.0",
     "jasmine-spec-reporter": "^4.2.1",
@@ -102,6 +103,8 @@
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "karma-junit-reporter": "^1.2.0",
+    "lint-staged": "^4.3.0",
+    "prettier": "1.7.4",
     "sass-lint": "^1.12.1",
     "typescript": "2.4.2"
   },
