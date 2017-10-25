@@ -24,23 +24,19 @@ page-login {
     border-top: 1px solid $color-transparent-white-one;
   }
 
-  ion-content {
-    animation: gradient-effect 15s linear infinite;
-    background: linear-gradient(316deg, transparentize($color-black, .15), $color-dark-blue-gray);
-    background-size: 1800% 1800%;
+  .scroll-content {
+    padding: 1rem;
   }
 
-  @keyframes gradient-effect {
-    0% {
-      background-position: 0% 0%;
+  @media only screen and (min-width: 425px) {
+    .scroll-content {
+      padding: 0 15vw;
     }
+  }
 
-    50% {
-      background-position: 100% 100%;
-    }
-
-    100% {
-      background-position: 0% 0%;
+  @media only screen and (min-width: 640px) {
+    .scroll-content {
+      padding: 0 30vw;
     }
   }
 
@@ -52,20 +48,21 @@ page-login {
   }
 
   .logo {
-    height: auto;
+    height: 60vw;
     margin: 0 auto;
-    padding: 50px 0;
-    width: 60%;
+    max-height: 25rem;
+    padding: 4rem 0;
   }
 
   // Input items
   ion-item {
     background-color: $color-transparent-white-three;
-    border-radius: 3px;
-    color: $color-white;
-    font-size: .9em;
-    margin-bottom: 10px;
-    padding-left: 10px;
+    border-radius: .325rem;
+
+    &:nth-child(1),
+    &:nth-child(2) {
+      margin-bottom: 1rem;
+    }
   }
 
   ::-webkit-input-placeholder {
