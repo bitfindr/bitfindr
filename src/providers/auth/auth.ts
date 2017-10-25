@@ -1,16 +1,23 @@
+import { Platform } from 'ionic-angular';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { auth as firebaseAuth } from 'firebase';
+import * as firebase from 'firebase/app';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { Observable } from 'rxjs/Observable';
 import { fromPromise } from 'rxjs/observable/fromPromise';
 import 'rxjs/add/operator/map';
 
 import { FirebaseUserProfile, FirebaseBasicProfile, UserCredentials } from './../../shared/models/auth';
+import { environment } from './../../environments/environment';
 
 @Injectable()
 export class AuthProvider {
 
   constructor(
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private facebook: Facebook,
+    private platform: Platform,
   ) { }
 
   /**
@@ -58,12 +65,57 @@ export class AuthProvider {
   }
 
   /**
-   * signs a user out
+   * authenticates the user via cordova native plugin
+   * or fallsback to web popup authentication with firebase
    *
    * @returns {Observable<FirebaseUserProfile>}
    * @memberof AuthProvider
    */
-  signout(): Observable<FirebaseUserProfile> {
+  facebookAuth(): Observable<FirebaseUserProfile> {
+
+    const facebookPromise = this.platform.is('cordova') ?
+      this.nativeFacebookAuth() :
+      this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+        .then(response => response.user);
+
+    facebookPromise
+      .catch(error => {
+        let { code, message } = error;
+        message = message || 'Unable to authenticate with Facebook!';
+        return Promise.reject({ code, message });
+      });
+
+    return Observable.fromPromise(facebookPromise)
+      .map(response => this.extractUserProfile(response));
+  }
+
+  /**
+   * obtains facebook accessToken via cordova native plugin
+   * then uses accessToken to authenticate with firebase
+   *
+   * @returns {Promise<FacebookLoginResponse>}
+   * @memberof AuthProvider
+   */
+  nativeFacebookAuth(): Promise<FacebookLoginResponse> {
+    const facebookPromise = this.facebook.login(environment.facebook.scopes)
+    .then(response => {
+      const accessToken = response.authResponse.accessToken;
+      const facebookCredential = firebaseAuth.FacebookAuthProvider
+        .credential(accessToken);
+
+      return this.afAuth.auth.signInWithCredential(facebookCredential);
+    });
+
+    return facebookPromise;
+  }
+
+  /**
+   * signs a user out
+   *
+   * @returns {Observable<any>}
+   * @memberof AuthProvider
+   */
+  signout(): Observable<any> {
     return fromPromise(this.afAuth.auth.signOut());
   }
 
