@@ -6,26 +6,21 @@
   <img class="logo" src="assets/icon/bitcoin.png" />
 
   <form padding [formGroup]="signupForm" (submit)="signup()" novalidate>
-    <!--
-      TODO (Khaled) Should we capture "profile" data in a separate page because of Firebase?
-      See component class
-    -->
-
-    <!-- <ion-item>
+    <ion-item>
       <ion-input formControlName="firstName"
                  type="text"
                  placeholder="First name"
                  clearInput clearOnEdit="false">
       </ion-input>
-    </ion-item> -->
+    </ion-item>
 
-    <!-- <ion-item>
+    <ion-item>
       <ion-input formControlName="lastName"
                  type="text"
                  placeholder="Last name"
                  clearInput clearOnEdit="false">
       </ion-input>
-    </ion-item> -->
+    </ion-item>
 
     <ion-item>
       <ion-input formControlName="email"
