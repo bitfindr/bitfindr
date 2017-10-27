@@ -1,13 +1,32 @@
-import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 
+import { UserProfile } from './../../shared/models/profile';
+
 @Injectable()
 export class BitfindrDataProvider {
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private firestore: AngularFirestore) {}
 
-  getUsers(): Observable<any[]> {
-    return this.db.list('users');
+  setupProfile(uid: string, userProfile: UserProfile) {
+    return this.firestore
+      .doc<UserProfile>(`users/${uid}`)
+      .set(userProfile)
+      .then(_ => userProfile);
+  }
+
+  loadProfile(uid: string) {
+    return this.firestore
+      .doc<UserProfile>(`users/${uid}`)
+      .valueChanges()
+      .first();
+  }
+
+  editProfile(uid: string, userProfile: Partial<UserProfile>) {
+    return this.firestore.doc<UserProfile>(`users/${uid}`).update(userProfile);
+  }
+
+  getUsers() {
+    return this.firestore.collection<UserProfile>('users').valueChanges();
   }
 }
