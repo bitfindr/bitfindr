@@ -9,10 +9,10 @@ import { AlertService } from './../../providers/util/alert/alert';
 
 @IonicPage()
 @Component({
-  selector: 'page-about',
-  templateUrl: 'about.html',
+  selector: 'page-profile-settings',
+  templateUrl: 'profile-settings.html',
 })
-export class AboutPage {
+export class ProfileSettingsPage {
   constructor(
     public navCtrl: NavController,
     public profileFacade: ProfileFacade,
