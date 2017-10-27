@@ -1,3 +1,9 @@
-"*.{ts,scss,json}":
-  - prettier --write
-  - git add
+{
+  "concurrent": false,
+  "linters": {
+    "*.{ts,scss,json}, !package.json": ["prettier --write"],
+    "*.{ts,json}, !package.json": ["tslint"],
+    "*.scss": ["sasslint"],
+    "*": ["git add"]
+  }
+}

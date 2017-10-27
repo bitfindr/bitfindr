@@ -9,11 +9,13 @@
     "build": "ionic-app-scripts build",
     "lint":
       "ionic-app-scripts lint \"src/**/*.ts\" --type-check --project ./tsconfig.json",
+    "sasslint": "sass-lint -c .sass-lint.yml '**/*.scss' -v -q",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
     "add-contributor": "all-contributors add",
     "generate-contributors": "all-contributors generate",
-    "precommit": "sass-lint -c .sass-lint.yml '**/*.scss' -v -q && lint-staged",
+    "precommit": "lint-staged",
+    "commitmsg": "commitlint -e",
     "commit": "git-cz",
     "test-coverage": "ng test --code-coverage",
     "test": "ng test",
@@ -84,6 +86,7 @@
   "devDependencies": {
     "@angular/cli": "^1.4.9",
     "@angular/router": "4.4.3",
+    "@commitlint/cli": "^4.2.2",
     "@ionic/app-scripts": "3.0.1",
     "@types/jasmine": "^2.6.0",
     "@types/node": "^8.0.46",
