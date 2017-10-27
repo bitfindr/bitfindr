@@ -14,7 +14,9 @@ export enum ProfileActionTypes {
 
 export class SetupProfileAction implements Action {
   readonly type = ProfileActionTypes.SETUP_PROFILE;
-  constructor(public payload: { userProfile: UserProfile; uid: string }) {}
+  constructor(
+    public payload: { userProfile: Partial<UserProfile>; uid: string }
+  ) {}
 }
 
 export class EditProfileAction implements Action {

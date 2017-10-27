@@ -2,7 +2,7 @@ import { UserProfile } from './profile';
 
 export interface SignupData {
   credentials: UserCredentials;
-  userProfile: UserProfile;
+  userProfile: Partial<UserProfile>;
 }
 
 export interface UserCredentials {
