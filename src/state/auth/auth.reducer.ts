@@ -9,13 +9,13 @@ export interface AuthState {
   authUser: FirebaseUserProfile;
 }
 
-export const INITIAL_STATE: AuthState = {
+export const AUTH_INITIAL_STATE: AuthState = {
   checkedAuthState: false,
   authUser: null,
 };
 
 export function authReducer(
-  state = INITIAL_STATE,
+  state = AUTH_INITIAL_STATE,
   action: AuthActions
 ): AuthState {
   switch (action.type) {

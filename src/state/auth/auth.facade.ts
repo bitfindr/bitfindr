@@ -1,13 +1,15 @@
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { of as obsOf } from 'rxjs/observable/of';
+import { from } from 'rxjs/observable/from';
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 
 import { ApplicationState } from './../app.state';
 import { AuthProvider } from './../../providers/auth/auth';
 import { AuthQuery } from './auth.reducer';
-import { UserCredentials } from './../../shared/models/auth';
+import { UserCredentials, SignupData } from './../../shared/models/auth';
+import { UserProfile } from './../../shared/models/profile';
 import {
   AuthActionTypes,
   AuthenticateAction,
@@ -20,6 +22,11 @@ import {
   SignoutAction,
   SignoutFailAction,
 } from './auth.actions';
+import {
+  EditProfileAction,
+  SetupProfileAction,
+  LoadProfileAction,
+} from './../profile/profile.actions';
 
 @Injectable()
 export class AuthFacade {
@@ -40,10 +47,18 @@ export class AuthFacade {
   signup$ = this.actions$
     .ofType<SignupAction>(AuthActionTypes.SIGNUP)
     .map(action => action.payload)
-    .switchMap(credentials =>
+    .switchMap(data =>
       this.authProvider
-        .signup(credentials)
-        .map(authUser => new AuthenticateAction(authUser))
+        .signup(data.credentials)
+        .switchMap(authUser =>
+          from([
+            new AuthenticateAction(authUser),
+            new SetupProfileAction({
+              userProfile: data.userProfile,
+              uid: authUser.uid,
+            }),
+          ])
+        )
         .catch(error => obsOf(new SignupFailAction(error)))
     );
 
@@ -84,24 +99,29 @@ export class AuthFacade {
         .catch(error => obsOf(new FacebookAuthFailAction(error)))
     );
 
+  @Effect()
+  authenticate$ = this.actions$
+    .ofType<AuthenticateAction>(AuthActionTypes.AUTHENTICATE)
+    .map(action => action.payload)
+    .filter(authUser => !!authUser)
+    .map(authUser => new LoadProfileAction(authUser.uid));
+
   constructor(
     private store: Store<ApplicationState>,
     private actions$: Actions,
     private authProvider: AuthProvider
   ) {
-    authProvider
-      .checkAuthState()
-      .subscribe(authState =>
-        this.store.dispatch(new AuthenticateAction(authState))
-      );
+    authProvider.checkAuthState().subscribe(authState => {
+      this.store.dispatch(new AuthenticateAction(authState));
+    });
   }
 
   // ********************
   // Auth Action creators
   // ********************
 
-  signup(credentials: UserCredentials) {
-    this.store.dispatch(new SignupAction(credentials));
+  signup(data: SignupData) {
+    this.store.dispatch(new SignupAction(data));
     return this.authUser$;
   }
 
