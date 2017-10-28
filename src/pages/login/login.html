@@ -19,7 +19,7 @@
       </ion-input>
     </ion-item>
 
-    <button ion-button block outline color="light" class="login-button">
+    <button type="submit" ion-button block outline color="light" class="login-button">
       Login
     </button>
   </form>
@@ -28,7 +28,7 @@
     <span>OR</span>
   </div>
 
-  <button ion-button block clear color="light" class="login-button" (click)="facebookLogin()">
+  <button id="facebook-login" ion-button block clear color="light" class="login-button" (click)="facebookLogin()">
     <ion-icon name="logo-facebook"></ion-icon>
     Login with Facebook
   </button>
@@ -37,7 +37,7 @@
 
 <ion-footer>
   <ion-toolbar class="footer">
-    <div (click)="goToSignup()">
+    <div id="signup-cta" (click)="goToSignup()">
       <span>Don't have an account?
         <strong>Sign up here</strong>.
       </span>
