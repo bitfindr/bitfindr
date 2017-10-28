@@ -4,7 +4,7 @@ import {
   UserCredentials,
   FirebaseUserProfile,
   SignupData,
-} from './../../shared/models/auth';
+} from './../../shared/models';
 
 export enum AuthActionTypes {
   SIGNUP = '[Auth] Signup',

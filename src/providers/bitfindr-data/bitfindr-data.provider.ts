@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 
-import { BaseUserProfile, UserProfile } from './../../shared/models/profile';
+import { BaseUserProfile, UserProfile } from './../../shared/models';
 
 @Injectable()
 export class BitfindrDataProvider {

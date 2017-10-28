@@ -9,8 +9,7 @@ import {
 
 import { CustomValidators } from './../../shared/utils/custom-validators';
 import { AuthFacade } from './../../state';
-import { UserCredentials } from './../../shared/models/auth';
-import { BaseUserProfile } from './../../shared/models/profile';
+import { UserCredentials, BaseUserProfile } from './../../shared/models';
 
 @IonicPage({
   segment: 'signup',

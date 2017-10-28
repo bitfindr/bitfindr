@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { BaseUserProfile, UserProfile } from './../../shared/models/profile';
+import { BaseUserProfile, UserProfile } from './../../shared/models';
 
 export enum ProfileActionTypes {
   SETUP_PROFILE = '[Profile] Setup Profile',

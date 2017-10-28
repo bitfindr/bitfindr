@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 
 import { AuthActions, AuthActionTypes } from './auth.actions';
-import { FirebaseUserProfile } from './../../shared/models/auth';
+import { FirebaseUserProfile } from './../../shared/models';
 import { ApplicationState } from './../app.state';
 
 export interface AuthState {

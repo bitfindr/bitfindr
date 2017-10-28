@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 
 import { ProfileActions, ProfileActionTypes } from './profile.actions';
-import { UserProfile } from './../../shared/models/profile';
+import { UserProfile } from './../../shared/models';
 import { ApplicationState } from './../app.state';
 
 export interface ProfileState {

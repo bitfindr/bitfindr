@@ -1,5 +1,5 @@
 import { AuthActions, AuthActionTypes } from './../../../state';
-import { FirebaseUserProfile } from './../../../shared/models/auth';
+import { FirebaseUserProfile } from './../../../shared/models';
 
 export interface LoginState {
   loggingIn: boolean;
