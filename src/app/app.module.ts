@@ -25,7 +25,7 @@ import { MyApp } from './app.component';
 import { StorageProvider } from './../providers/storage/storage';
 import { ToastProvider } from './../providers/util/toast/toast';
 import { ClipboardProvider } from './../providers/clipboard/clipboard.provider';
-import { AuthProvider } from './../providers/auth/auth';
+import { AuthProvider } from './../providers/auth/auth.provider';
 import { AlertService } from '../providers/util/alert/alert';
 
 import {

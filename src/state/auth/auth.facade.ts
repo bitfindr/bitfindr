@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 
 import { ApplicationState } from './../app.state';
-import { AuthProvider } from './../../providers/auth/auth';
+import { AuthProvider } from './../../providers/auth/auth.provider';
 import { AuthQuery } from './auth.reducer';
 import { UserCredentials, SignupData } from './../../shared/models/auth';
 import {
