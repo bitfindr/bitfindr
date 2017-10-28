@@ -4,7 +4,7 @@ bw-contact {
     border-radius: 100%;
     max-height: 70px;
     max-width: 70px;
-    padding: 1rem;
+    padding: 0.3rem;
   }
 
   .item {
@@ -16,6 +16,7 @@ bw-contact {
       font-weight: lighter;
       margin: 0;
       padding: 0.5rem;
+      white-space: normal;
     }
   }
 
