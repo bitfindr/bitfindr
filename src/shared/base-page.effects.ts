@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import { App } from 'ionic-angular';
+import { AlertService } from '../providers/util/alert/alert';
 import { OnRunEffects, EffectNotification } from '@ngrx/effects';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/filter';
@@ -14,7 +15,7 @@ export class BasePageEffects implements OnRunEffects {
   protected isActive = new BehaviorSubject(false);
   protected active$ = this.isActive.asObservable();
 
-  constructor(pageName: string, app: App) {
+  constructor(pageName: string, app: App, private alertCtrl: AlertService) {
     // Currently we only filter by viewCtrl name
     // This might need to be re-worked if we get to a point in the
     // application where we have multiple active instances of the
@@ -51,5 +52,9 @@ export class BasePageEffects implements OnRunEffects {
             .takeUntil(this.active$.filter(active => active === false))
         )
     );
+  }
+
+  showErrorAlert(error: any) {
+    this.alertCtrl.createWithError(error.message);
   }
 }

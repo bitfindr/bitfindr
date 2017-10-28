@@ -1,11 +1,7 @@
 import { Actions, Effect } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import {
-  LoadingController,
-  AlertController,
-  AlertOptions,
-  App,
-} from 'ionic-angular';
+import { LoadingController, App } from 'ionic-angular';
+import { AlertService } from '../../../providers/util/alert/alert';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
@@ -60,18 +56,18 @@ export class LoginEffects extends BasePageEffects {
     .map(action => action.payload)
     .do(error => {
       this.dismissLoading.next();
-      this.showAlert(error);
+      super.showErrorAlert(error);
     });
 
   constructor(
     private app: App,
     private actions$: Actions,
     private loadinCtrl: LoadingController,
-    private alertCtrl: AlertController
+    alertCtrl: AlertService
   ) {
     // TODO Perhaps we should define & import a symbol
     // for Page names instead of hardcoding string values?
-    super('LoginPage', app);
+    super('LoginPage', app, alertCtrl);
   }
 
   showLoading() {
@@ -89,18 +85,5 @@ export class LoginEffects extends BasePageEffects {
     const navCtrl = this.app.getActiveNavs()[0];
 
     navCtrl.setRoot('TabsPage', null, { animate: true, direction: 'forward' });
-  }
-
-  showAlert(error: any) {
-    const options: AlertOptions = {
-      title: 'Oops',
-      message: error.message,
-      enableBackdropDismiss: false,
-      buttons: [{ text: 'Ok' }],
-    };
-
-    const alert = this.alertCtrl.create(options);
-
-    alert.present();
   }
 }
