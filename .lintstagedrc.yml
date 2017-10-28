@@ -2,7 +2,7 @@
   "concurrent": false,
   "linters": {
     "{src,test}/**/*.{ts,scss,json}": ["prettier --write"],
-    "{src,test}/**/*.{ts,json}": ["tslint"],
+    "{src,test}/**/*.ts": ["tslint"],
     "src/**/*.scss": ["sasslint"],
     "*": ["git add"]
   }
