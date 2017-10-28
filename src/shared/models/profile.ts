@@ -1,6 +1,9 @@
-export interface UserProfile {
+export interface BaseUserProfile {
   firstName: string;
   lastName: string;
+}
+
+export interface UserProfile extends BaseUserProfile {
   wallets: Wallet[];
 }
 
