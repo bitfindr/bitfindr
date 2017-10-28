@@ -7,8 +7,7 @@
   "scripts": {
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
-    "lint":
-      "ionic-app-scripts lint \"src/**/*.ts\" --type-check --project ./tsconfig.json",
+    "lint": "ionic-app-scripts lint \"src/**/*.ts\" --type-check --project ./tsconfig.json",
     "sasslint": "sass-lint -c .sass-lint.yml '**/*.scss' -v -q",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
@@ -19,8 +18,7 @@
     "commit": "git-cz",
     "test-coverage": "ng test --code-coverage",
     "test": "ng test",
-    "test-ci":
-      "ng test --watch=false --code-coverage && cat ./coverage/lcov.info | coveralls"
+    "test-ci": "ng test --watch=false --code-coverage && cat ./coverage/lcov.info | coveralls"
   },
   "description": "A cryptocurrency social project",
   "cordova": {
@@ -38,7 +36,9 @@
         "APP_NAME": "Bitf­i­n­d­r­test"
       }
     },
-    "platforms": ["android"]
+    "platforms": [
+      "android"
+    ]
   },
   "dependencies": {
     "@angular/common": "4.4.3",
