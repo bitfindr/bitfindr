@@ -1,11 +1,10 @@
-import { AuthFacade } from './../../state/auth/auth.facade';
-import { ComponentFixture, async } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
+import { ComponentFixture, async, inject } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
-import { SignupPage } from './signup';
 import { TestUtils } from './../../../test';
-import { inject } from '@angular/core/testing';
+import { SignupPage } from './signup';
+import { AuthFacade } from './../../state/auth/auth.facade';
 
 let formControlUpdater: TestUtils.FormControlUpdater;
 let fixture: ComponentFixture<SignupPage> = null;
