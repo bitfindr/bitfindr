@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { UserProfile } from './../../shared/models/profile';
+import { BaseUserProfile, UserProfile } from './../../shared/models/profile';
 
 export enum ProfileActionTypes {
   SETUP_PROFILE = '[Profile] Setup Profile',
@@ -14,15 +14,13 @@ export enum ProfileActionTypes {
 
 export class SetupProfileAction implements Action {
   readonly type = ProfileActionTypes.SETUP_PROFILE;
-  constructor(
-    public payload: { userProfile: Partial<UserProfile>; uid: string }
-  ) {}
+  constructor(public payload: { uid: string; userProfile: BaseUserProfile }) {}
 }
 
 export class EditProfileAction implements Action {
   readonly type = ProfileActionTypes.EDIT_PROFILE;
   constructor(
-    public payload: { userProfile: Partial<UserProfile>; uid: string }
+    public payload: { uid: string; userProfile: Partial<UserProfile> }
   ) {}
 }
 

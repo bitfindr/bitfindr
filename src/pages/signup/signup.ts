@@ -10,7 +10,7 @@ import {
 import { CustomValidators } from './../../shared/utils/custom-validators';
 import { AuthFacade } from './../../state';
 import { UserCredentials } from './../../shared/models/auth';
-import { UserProfile } from './../../shared/models/profile';
+import { BaseUserProfile } from './../../shared/models/profile';
 
 @IonicPage({
   segment: 'signup',
@@ -51,7 +51,7 @@ export class SignupPage {
       password: formValue.password.value,
     };
 
-    const userProfile: Partial<UserProfile> = {
+    const userProfile: BaseUserProfile = {
       firstName: formValue.firstName,
       lastName: formValue.lastName,
     };

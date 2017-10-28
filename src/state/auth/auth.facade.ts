@@ -9,7 +9,6 @@ import { ApplicationState } from './../app.state';
 import { AuthProvider } from './../../providers/auth/auth';
 import { AuthQuery } from './auth.reducer';
 import { UserCredentials, SignupData } from './../../shared/models/auth';
-import { UserProfile } from './../../shared/models/profile';
 import {
   AuthActionTypes,
   AuthenticateAction,

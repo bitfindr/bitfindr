@@ -1,8 +1,8 @@
-import { UserProfile } from './profile';
+import { BaseUserProfile } from './profile';
 
 export interface SignupData {
   credentials: UserCredentials;
-  userProfile: Partial<UserProfile>;
+  userProfile: BaseUserProfile;
 }
 
 export interface UserCredentials {

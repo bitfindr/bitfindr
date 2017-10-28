@@ -1,4 +1,3 @@
-import { UserProfile } from '../../shared/models/profile';
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { Store } from '@ngrx/store';

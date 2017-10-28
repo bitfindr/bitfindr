@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 
-import { UserProfile } from './../../shared/models/profile';
+import { BaseUserProfile, UserProfile } from './../../shared/models/profile';
 
 @Injectable()
 export class BitfindrDataProvider {
   constructor(private firestore: AngularFirestore) {}
 
-  setupProfile(uid: string, userProfile: UserProfile) {
+  setupProfile(uid: string, userProfile: BaseUserProfile) {
     return this.firestore
-      .doc<UserProfile>(`users/${uid}`)
+      .doc<BaseUserProfile>(`users/${uid}`)
       .set(userProfile)
       .then(_ => userProfile);
   }
