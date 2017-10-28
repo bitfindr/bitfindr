@@ -22,16 +22,21 @@ export class UserSearchPage {
   ) {}
 
   ionViewDidLoad() {
-    this.userData.getUsers().subscribe(data => (this.usersRef = data));
+    this.userData.getUsers().subscribe(data => {
+      console.log(data);
+      this.usersRef = data;
+    });
   }
 
   searchUser(event) {
     const val = event.srcElement.value;
 
     if (val && val.trim() !== '') {
-      this.users = this.usersRef.filter(user =>
-        user.name.toLowerCase().includes(val.toLowerCase())
-      );
+      this.users = this.usersRef.filter(user => {
+        let displayName = `${user.firstName} ${user.lastName}`;
+
+        return displayName.toLowerCase().includes(val.toLowerCase());
+      });
     } else {
       this.users = [];
     }
