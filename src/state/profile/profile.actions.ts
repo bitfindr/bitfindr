@@ -43,7 +43,7 @@ export class LoadProfileFailAction implements Action {
 
 export class SetProfileSuccessAction implements Action {
   readonly type = ProfileActionTypes.SET_PROFILE_SUCCESS;
-  constructor(public payload: UserProfile) {}
+  constructor(public payload: Partial<UserProfile>) {}
 }
 
 export class SetProfileFailAction implements Action {
