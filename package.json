@@ -15,7 +15,9 @@
     "generate-contributors": "all-contributors generate",
     "precommit": "lint-staged",
     "commitmsg": "commitlint -e",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "test": "jest --watch",
+    "test-ci": "jest --runInBand"
   },
   "description": "A cryptocurrency social project",
   "cordova": {
@@ -83,12 +85,16 @@
   "devDependencies": {
     "@commitlint/cli": "^4.2.2",
     "@ionic/app-scripts": "3.0.1",
+    "@types/jest": "^21.1.5",
     "all-contributors-cli": "^4.5.0",
     "codelyzer": "^3.2.1",
     "commitizen": "^2.9.6",
     "coveralls": "^3.0.0",
     "cz-conventional-changelog": "^2.0.0",
+    "grpc": "^1.6.6",
     "husky": "^0.14.3",
+    "jest": "^21.2.1",
+    "jest-preset-angular": "^4.0.1",
     "lint-staged": "^4.3.0",
     "prettier": "1.7.4",
     "sass-lint": "^1.12.1",
@@ -98,5 +104,15 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "jest": {
+    "preset": "jest-preset-angular",
+    "setupTestFrameworkScriptFile": "<rootDir>/test/setup-jest.ts",
+    "modulePathIgnorePatterns": [
+      "plugins/"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!@ngrx|@ionic-native|@ionic)"
+    ]
   }
 }
