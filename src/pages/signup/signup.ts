@@ -5,11 +5,14 @@ import {
   Validators,
   FormGroup,
   AbstractControl,
+  FormControl,
 } from '@angular/forms';
 
 import { CustomValidators } from './../../shared/utils/custom-validators';
 import { AuthFacade } from './../../state';
 import { UserCredentials, BaseUserProfile } from './../../shared/models';
+
+import { BitfindrDataProvider } from '../../providers/bitfindr-data/bitfindr-data.provider';
 
 @IonicPage({
   segment: 'signup',
@@ -21,10 +24,13 @@ import { UserCredentials, BaseUserProfile } from './../../shared/models';
 })
 export class SignupPage {
   signupForm: FormGroup;
+  username: FormControl;
+  stepOneComplete: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
-    private authFacade: AuthFacade
+    private authFacade: AuthFacade,
+    private userData: BitfindrDataProvider
   ) {
     this.signupForm = formBuilder.group({
       firstName: ['', Validators.required],
@@ -38,6 +44,24 @@ export class SignupPage {
         { validator: CustomValidators.equalMatcher('value', 'confirmed') }
       ),
     });
+
+    // TODO: validation function
+    this.username = new FormControl(
+      '',
+      Validators.compose([
+        Validators.required,
+        // CustomValidators.usernameAvailability(this.username.value)
+      ])
+    );
+  }
+
+  advanceStepTwo() {
+    this.userData.getUsers().subscribe(data => {
+      console.log('dataa', data);
+    });
+
+    console.log('username', this.username);
+    this.stepOneComplete = true;
   }
 
   signup() {

@@ -1,4 +1,4 @@
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 
 export class CustomValidators {
   /**
@@ -30,6 +30,22 @@ export class CustomValidators {
       return firstCtrl.value === secondCtrl.value
         ? null
         : { [validationName]: true };
+    };
+  }
+
+  static usernameAvailability(
+    username: string,
+    currentUsernames: Array<string>,
+    validationName: string = 'match'
+  ): ValidatorFn {
+    return (ctrl: AbstractControl): { [key: string]: any } => {
+      const mockData = ['andrelas', 'yannbf', 'khaled'];
+
+      const result = mockData.find(item => {
+        return item === username;
+      });
+
+      return result ? { [validationName]: true } : null;
     };
   }
 }
