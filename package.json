@@ -17,7 +17,8 @@
     "commitmsg": "commitlint -e",
     "commit": "git-cz",
     "test": "jest --watch",
-    "test-ci": "jest --runInBand"
+    "test-ci": "jest --runInBand  --coverage && cat ./coverage/lcov.info | coveralls",
+    "test-coverage": "jest --coverage"
   },
   "description": "A cryptocurrency social project",
   "cordova": {
@@ -113,6 +114,13 @@
     ],
     "transformIgnorePatterns": [
       "node_modules/(?!@ngrx|@ionic-native|@ionic)"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ],
+    "coverageReporters": [
+      "lcov"
     ]
   }
 }
