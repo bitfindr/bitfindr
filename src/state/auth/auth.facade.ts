@@ -1,15 +1,19 @@
+import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Actions, Effect, ROOT_EFFECTS_INIT } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 import { of as obsOf } from 'rxjs/observable/of';
 import { from } from 'rxjs/observable/from';
-import { Injectable } from '@angular/core';
-import { Actions, Effect } from '@ngrx/effects';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
-import { ApplicationState } from './../app.state';
-import { AuthProvider } from './../../providers/auth/auth.provider';
-import { AuthQuery } from './auth.reducer';
 import { UserCredentials, SignupData } from './../../shared/models';
+import { AuthProvider } from './../../providers/auth/auth.provider';
 import {
+  ApplicationState,
+  AuthQuery,
   AuthActionTypes,
   AuthenticateAction,
   SignupAction,
@@ -20,12 +24,10 @@ import {
   FacebookAuthFailAction,
   SignoutAction,
   SignoutFailAction,
-} from './auth.actions';
-import {
   EditProfileAction,
   SetupProfileAction,
   LoadProfileAction,
-} from './../profile/profile.actions';
+} from './../../state';
 
 @Injectable()
 export class AuthFacade {
@@ -41,6 +43,15 @@ export class AuthFacade {
   // ********************************************
   // Effects to be registered at the Module level
   // ********************************************
+
+  @Effect()
+  init$ = this.actions$
+    .ofType(ROOT_EFFECTS_INIT)
+    .switchMap(_ =>
+      this.authProvider
+        .checkAuthState()
+        .map(authState => new AuthenticateAction(authState))
+    );
 
   @Effect()
   signup$ = this.actions$
@@ -109,11 +120,7 @@ export class AuthFacade {
     private store: Store<ApplicationState>,
     private actions$: Actions,
     private authProvider: AuthProvider
-  ) {
-    authProvider.checkAuthState().subscribe(authState => {
-      this.store.dispatch(new AuthenticateAction(authState));
-    });
-  }
+  ) {}
 
   // ********************
   // Auth Action creators
