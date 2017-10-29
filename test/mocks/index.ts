@@ -7,5 +7,5 @@ import { AuthFacadeMock } from './auth.facade.mock';
 export const PROVIDER_MOCKS: Provider[] = [
   ...IONIC_MOCKS,
 
-  { provide: AuthFacade, useValue: AuthFacadeMock.instance() },
+  { provide: AuthFacade, useClass: AuthFacadeMock },
 ];

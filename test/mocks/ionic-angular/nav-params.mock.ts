@@ -1,7 +1,7 @@
+import { Optional } from '@angular/core';
+
 export class NavParamsMock {
-  public static instance(getReturn?: any) {
-    return {
-      get: jest.fn(_ => getReturn),
-    };
-  }
+  get = jest.fn(_ => this.getReturn);
+
+  constructor(@Optional() private getReturn?: any) {}
 }

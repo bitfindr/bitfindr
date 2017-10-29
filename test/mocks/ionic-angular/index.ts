@@ -14,14 +14,14 @@ import { ConfigMock } from './config.mock';
 import { PlatformMock } from './platform.mock';
 import { FormMock } from './form.mock';
 import { AppMock } from './app.mock';
-import { IonKeyboardMock } from './ion-keyboard.mock';
+import { KeyboardMock } from './keyboard.mock';
 
 export const IONIC_MOCKS: Provider[] = [
-  { provide: NavController, useValue: NavControllerMock.instance() },
-  { provide: Config, useValue: ConfigMock.instance() },
-  { provide: Platform, useValue: PlatformMock.instance() },
+  { provide: NavController, useClass: NavControllerMock },
+  { provide: Config, useClass: ConfigMock },
+  { provide: Platform, useClass: PlatformMock },
   DomController,
-  { provide: App, useValue: AppMock.instance() },
-  { provide: Keyboard, useValue: IonKeyboardMock.instance() },
-  { provide: Form, useValue: FormMock.instance() },
+  { provide: App, useClass: AppMock },
+  { provide: Keyboard, useClass: KeyboardMock },
+  { provide: Form, useClass: FormMock },
 ];
