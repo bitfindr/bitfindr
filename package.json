@@ -18,7 +18,9 @@
     "commit": "git-cz",
     "test-coverage": "ng test --code-coverage",
     "test": "ng test",
-    "test-ci": "ng test --watch=false --code-coverage && cat ./coverage/lcov.info | coveralls"
+    "test-ci": "ng test --watch=false --code-coverage && cat ./coverage/lcov.info | coveralls",
+    "e2e": "ionic-app-scripts build && protractor",
+    "postinstall": "webdriver-manager update"
   },
   "description": "A cryptocurrency social project",
   "cordova": {
@@ -85,14 +87,16 @@
   },
   "devDependencies": {
     "@angular/cli": "^1.4.9",
-    "@angular/router": "4.4.3",
+    "@angular/router": "^4.4.3",
     "@commitlint/cli": "^4.2.2",
     "@ionic/app-scripts": "3.0.1",
     "@types/jasmine": "^2.6.0",
     "@types/node": "^8.0.46",
     "all-contributors-cli": "^4.5.0",
+    "angular-cli": "^1.0.0-beta.28.3",
     "codelyzer": "^3.2.1",
     "commitizen": "^2.9.6",
+    "connect": "^3.6.5",
     "coveralls": "^3.0.0",
     "cz-conventional-changelog": "^2.0.0",
     "husky": "^0.14.3",
@@ -108,7 +112,10 @@
     "karma-junit-reporter": "^1.2.0",
     "lint-staged": "^4.3.0",
     "prettier": "1.7.4",
+    "protractor": "^5.2.0",
     "sass-lint": "^1.12.1",
+    "serve-static": "^1.13.1",
+    "ts-node": "^3.3.0",
     "typescript": "2.4.2"
   },
   "config": {
