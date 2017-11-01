@@ -1,11 +1,10 @@
-import { AuthFacade } from './../../state/auth/auth.facade';
-import { ComponentFixture, async } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
+import { ComponentFixture, async, inject } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
-import { SignupPage } from './signup';
 import { TestUtils } from './../../../test';
-import { inject } from '@angular/core/testing';
+import { SignupPage } from './signup';
+import { AuthFacade } from './../../state/auth/auth.facade';
 
 let formControlUpdater: TestUtils.FormControlUpdater;
 let fixture: ComponentFixture<SignupPage> = null;
@@ -14,15 +13,27 @@ let instance: SignupPage = null;
 let nativeEl: HTMLElement = null;
 
 const INVALID_FORM = {
+  firstName: 'firstName',
+  lastName: 'lastName',
   email: 'invalidEmail',
   password: 'invalidPwd',
   passwordConfirm: 'nonMatching',
 };
 const VALID_FORM = {
+  firstName: 'firstName',
+  lastName: 'lastName',
   email: 'valid@email.com',
   password: '123test',
   passwordConfirm: '123test',
 };
+
+function updateFirstName(value: string) {
+  formControlUpdater('firstName', value);
+}
+
+function updateLastName(value: string) {
+  formControlUpdater('lastName', value);
+}
 
 function updateEmail(value: string) {
   formControlUpdater('email', value);
@@ -37,7 +48,9 @@ function updatePasswordConfirm(value: string) {
 }
 
 function fillForm(data: any) {
-  const { email, password, passwordConfirm } = data;
+  const { firstName, lastName, email, password, passwordConfirm } = data;
+  updateFirstName(firstName);
+  updateLastName(lastName);
   updateEmail(email);
   updatePassword(password);
   updatePasswordConfirm(passwordConfirm);
@@ -66,12 +79,17 @@ describe('Pages: SignupPage', () => {
 
   describe('Method: signup()', () => {
     it(
-      'should call `AuthFacade#signup` with `signupForm` value',
+      'should call `AuthFacade#signup` with Signup Data value',
       inject([AuthFacade], (authFacade: AuthFacade) => {
-        const { email, password } = VALID_FORM;
-        const expected = { email, password };
+        const { email, password, firstName, lastName } = VALID_FORM;
+        const expected = {
+          credentials: { email, password },
+          userProfile: { firstName, lastName },
+        };
 
         instance.signupForm.setValue({
+          firstName,
+          lastName,
           email,
           password: {
             value: password,
@@ -93,10 +111,10 @@ describe('Pages: SignupPage', () => {
         .nativeElement;
     });
 
-    it('should have three input fields', () => {
+    it('should have five input fields', () => {
       const inputs = debugEl.queryAll(By.css('input'));
 
-      expect(inputs.length).toBe(3);
+      expect(inputs.length).toBe(5);
     });
 
     it('should disable submit button while invalid', () => {

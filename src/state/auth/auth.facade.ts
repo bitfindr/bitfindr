@@ -1,14 +1,19 @@
+import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Actions, Effect, ROOT_EFFECTS_INIT } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 import { of as obsOf } from 'rxjs/observable/of';
-import { Injectable } from '@angular/core';
-import { Actions, Effect } from '@ngrx/effects';
+import { from } from 'rxjs/observable/from';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
-import { ApplicationState } from './../app.state';
-import { AuthProvider } from './../../providers/auth/auth';
-import { AuthQuery } from './auth.reducer';
-import { UserCredentials } from './../../shared/models/auth';
+import { UserCredentials, SignupData } from './../../shared/models';
+import { AuthProvider } from './../../providers/auth/auth.provider';
 import {
+  ApplicationState,
+  AuthQuery,
   AuthActionTypes,
   AuthenticateAction,
   SignupAction,
@@ -19,7 +24,10 @@ import {
   FacebookAuthFailAction,
   SignoutAction,
   SignoutFailAction,
-} from './auth.actions';
+  EditProfileAction,
+  SetupProfileAction,
+  LoadProfileAction,
+} from './../../state';
 
 @Injectable()
 export class AuthFacade {
@@ -37,13 +45,30 @@ export class AuthFacade {
   // ********************************************
 
   @Effect()
+  init$ = this.actions$
+    .ofType(ROOT_EFFECTS_INIT)
+    .switchMap(_ =>
+      this.authProvider
+        .checkAuthState()
+        .map(authState => new AuthenticateAction(authState))
+    );
+
+  @Effect()
   signup$ = this.actions$
     .ofType<SignupAction>(AuthActionTypes.SIGNUP)
     .map(action => action.payload)
-    .switchMap(credentials =>
+    .switchMap(data =>
       this.authProvider
-        .signup(credentials)
-        .map(authUser => new AuthenticateAction(authUser))
+        .signup(data.credentials)
+        .switchMap(authUser =>
+          from([
+            new AuthenticateAction(authUser),
+            new SetupProfileAction({
+              userProfile: data.userProfile,
+              uid: authUser.uid,
+            }),
+          ])
+        )
         .catch(error => obsOf(new SignupFailAction(error)))
     );
 
@@ -84,24 +109,25 @@ export class AuthFacade {
         .catch(error => obsOf(new FacebookAuthFailAction(error)))
     );
 
+  @Effect()
+  authenticate$ = this.actions$
+    .ofType<AuthenticateAction>(AuthActionTypes.AUTHENTICATE)
+    .map(action => action.payload)
+    .filter(authUser => !!authUser)
+    .map(authUser => new LoadProfileAction(authUser.uid));
+
   constructor(
     private store: Store<ApplicationState>,
     private actions$: Actions,
     private authProvider: AuthProvider
-  ) {
-    authProvider
-      .checkAuthState()
-      .subscribe(authState =>
-        this.store.dispatch(new AuthenticateAction(authState))
-      );
-  }
+  ) {}
 
   // ********************
   // Auth Action creators
   // ********************
 
-  signup(credentials: UserCredentials) {
-    this.store.dispatch(new SignupAction(credentials));
+  signup(data: SignupData) {
+    this.store.dispatch(new SignupAction(data));
     return this.authUser$;
   }
 

@@ -1,3 +1,10 @@
+import { BaseUserProfile } from './profile';
+
+export interface SignupData {
+  credentials: UserCredentials;
+  userProfile: BaseUserProfile;
+}
+
 export interface UserCredentials {
   email: string;
   password: string;

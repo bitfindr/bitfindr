@@ -8,6 +8,8 @@ export class ContactComponent {
   @Input('alignLeft') alignLeft: boolean;
   @Output() onContactClick = new EventEmitter();
 
+  placeholder: string = 'assets/img/profile-placeholder.png';
+
   constructor() {}
 
   onClick() {

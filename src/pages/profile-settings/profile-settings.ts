@@ -1,22 +1,21 @@
-import { AlertService } from '../../providers/util/alert/alert';
-import { AuthFacade } from '../../state/auth/auth.facade';
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-interface AppState {
-  counter: number;
-}
+import { ProfileFacade } from './../../state/profile/profile.facade';
+import { AuthFacade } from './../../state/auth/auth.facade';
+import { AlertService } from './../../providers/util/alert/alert';
 
 @IonicPage()
 @Component({
-  selector: 'page-about',
-  templateUrl: 'about.html',
+  selector: 'page-profile-settings',
+  templateUrl: 'profile-settings.html',
 })
-export class AboutPage {
+export class ProfileSettingsPage {
   constructor(
     public navCtrl: NavController,
+    public profileFacade: ProfileFacade,
     private authFacade: AuthFacade,
     private alertCtrl: AlertService
   ) {}

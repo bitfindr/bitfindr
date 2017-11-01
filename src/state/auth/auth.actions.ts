@@ -3,7 +3,8 @@ import { Action } from '@ngrx/store';
 import {
   UserCredentials,
   FirebaseUserProfile,
-} from './../../shared/models/auth';
+  SignupData,
+} from './../../shared/models';
 
 export enum AuthActionTypes {
   SIGNUP = '[Auth] Signup',
@@ -19,7 +20,7 @@ export enum AuthActionTypes {
 
 export class SignupAction implements Action {
   readonly type = AuthActionTypes.SIGNUP;
-  constructor(public payload: UserCredentials) {}
+  constructor(public payload: SignupData) {}
 }
 
 export class SignupFailAction implements Action {

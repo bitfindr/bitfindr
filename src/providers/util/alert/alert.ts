@@ -5,10 +5,15 @@ import { AlertController } from 'ionic-angular';
 export class AlertService {
   constructor(public alertCtrl: AlertController) {}
 
-  create(title: string, message: string) {
+  create(
+    title: string,
+    message: string,
+    enableBackdropDismiss: boolean = true
+  ) {
     let alert = this.alertCtrl.create({
       title: title,
       subTitle: message,
+      enableBackdropDismiss: enableBackdropDismiss,
       buttons: [{ text: 'OK' }],
     });
 
@@ -16,7 +21,7 @@ export class AlertService {
   }
 
   createWithError(message: string) {
-    return this.create('An error has occurred.', message);
+    return this.create('Oops', message, false);
   }
 
   createOk(title, message): Promise<boolean> {

@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 
 import { AuthActions, AuthActionTypes } from './auth.actions';
-import { FirebaseUserProfile } from './../../shared/models/auth';
+import { FirebaseUserProfile } from './../../shared/models';
 import { ApplicationState } from './../app.state';
 
 export interface AuthState {
@@ -9,13 +9,13 @@ export interface AuthState {
   authUser: FirebaseUserProfile;
 }
 
-export const INITIAL_STATE: AuthState = {
+export const AUTH_INITIAL_STATE: AuthState = {
   checkedAuthState: false,
   authUser: null,
 };
 
 export function authReducer(
-  state = INITIAL_STATE,
+  state = AUTH_INITIAL_STATE,
   action: AuthActions
 ): AuthState {
   switch (action.type) {

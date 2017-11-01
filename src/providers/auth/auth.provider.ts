@@ -11,7 +11,7 @@ import {
   FirebaseUserProfile,
   FirebaseBasicProfile,
   UserCredentials,
-} from './../../shared/models/auth';
+} from './../../shared/models';
 import { environment } from './../../environments/environment';
 
 @Injectable()

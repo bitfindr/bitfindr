@@ -1,0 +1,53 @@
+import { of as obsOf } from 'rxjs/observable/of';
+
+import { ViewControllerMock } from './view-controller.mock';
+
+export class NavControllerMock {
+  root = new ViewControllerMock();
+  rootParams = {};
+  goToRoot = jest.fn(_ => Promise.resolve());
+  initPane = jest.fn(_ => 1);
+  paneChanged = jest.fn();
+  push = jest.fn(_ => Promise.resolve());
+  insert = jest.fn(_ => Promise.resolve());
+  insertPage = jest.fn(_ => Promise.resolve());
+  pop = jest.fn(_ => Promise.resolve());
+  popTo = jest.fn(_ => Promise.resolve());
+  popToRoot = jest.fn(_ => Promise.resolve());
+  popAll = jest.fn(_ => Promise.resolve());
+  remove = jest.fn(_ => Promise.resolve());
+  removeView = jest.fn(_ => Promise.resolve());
+  setRoot = jest.fn(_ => Promise.resolve());
+  setPages = jest.fn(_ => Promise.resolve());
+  hasChildren = jest.fn(_ => true);
+  getActiveChildNav = jest.fn();
+  registerChildNav = jest.fn();
+  unregisterChildNav = jest.fn();
+  destroy = jest.fn();
+  swipeBackStart = jest.fn();
+  swipeBackProgress = jest.fn();
+  swipeBackEnd = jest.fn();
+  canSwipeBack = jest.fn(_ => true);
+  canGoBack = jest.fn(_ => true);
+  isTransitioning = jest.fn(_ => false);
+  setTransitioning = jest.fn();
+  getActive = jest.fn(_ => new ViewControllerMock());
+  isActive = jest.fn(_ => true);
+  getByIndex = jest.fn(_ => new ViewControllerMock());
+  getPrevious = jest.fn(_ => new ViewControllerMock());
+  first = jest.fn(_ => new ViewControllerMock());
+  last = jest.fn(_ => new ViewControllerMock());
+  indexOf = jest.fn(_ => 0);
+  length = jest.fn(_ => 0);
+  getViews = jest.fn(_ => []);
+  isSwipeBackEnabled = jest.fn(_ => true);
+  dismissPageChangeViews = jest.fn();
+  setViewPort = jest.fn();
+  resize = jest.fn();
+  viewDidEnter = obsOf(undefined);
+  viewDidLeave = obsOf(undefined);
+  viewDidLoad = obsOf(undefined);
+  viewWillEnter = obsOf(undefined);
+  viewWillLeave = obsOf(undefined);
+  viewWillUnload = obsOf(undefined);
+}

@@ -3,7 +3,7 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 import { AuthFacade } from './../../state';
-import { UserCredentials } from './../../shared/models/auth';
+import { UserCredentials } from './../../shared/models';
 
 @IonicPage({
   segment: 'login',

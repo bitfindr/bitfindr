@@ -1,7 +1,7 @@
 <ion-item class="contact"
           no-lines text-center
           (click)="onClick()">
-  <img *ngIf="alignLeft" item-start [src]="contact.image"/>
-  <img *ngIf="!alignLeft" [src]="contact.image"/>
-  <h5>{{ contact.name }}</h5>
+  <img *ngIf="alignLeft" item-start [src]="contact.image || placeholder"/>
+  <img *ngIf="!alignLeft" [src]="contact.image || placeholder"/>
+  <h5>{{ contact.firstName }} {{ contact.lastName }}</h5>
 </ion-item>

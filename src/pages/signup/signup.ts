@@ -9,7 +9,7 @@ import {
 
 import { CustomValidators } from './../../shared/utils/custom-validators';
 import { AuthFacade } from './../../state';
-import { UserCredentials } from './../../shared/models/auth';
+import { UserCredentials, BaseUserProfile } from './../../shared/models';
 
 @IonicPage({
   segment: 'signup',
@@ -27,13 +27,8 @@ export class SignupPage {
     private authFacade: AuthFacade
   ) {
     this.signupForm = formBuilder.group({
-      /**
-       * TODO (Khaled) Should we capture "profile" data on a separate page
-       * because of Firebase?
-       * See component template
-       */
-      // firstName: ['', Validators.required],
-      // lastName: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: formBuilder.group(
         {
@@ -55,6 +50,11 @@ export class SignupPage {
       password: formValue.password.value,
     };
 
-    this.authFacade.signup(credentials);
+    const userProfile: BaseUserProfile = {
+      firstName: formValue.firstName,
+      lastName: formValue.lastName,
+    };
+
+    this.authFacade.signup({ credentials, userProfile });
   }
 }

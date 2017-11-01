@@ -1,19 +1,12 @@
-import { of as obsOf } from 'rxjs/observable/of';
-
 export class AuthFacadeMock {
-  public static instance(): any {
-
-    const instance = jasmine.createSpyObj('AuthFacade', {
-      signup: obsOf(),
-      login: obsOf(),
-      signout: obsOf(),
-    });
-
-    instance.authUser$ = obsOf();
-    instance.signup$ = obsOf();
-    instance.login$ = obsOf();
-    instance.signout$ = obsOf();
-
-    return instance;
-  }
+  authUser$ = jest.fn();
+  signup$ = jest.fn();
+  login$ = jest.fn();
+  signout$ = jest.fn();
+  facebookAuth$ = jest.fn();
+  authenticate$ = jest.fn();
+  signup = jest.fn();
+  login = jest.fn();
+  facebookAuth = jest.fn();
+  signout = jest.fn();
 }

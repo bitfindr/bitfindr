@@ -2,5 +2,8 @@
 </ion-header>
 
 <ion-content padding class="content">
+  <pre>
+    {{ profileFacade.userProfile$ | async | json }}
+  </pre>
     <button ion-button (click)="signout()">Sign out</button>
 </ion-content>

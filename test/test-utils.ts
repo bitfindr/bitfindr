@@ -4,8 +4,7 @@ import { By } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from 'ionic-angular';
 
-import { TEST_PROVIDERS } from './test-module.providers';
-import { APP_MOCKS } from './mocks/index';
+import { PROVIDER_MOCKS } from './mocks';
 
 export interface TestModuleComponents<T> {
   [index: number]: any;
@@ -25,31 +24,38 @@ export function beforeEachCompiler<Cmp>(components: TestModuleComponents<Cmp>) {
     });
 }
 
-export function configureIonicTestingModule<Cmp>(components: TestModuleComponents<Cmp>) {
+export function configureIonicTestingModule<Cmp>(
+  components: TestModuleComponents<Cmp>
+) {
   return TestBed.configureTestingModule({
-    declarations: [ ...<any>components ],
-    providers: [ ...TEST_PROVIDERS, ...APP_MOCKS ],
-    imports: [
-      FormsModule,
-      IonicModule,
-      ReactiveFormsModule,
-    ],
+    declarations: [...(<any>components)],
+    providers: [...PROVIDER_MOCKS],
+    imports: [FormsModule, IonicModule, ReactiveFormsModule],
   });
 }
 
-export function createEvent(evtName: string, bubbles = false, cancelable = false, detail = null) {
+export function createEvent(
+  evtName: string,
+  bubbles = false,
+  cancelable = false,
+  detail = null
+) {
   const evt = document.createEvent('CustomEvent');
   evt.initCustomEvent(evtName, bubbles, cancelable, detail);
 
   return evt;
 }
 
-export type FormControlUpdater = (formControlName: string, value: string) => void;
-export function getFormControlUpdater(debugEl: DebugElement): FormControlUpdater {
+export type FormControlUpdater = (
+  formControlName: string,
+  value: string
+) => void;
+export function getFormControlUpdater(
+  debugEl: DebugElement
+): FormControlUpdater {
   return (formControlName: string, value: string) => {
-    const selector = `input[formcontrolname="${formControlName}"`;
-    const inputEl: HTMLInputElement = debugEl
-      .query(By.css(selector))
+    const selector = `input[formcontrolname="${formControlName}"]`;
+    const inputEl: HTMLInputElement = debugEl.query(By.css(selector))
       .nativeElement;
 
     inputEl.value = value;
