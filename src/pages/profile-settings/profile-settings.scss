@@ -1,1 +1,35 @@
+page-profile-settings {
+  .profile-info {
+    background: transparentize($color-dark-blue-gray, 0.6);
+    height: 30vh;
 
+    h5 {
+      color: map-get($colors, light);
+    }
+
+    img {
+      background: $color-white;
+      border-radius: 100%;
+      max-height: 90px;
+      max-width: 90px;
+      padding: 0.3rem;
+    }
+  }
+
+  .list {
+    margin: -1px 0 1.2rem;
+
+    ion-list-header {
+      ion-label {
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+    }
+
+    .item-md,
+    .item-ios {
+      background-color: transparent;
+      color: map-get($colors, light);
+    }
+  }
+}

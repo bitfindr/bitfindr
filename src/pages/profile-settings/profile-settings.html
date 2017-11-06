@@ -1,9 +1,75 @@
 <ion-header>
 </ion-header>
 
-<ion-content padding class="content">
-  <pre>
-    {{ profileFacade.userProfile$ | async | json }}
-  </pre>
-    <button ion-button (click)="signout()">Sign out</button>
+<ion-content class="content">
+  <section padding text-center class="profile-info"
+           *ngIf="profileFacade.userProfile$ | async; let profile">
+    <img [src]="profile.image || placeholder"/>
+    <h5>{{ profile.firstName }} {{ profile.lastName }}</h5>
+  </section>
+  <ion-list no-lines>
+    <ion-list-header>
+      Account
+    </ion-list-header>
+    <button ion-item>
+      Edit profile
+    </button>
+    <button ion-item>
+      Change password
+    </button>
+    <ion-item>
+      <ion-label>Private account</ion-label>
+      <ion-toggle [(ngModel)]="private"></ion-toggle>
+    </ion-item>
+  </ion-list>
+  <ion-list no-lines>
+    <ion-list-header>
+      Configuration
+    </ion-list-header>
+    <ion-item>
+      <!--TODO: Change this to a component that uses ngx-translate -->
+      <ion-label>Language</ion-label>
+      <ion-select [(ngModel)]="language">
+        <ion-option value="english" selected="true">English</ion-option>
+        <ion-option value="portuguese">Português</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <!--TODO: Change this to a component that uses ngrx + OneSignal -->
+      <ion-label>Notifications</ion-label>
+      <ion-toggle [(ngModel)]="private"></ion-toggle>
+    </ion-item>
+  </ion-list>
+  <ion-list no-lines>
+    <ion-list-header>
+      SUPPORT
+    </ion-list-header>
+    <!--TODO (YANN): Implement these guys -->
+    <button ion-item>
+      Report bug
+    </button>
+    <button ion-item>
+      Send feedback
+    </button>
+  </ion-list>
+  <ion-list no-lines>
+    <ion-list-header>
+      About
+    </ion-list-header>
+    <!--TODO (YANN): Implement these guys -->
+    <button ion-item>
+      Privacy policy
+    </button>
+    <button ion-item>
+      Terms of service
+    </button>
+    <button ion-item>
+      Visit project page
+    </button>
+  </ion-list>
+  <ion-list no-lines>
+    <button ion-item (click)="signout()">
+      Sign out
+    </button>
+  </ion-list>
 </ion-content>

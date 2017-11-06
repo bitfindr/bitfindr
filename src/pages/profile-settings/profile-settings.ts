@@ -13,6 +13,8 @@ import { AlertService } from './../../providers/util/alert/alert';
   templateUrl: 'profile-settings.html',
 })
 export class ProfileSettingsPage {
+  placeholder: string = 'assets/img/profile-placeholder.png';
+
   constructor(
     public navCtrl: NavController,
     public profileFacade: ProfileFacade,
