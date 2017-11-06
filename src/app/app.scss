@@ -14,6 +14,8 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+@import '../theme/fonts';
+
 .tabs {
   .tabbar {
     background: $color-tabs-background;
