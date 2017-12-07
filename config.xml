@@ -92,4 +92,5 @@
         <variable name="APP_ID" value="125683201478357" />
         <variable name="APP_NAME" value="Bitf­i­n­d­r­test" />
     </plugin>
+    <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
 </widget>
