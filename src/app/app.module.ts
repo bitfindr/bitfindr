@@ -1,10 +1,10 @@
-import { BitfindrDataProvider } from '../providers/bitfindr-data/bitfindr-data.provider';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+
 import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { ClipboardModule } from 'ngx-clipboard';
 
@@ -14,6 +14,7 @@ import { Contacts } from '@ionic-native/contacts';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Facebook } from '@ionic-native/facebook';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -27,6 +28,7 @@ import { ToastProvider } from './../providers/util/toast/toast';
 import { ClipboardProvider } from './../providers/clipboard/clipboard.provider';
 import { AuthProvider } from './../providers/auth/auth.provider';
 import { AlertService } from '../providers/util/alert/alert';
+import { BitfindrDataProvider } from '../providers/bitfindr-data/bitfindr-data.provider';
 
 import {
   ROOT_REDUCER,
@@ -72,6 +74,7 @@ import {
     AuthProvider,
     AuthFacade,
     AlertService,
+    InAppBrowser,
   ],
 })
 export class AppModule {}
