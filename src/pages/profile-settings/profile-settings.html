@@ -11,10 +11,10 @@
     <ion-list-header>
       Account
     </ion-list-header>
-    <button ion-item>
+    <button ion-item (click)="goToRegisterProfile()">
       Edit profile
     </button>
-    <button ion-item>
+    <button ion-item (click)="goToChangePassword()">
       Change password
     </button>
     <ion-item>
@@ -45,10 +45,10 @@
       SUPPORT
     </ion-list-header>
     <!--TODO (YANN): Implement these guys -->
-    <button ion-item>
+    <button ion-item (click)="goToReportBug()">
       Report bug
     </button>
-    <button ion-item>
+    <button ion-item (click)="goToSendFeedback()">
       Send feedback
     </button>
   </ion-list>
@@ -57,13 +57,13 @@
       About
     </ion-list-header>
     <!--TODO (YANN): Implement these guys -->
-    <button ion-item>
+    <button ion-item (click)="showPrivacyPolicy()">
       Privacy policy
     </button>
-    <button ion-item>
+    <button ion-item (click)="showTermsOfService()">
       Terms of service
     </button>
-    <button ion-item>
+    <button ion-item (click)="goToProjectPage()">
       Visit project page
     </button>
   </ion-list>
