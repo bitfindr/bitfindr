@@ -1,0 +1,10 @@
+// App Wide Fonts
+
+@font-face {
+  font-family: 'HKNova';
+  src: url('../assets/fonts/HKNova-MediumR.otf') format('opentype');
+}
+
+* {
+  font-family: 'HKNova';
+}
